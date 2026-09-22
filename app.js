@@ -452,4 +452,94 @@ document.addEventListener('DOMContentLoaded', () => {
     window.closeFilterModal();
     window.showToast('Filter preferences reset', 'refresh');
   };
+
+  // 8. REPORT DETAIL & GENERATION FLOW (Matching User Spec media_1790069349203.jpg)
+  let currentReportTitle = 'Activity';
+  let activeDatePreset = '7-days';
+  let activeDateRangeString = 'Oct 12, 2026 - Oct 18, 2026';
+
+  window.openReportDetail = function(reportTitle) {
+    currentReportTitle = reportTitle || 'Activity';
+    const headerTitle = document.getElementById('report-detail-header-title');
+    if (headerTitle) {
+      headerTitle.textContent = `${currentReportTitle} Report Detail`;
+    }
+    window.navigateTo('report-detail-screen');
+  };
+
+  window.selectDatePreset = function(preset) {
+    activeDatePreset = preset;
+    
+    // Update button active styles
+    const presetButtons = document.querySelectorAll('.js-date-preset');
+    presetButtons.forEach(btn => {
+      btn.classList.remove('bg-primary', 'text-on-primary');
+      btn.classList.add('bg-surface-container-lowest', 'border', 'border-outline-variant', 'text-secondary');
+    });
+
+    const activeBtn = document.getElementById(`preset-${preset}`);
+    if (activeBtn) {
+      activeBtn.classList.remove('bg-surface-container-lowest', 'border', 'border-outline-variant', 'text-secondary');
+      activeBtn.classList.add('bg-primary', 'text-on-primary');
+    }
+
+    // Update Date Range Text
+    const dateText = document.getElementById('selected-date-range-text');
+    if (dateText) {
+      if (preset === '7-days') {
+        activeDateRangeString = 'Oct 12, 2026 - Oct 18, 2026';
+      } else if (preset === '30-days') {
+        activeDateRangeString = 'Sep 18, 2026 - Oct 18, 2026';
+      } else if (preset === 'this-month') {
+        activeDateRangeString = 'Oct 01, 2026 - Oct 31, 2026';
+      }
+      dateText.textContent = activeDateRangeString;
+    }
+  };
+
+  window.updateFleetScopeText = function() {
+    const select = document.getElementById('report-fleet-select');
+    const scopeDesc = document.getElementById('scope-description-text');
+    const scopePct = document.getElementById('scope-percentage-text');
+    if (!select || !scopeDesc || !scopePct) return;
+
+    const val = select.value;
+    if (val.includes('All Fleets')) {
+      scopeDesc.textContent = 'Scope includes electric and hybrid line divisions';
+      scopePct.textContent = '100% Units';
+    } else if (val.includes('Mercedes')) {
+      scopeDesc.textContent = 'Scope includes Mercedes Citaro E-Cell fleet';
+      scopePct.textContent = '45.6% Units';
+    } else if (val.includes('Volvo')) {
+      scopeDesc.textContent = 'Scope includes Volvo 7900 Hybrid fleet';
+      scopePct.textContent = '28.0% Units';
+    } else if (val.includes('BYD')) {
+      scopeDesc.textContent = 'Scope includes BYD K9 Electric fleet';
+      scopePct.textContent = '18.0% Units';
+    } else {
+      scopeDesc.textContent = 'Scope includes New Flyer Xcelsior fleet';
+      scopePct.textContent = '11.9% Units';
+    }
+  };
+
+  window.generateReport = function() {
+    const fleetSelect = document.getElementById('report-fleet-select');
+    const selectedFleet = fleetSelect ? fleetSelect.value : 'All Fleets (428 Units)';
+
+    // Update Results Screen
+    const resTitle = document.getElementById('result-report-title');
+    const resDate = document.getElementById('active-result-date');
+    const resFleet = document.getElementById('active-result-fleet');
+
+    if (resTitle) resTitle.textContent = `${currentReportTitle} Report`;
+    if (resDate) resDate.textContent = activeDateRangeString;
+    if (resFleet) resFleet.textContent = `Scope: ${selectedFleet}`;
+
+    window.navigateTo('report-results-screen');
+    window.showToast(`${currentReportTitle} Report generated!`, 'analytics');
+  };
+
+  window.editReportParameters = function() {
+    window.navigateTo('report-detail-screen');
+  };
 });
