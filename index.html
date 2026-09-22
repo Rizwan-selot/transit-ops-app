@@ -169,6 +169,12 @@
 
             <!-- Credentials Form -->
             <form id="login-form" class="space-y-4">
+              <!-- Inline Auth Error Container -->
+              <div id="login-error-msg" class="hidden bg-red-50 border border-red-200 text-red-700 text-body-sm px-3.5 py-2.5 rounded-lg flex items-center space-x-2">
+                <span class="material-symbols-outlined text-[18px] text-red-600 shrink-0">error</span>
+                <span id="login-error-text">Invalid username or password.</span>
+              </div>
+
               <div>
                 <label class="block font-label-md text-label-md text-on-surface-variant font-medium mb-1.5" for="fleet-id">
                   Username / Fleet ID
@@ -177,7 +183,7 @@
                   <div class="absolute left-3.5 flex items-center pointer-events-none text-secondary">
                     <span class="material-symbols-outlined text-[19px]">person_outline</span>
                   </div>
-                  <input id="fleet-id" type="text" value="manager@transitops.io" class="w-full bg-surface-container-lowest border border-outline-variant/80 rounded-lg pl-10 pr-3.5 py-3 font-body-md text-body-md text-primary focus:border-primary focus:ring-0 transition-colors" placeholder="manager@transitops.io"/>
+                  <input id="fleet-id" type="text" value="Uffizio" class="w-full bg-surface-container-lowest border border-outline-variant/80 rounded-lg pl-10 pr-3.5 py-3 font-body-md text-body-md text-primary focus:border-primary focus:ring-0 transition-colors" placeholder="Uffizio"/>
                 </div>
               </div>
 
@@ -189,7 +195,7 @@
                   <div class="absolute left-3.5 flex items-center pointer-events-none text-secondary">
                     <span class="material-symbols-outlined text-[19px]">lock_outline</span>
                   </div>
-                  <input id="password-input" type="password" value="secretPassword123" class="w-full bg-surface-container-lowest border border-outline-variant/80 rounded-lg pl-10 pr-10 py-3 font-body-md text-body-md text-primary tracking-widest focus:border-primary focus:ring-0 transition-colors" placeholder="••••••••••••"/>
+                  <input id="password-input" type="password" value="Design1212" class="w-full bg-surface-container-lowest border border-outline-variant/80 rounded-lg pl-10 pr-10 py-3 font-body-md text-body-md text-primary tracking-widest focus:border-primary focus:ring-0 transition-colors" placeholder="Design1212"/>
                   <button id="toggle-pwd" type="button" aria-label="Toggle password visibility" class="absolute right-3.5 flex items-center text-secondary hover:text-primary transition-colors focus:outline-none">
                     <span id="eye-icon" class="material-symbols-outlined text-[19px]">visibility_off</span>
                   </button>
@@ -201,7 +207,7 @@
                   <input type="checkbox" checked class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-0 accent-primary"/>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Remember fleet session</span>
                 </label>
-                <a href="#" onclick="showToast('Password reset link sent')" class="font-body-sm text-body-sm text-secondary hover:text-primary transition-colors font-medium">
+                <a href="#" onclick="showToast('Password reset link sent to Uffizio account')" class="font-body-sm text-body-sm text-secondary hover:text-primary transition-colors font-medium">
                   Forgot password?
                 </a>
               </div>

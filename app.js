@@ -107,15 +107,38 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize screen state
   window.navigateTo('login-screen', false);
 
-  // 1. LOGIN SCREEN INTERACTIONS
+  // 1. LOGIN SCREEN INTERACTIONS WITH SECURE AUTHENTICATION (Uffizio / Design1212)
   const loginForm = document.getElementById('login-form');
+  const loginErrorMsg = document.getElementById('login-error-msg');
+  const loginErrorText = document.getElementById('login-error-text');
+  const fleetIdInput = document.getElementById('fleet-id');
+  const passwordInput = document.getElementById('password-input');
+
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      window.showToast('Authentication successful. Welcome Back!', 'check_circle');
-      setTimeout(() => {
-        window.navigateTo('dashboard-screen');
-      }, 500);
+      
+      const username = fleetIdInput ? fleetIdInput.value.trim() : '';
+      const password = passwordInput ? passwordInput.value.trim() : '';
+
+      if (username === 'Uffizio' && password === 'Design1212') {
+        if (loginErrorMsg) loginErrorMsg.classList.add('hidden');
+        if (fleetIdInput) fleetIdInput.classList.remove('border-red-500');
+        if (passwordInput) passwordInput.classList.remove('border-red-500');
+        
+        window.showToast('Authentication successful. Welcome, Uffizio!', 'check_circle');
+        setTimeout(() => {
+          window.navigateTo('dashboard-screen');
+        }, 500);
+      } else {
+        if (loginErrorMsg && loginErrorText) {
+          loginErrorMsg.classList.remove('hidden');
+          loginErrorText.textContent = 'Invalid username or password. (Uffizio / Design1212)';
+        }
+        if (fleetIdInput) fleetIdInput.classList.add('border-red-500');
+        if (passwordInput) passwordInput.classList.add('border-red-500');
+        window.showToast('Invalid credentials!', 'error');
+      }
     });
   }
 
