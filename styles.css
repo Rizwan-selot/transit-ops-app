@@ -1,0 +1,181 @@
+/* Custom Styles for Transit Ops Mobile App web preview prototype */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.material-symbols-outlined.fill-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Hairline blueprint styles */
+.hairline-border {
+  border: 1px solid #E4E4E7;
+}
+.hairline-border-b {
+  border-bottom: 1px solid #E4E4E7;
+}
+.hairline-border-t {
+  border-top: 1px solid #E4E4E7;
+}
+
+/* Radar pulse animation for map node */
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-node::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: rgba(9, 9, 11, 0.25);
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Striped pattern for delayed status */
+.striped-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #e1e2e4,
+    #e1e2e4 4px,
+    #edeef0 4px,
+    #edeef0 8px
+  );
+}
+
+/* Scrollbar utilities */
+.no-scrollbar::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar,
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Screen Display Isolation */
+.app-screen {
+  width: 100%;
+}
+.app-screen:not(.active) {
+  display: none !important;
+}
+.app-screen.active {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* iPhone 16 Pro Mockup Frame Styling */
+.iphone-frame {
+  width: 393px;
+  height: 852px;
+  border: 11px solid #1e2024;
+  border-radius: 52px;
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f9fb;
+}
+
+/* iPhone Side Speaker / Buttons simulation */
+.iphone-frame::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 115px;
+  width: 3px;
+  height: 26px;
+  background: #2a2c30;
+  border-radius: 2px 0 0 2px;
+  box-shadow: 0 40px 0 #2a2c30, 0 85px 0 #2a2c30;
+}
+.iphone-frame::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  top: 160px;
+  width: 3px;
+  height: 48px;
+  background: #2a2c30;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Force removal of Tailwind Forms default select arrow SVG background */
+select {
+  background-image: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+select::-ms-expand {
+  display: none !important;
+}
+
+/* Responsive Mobile Device Auto-Adaptation */
+@media (max-width: 640px) {
+  body {
+    padding: 0 !important;
+    background-color: #f8f9fb !important;
+    min-height: 100vh !important;
+    display: block !important;
+  }
+
+  /* Expand mockup frame to native 100% full screen on mobile devices */
+  .iphone-frame {
+    width: 100vw !important;
+    width: 100dvw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide simulated physical iPhone bezel side buttons on mobile devices */
+  .iphone-frame::before,
+  .iphone-frame::after {
+    display: none !important;
+  }
+
+  /* Hide desktop screen switcher pill on mobile devices */
+  .desktop-only-switcher {
+    display: none !important;
+  }
+
+  /* Hide simulated status bar (time, wifi, battery, dynamic island notch) on real mobile phone screens */
+  .js-simulated-status-bar {
+    display: none !important;
+  }
+}

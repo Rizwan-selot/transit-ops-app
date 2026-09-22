@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transit Ops - iPhone 16 Pro Prototype</title>
+  
+  <!-- Inter Font & Material Symbols CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN with full design system config -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error": "#ba1a1a",
+            "on-background": "#191c1e",
+            "inverse-surface": "#2e3132",
+            "surface-variant": "#e1e2e4",
+            "on-secondary": "#ffffff",
+            "surface": "#f8f9fb",
+            "on-primary-container": "#858386",
+            "primary-container": "#1c1b1d",
+            "on-secondary-fixed-variant": "#46464d",
+            "on-primary-fixed": "#1c1b1d",
+            "on-secondary-container": "#64646b",
+            "primary": "#000000",
+            "secondary-fixed": "#e3e1ea",
+            "surface-tint": "#5f5e60",
+            "on-secondary-fixed": "#1b1b21",
+            "inverse-on-surface": "#f0f1f3",
+            "primary-fixed-dim": "#c8c6c8",
+            "error-container": "#ffdad6",
+            "inverse-primary": "#c8c6c8",
+            "on-surface-variant": "#47464a",
+            "outline": "#78767b",
+            "tertiary": "#000000",
+            "on-error-container": "#93000a",
+            "on-tertiary-container": "#83838c",
+            "on-tertiary": "#ffffff",
+            "surface-container-high": "#e7e8ea",
+            "surface-bright": "#f8f9fb",
+            "primary-fixed": "#e5e1e4",
+            "surface-container": "#edeef0",
+            "tertiary-container": "#1a1b22",
+            "on-error": "#ffffff",
+            "outline-variant": "#c8c5ca",
+            "secondary-container": "#e3e1ea",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#e3e1ec",
+            "background": "#f8f9fb",
+            "on-surface": "#191c1e",
+            "on-tertiary-fixed": "#1a1b22",
+            "surface-container-low": "#f3f4f6",
+            "secondary": "#5e5e65",
+            "secondary-fixed-dim": "#c7c5ce",
+            "surface-dim": "#d9dadc",
+            "on-tertiary-fixed-variant": "#46464e",
+            "tertiary-fixed-dim": "#c6c5cf",
+            "surface-container-highest": "#e1e2e4",
+            "on-primary-fixed-variant": "#474649",
+            "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "margin": "1.25rem",
+            "gutter": "1rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "gutter-mobile": "0.75rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "code-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg-mobile": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "headline-sm": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+            "code-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+            "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "display-lg": ["34px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-lg": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="bg-[#eef0f4] text-on-surface font-sans min-h-screen flex flex-col items-center justify-center antialiased selection:bg-primary selection:text-on-primary p-4 py-8">
+
+  <!-- IPHONE 16 PRO MOCKUP CONTAINER -->
+  <main id="device-frame" class="iphone-frame flex flex-col relative bg-background">
+
+    <!-- SCROLLABLE INNER CANVAS -->
+    <div id="device-viewport" class="flex-1 overflow-y-auto relative no-scrollbar bg-background">
+      
+      <!-- ========================================================================= -->
+      <!-- SCREEN 01: MANAGER LOGIN -->
+      <!-- ========================================================================= -->
+      <section id="login-screen" class="app-screen active min-h-full flex flex-col justify-between">
+        <!-- iOS Status Bar & Dynamic Island -->
+        <header class="js-simulated-status-bar w-full pt-3 px-6 flex justify-between items-center select-none bg-surface-container-lowest shrink-0">
+          <span class="js-status-time font-headline-sm text-body-sm text-primary font-semibold tracking-tight">9:41</span>
+          <!-- Dynamic Island Pill -->
+          <div class="w-28 h-7 bg-primary rounded-full flex items-center justify-between px-2.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-surface-container-highest/20"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#121214] flex items-center justify-center">
+              <div class="w-1.5 h-1.5 rounded-full bg-[#1c1d22]"></div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-1.5 text-primary">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_4_bar</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[18px]">battery_full</span>
+          </div>
+        </header>
+
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <!-- Brand Glyph & System Header -->
+            <div class="flex items-center space-x-3.5 mb-8">
+              <div class="w-11 h-11 bg-primary rounded-xl flex items-center justify-center text-on-primary shadow-sm">
+                <span class="font-headline-md text-headline-md tracking-tighter font-bold">TM</span>
+              </div>
+              <div>
+                <h1 class="font-headline-sm text-headline-sm text-primary tracking-widest uppercase font-bold">TRANSIT OPS</h1>
+                <p class="font-label-sm text-label-sm text-secondary tracking-normal">Public Transportation Manager</p>
+              </div>
+            </div>
+
+            <!-- Welcome Headline Section -->
+            <div class="mb-7">
+              <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold tracking-tight mb-1.5">Welcome back</h2>
+              <p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Sign in to access your regional fleet dashboard and real-time operations.
+              </p>
+            </div>
+
+            <!-- Credentials Form -->
+            <form id="login-form" class="space-y-4">
+              <div>
+                <label class="block font-label-md text-label-md text-on-surface-variant font-medium mb-1.5" for="fleet-id">
+                  Username / Fleet ID
+                </label>
+                <div class="relative flex items-center">
+                  <div class="absolute left-3.5 flex items-center pointer-events-none text-secondary">
+                    <span class="material-symbols-outlined text-[19px]">person_outline</span>
+                  </div>
+                  <input id="fleet-id" type="text" value="manager@transitops.io" class="w-full bg-surface-container-lowest border border-outline-variant/80 rounded-lg pl-10 pr-3.5 py-3 font-body-md text-body-md text-primary focus:border-primary focus:ring-0 transition-colors" placeholder="manager@transitops.io"/>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-label-md text-label-md text-on-surface-variant font-medium mb-1.5" for="password-input">
+                  Password
+                </label>
+                <div class="relative flex items-center">
+                  <div class="absolute left-3.5 flex items-center pointer-events-none text-secondary">
+                    <span class="material-symbols-outlined text-[19px]">lock_outline</span>
+                  </div>
+                  <input id="password-input" type="password" value="secretPassword123" class="w-full bg-surface-container-lowest border border-outline-variant/80 rounded-lg pl-10 pr-10 py-3 font-body-md text-body-md text-primary tracking-widest focus:border-primary focus:ring-0 transition-colors" placeholder="••••••••••••"/>
+                  <button id="toggle-pwd" type="button" aria-label="Toggle password visibility" class="absolute right-3.5 flex items-center text-secondary hover:text-primary transition-colors focus:outline-none">
+                    <span id="eye-icon" class="material-symbols-outlined text-[19px]">visibility_off</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-1 pb-2">
+                <label class="flex items-center cursor-pointer select-none space-x-2.5">
+                  <input type="checkbox" checked class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-0 accent-primary"/>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Remember fleet session</span>
+                </label>
+                <a href="#" onclick="showToast('Password reset link sent')" class="font-body-sm text-body-sm text-secondary hover:text-primary transition-colors font-medium">
+                  Forgot password?
+                </a>
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="w-full h-12 bg-primary text-on-primary rounded-xl font-headline-sm text-headline-sm flex items-center justify-center space-x-2 active:opacity-85 transition-opacity shadow-sm">
+                  <span>Sign In</span>
+                  <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 02: OPERATIONS DASHBOARD -->
+      <!-- ========================================================================= -->
+      <section id="dashboard-screen" class="app-screen pb-24">
+        <!-- Combined Top App Header: Manager Greeting & Search Action -->
+        <header class="bg-surface-container-lowest text-primary sticky top-0 z-40 border-b border-outline-variant px-4 pt-3.5 pb-3">
+          <div class="flex justify-between items-center w-full">
+            <div>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-secondary block">Welcome Back 👋</span>
+              <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Fleet Operations Manager</h1>
+            </div>
+            <button onclick="openGlobalSearch()" class="p-2 rounded-xl text-on-surface hover:bg-surface-container-low border border-outline-variant/60 transition flex items-center justify-center" type="button">
+              <span class="material-symbols-outlined text-[20px]">search</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="px-4 pt-4 space-y-4">
+          <!-- Single Unified Filter Bar Button -->
+          <button onclick="openFilterModal()" class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 flex items-center justify-between shadow-sm hover:border-primary transition active:scale-[0.99] text-left" type="button">
+            <div class="flex items-center space-x-2.5 overflow-hidden">
+              <span class="material-symbols-outlined text-on-surface text-[20px] shrink-0">tune</span>
+              <span id="active-filter-label" class="text-body-md font-semibold text-primary truncate">MTA Transportation • Central North</span>
+            </div>
+            <span class="material-symbols-outlined text-secondary text-[20px] shrink-0 ml-2">arrow_drop_down</span>
+          </button>
+
+          <!-- ========================================================================= -->
+          <!-- 9 NEW DASHBOARD WIDGETS (Matching Image media_1790062603099.jpg) -->
+          <!-- ========================================================================= -->
+
+          <!-- WIDGET 1: Fleet Status -->
+          <section onclick="navigateTo('status-screen')" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3 cursor-pointer hover:border-primary transition">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Fleet Status</h2>
+              <button onclick="event.stopPropagation(); showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>Today</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-semibold text-secondary tracking-wider block">Total Active Fleet</span>
+              <div class="flex items-baseline space-x-1.5 mt-0.5">
+                <span class="text-display-lg-mobile font-bold text-primary tracking-tight">428</span>
+                <span class="text-body-sm text-secondary font-medium">vehicles</span>
+              </div>
+            </div>
+            <!-- Multi-Segment Bar -->
+            <div class="w-full h-3.5 bg-surface-container rounded-full overflow-hidden flex border border-outline-variant/60">
+              <div class="bg-primary h-full" style="width: 72.9%;"></div>
+              <div class="bg-secondary h-full" style="width: 10.5%;"></div>
+              <div class="bg-outline h-full" style="width: 4.2%;"></div>
+              <div class="striped-pattern h-full border-l border-outline-variant" style="width: 12.4%;"></div>
+            </div>
+            <!-- 2x2 Grid Chips -->
+            <div class="grid grid-cols-2 gap-2 text-body-sm pt-1">
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Running</span></div>
+                <span class="font-bold text-primary">312 <span class="font-normal text-secondary text-[11px]">72.9%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-medium text-primary">Stopped</span></div>
+                <span class="font-bold text-primary">45 <span class="font-normal text-secondary text-[11px]">10.5%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-outline"></span><span class="font-medium text-primary">Idle / Delay</span></div>
+                <span class="font-bold text-primary">18 <span class="font-normal text-secondary text-[11px]">4.2%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-dashed border-outline"></span><span class="font-medium text-primary">Depot</span></div>
+                <span class="font-bold text-primary">53 <span class="font-normal text-secondary text-[11px]">12.4%</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 2: Object Brand / Model -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3.5">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Object Brand / Model</h2>
+              <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>Today</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <!-- Circular Radial Donut Graphic -->
+            <div class="relative w-36 h-36 mx-auto flex items-center justify-center my-2">
+              <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-surface-container-highest" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="text-primary" stroke-dasharray="45, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="text-secondary" stroke-dasharray="28, 100" stroke-dashoffset="-45" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="text-outline-variant" stroke-dasharray="18, 100" stroke-dashoffset="-73" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span class="text-headline-lg font-bold text-primary leading-none">428</span>
+                <span class="text-[10px] uppercase tracking-wider text-secondary font-semibold mt-0.5">UNITS</span>
+              </div>
+            </div>
+            <!-- List Breakdown -->
+            <div class="space-y-2 text-body-sm">
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-semibold text-primary">Mercedes Citaro</span></div>
+                <span class="font-bold text-primary">195 <span class="font-normal text-secondary text-[11px]">45%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-semibold text-primary">Volvo 7900 Hybrid</span></div>
+                <span class="font-bold text-primary">120 <span class="font-normal text-secondary text-[11px]">28%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="font-semibold text-primary">BYD K9 Electric</span></div>
+                <span class="font-bold text-primary">77 <span class="font-normal text-secondary text-[11px]">18%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-semibold text-primary">New Flyer Xcelsior</span></div>
+                <span class="font-bold text-primary">51 <span class="font-normal text-secondary text-[11px]">12%</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 3: Remote Immobilizer -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Remote Immobilizer</h2>
+              <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>Today</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <div class="flex items-baseline space-x-1.5">
+                <span class="text-display-lg-mobile font-bold text-primary tracking-tight">414</span>
+                <span class="text-body-sm text-secondary font-medium">/ 428 Total Units</span>
+              </div>
+              <span class="px-2.5 py-0.5 bg-primary text-on-primary rounded-full text-[11px] font-semibold">96.7% Active</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden flex border border-outline-variant/60">
+              <div class="bg-primary h-full" style="width: 96.7%;"></div>
+              <div class="bg-outline-variant h-full" style="width: 3.3%;"></div>
+            </div>
+            <!-- Status Chips -->
+            <div class="grid grid-cols-2 gap-2 text-body-sm pt-1">
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Active</span></div>
+                <span class="font-bold text-primary">414 <span class="font-normal text-secondary text-[11px]">96.7%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-medium text-primary">Inactive</span></div>
+                <span class="font-bold text-primary">14 <span class="font-normal text-secondary text-[11px]">3.3%</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 4: Depot Status -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Depot Status</h2>
+              <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>Today</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <div class="flex items-baseline space-x-1.5">
+                <span class="text-display-lg-mobile font-bold text-primary tracking-tight">53</span>
+                <span class="text-body-sm text-secondary font-medium">Total Depots</span>
+              </div>
+              <span class="px-2.5 py-0.5 bg-primary text-on-primary rounded-full text-[11px] font-semibold">84.9% Active</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden flex border border-outline-variant/60">
+              <div class="bg-primary h-full" style="width: 84.9%;"></div>
+              <div class="bg-outline-variant h-full" style="width: 15.1%;"></div>
+            </div>
+            <!-- Status Chips -->
+            <div class="grid grid-cols-2 gap-2 text-body-sm pt-1">
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Active</span></div>
+                <span class="font-bold text-primary">45 <span class="font-normal text-secondary text-[11px]">84.9%</span></span>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-medium text-primary">Inactive</span></div>
+                <span class="font-bold text-primary">8 <span class="font-normal text-secondary text-[11px]">15.1%</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 5: Schedule Management -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3.5">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Schedule Management</h2>
+              <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>Today</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <!-- Semi-Circle Arc Graphic (Top Arc Arch) -->
+            <div class="relative w-48 h-28 mx-auto flex flex-col items-center justify-end pb-1 pt-2">
+              <svg class="w-48 h-24 overflow-visible" viewBox="0 0 100 55">
+                <!-- Track background arc -->
+                <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#e1e2e4" stroke-width="9" stroke-linecap="round" />
+                <!-- Progress filled arc (~75% filled) -->
+                <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#191c1e" stroke-width="9.5" stroke-linecap="round" stroke-dasharray="90 125.66" />
+              </svg>
+              <div class="absolute bottom-1 inset-x-0 text-center flex flex-col items-center">
+                <span class="text-[9px] uppercase tracking-wider text-secondary font-semibold">TOTAL SCHEDULES</span>
+                <span class="text-display-lg-mobile font-bold text-primary leading-tight -mt-0.5">428</span>
+                <span class="text-[10px] text-secondary font-medium -mt-1">Schedules</span>
+              </div>
+            </div>
+            <!-- Metric Grid -->
+            <div class="space-y-2 text-body-sm pt-1">
+              <div class="grid grid-cols-2 gap-2">
+                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Running</span></div>
+                  <span class="font-bold text-primary">152</span>
+                </div>
+                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-medium text-primary">Completed</span></div>
+                  <span class="font-bold text-primary">142</span>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="font-medium text-primary">Upcoming</span></div>
+                  <span class="font-bold text-primary">64</span>
+                </div>
+                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-surface-container-highest"></span><span class="font-medium text-primary">Partially Done</span></div>
+                  <span class="font-bold text-primary">21</span>
+                </div>
+              </div>
+              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
+                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-medium text-primary">Failed / Cancelled</span></div>
+                <span class="font-bold text-primary">9</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 6: Route Performance -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Route Performance</h2>
+              <button onclick="showToast('Period: 7 Days')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>7-Day Overall</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <div class="flex items-baseline space-x-2 text-body-sm">
+              <span class="text-headline-lg font-bold text-primary">98.1%</span>
+              <span class="text-secondary font-medium">Completed (1,470 trips) <span class="mx-1">•</span> 1.9% Delay (141)</span>
+            </div>
+            <!-- Bar Chart Simulation with filled stacked bars -->
+            <div class="h-32 pt-3 pb-1 px-3 bg-surface-container-low/40 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+              <!-- Bars container -->
+              <div class="flex-1 flex items-end justify-between px-1">
+                <!-- Day 1: M -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[88%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[6%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">M</span>
+                </div>
+                <!-- Day 2: T -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[95%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[4%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">T</span>
+                </div>
+                <!-- Day 3: W -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[91%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[5%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">W</span>
+                </div>
+                <!-- Day 4: T -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[98%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[2%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">T</span>
+                </div>
+                <!-- Day 5: F -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[96%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[3%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">F</span>
+                </div>
+                <!-- Day 6: S -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[84%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[8%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">S</span>
+                </div>
+                <!-- Day 7: S -->
+                <div class="flex flex-col items-center h-full justify-end w-7">
+                  <div class="w-full h-[93%] rounded-t flex flex-col overflow-hidden bg-outline-variant/40">
+                    <div class="bg-outline-variant h-[4%] w-full"></div>
+                    <div class="bg-primary flex-1 w-full"></div>
+                  </div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">S</span>
+                </div>
+              </div>
+            </div>
+            <!-- Chart Legend -->
+            <div class="flex items-center justify-start space-x-5 text-body-sm pt-0.5">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-sm bg-primary shrink-0"></span>
+                <span class="text-primary font-medium text-[12px]">Completed Trip</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-sm bg-outline-variant shrink-0"></span>
+                <span class="text-secondary font-medium text-[12px]">Delay / Cancelled</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 7: Stop Management -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Stop Management</h2>
+              <span class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-primary flex items-center space-x-1.5">
+                <span class="material-symbols-outlined text-[15px]">directions_bus</span>
+                <span>M-15 Express</span>
+              </span>
+            </div>
+            <!-- Timeline / Stops List -->
+            <div class="space-y-2 text-body-sm pt-1">
+              <!-- Stop 1: Completed -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[15px] font-bold">check</span>
+                  </div>
+                  <span class="font-bold text-primary">Lexington / 86th St</span>
+                </div>
+                <span class="text-[12px] font-medium text-secondary">08:00 AM</span>
+              </div>
+
+              <!-- Stop 2: Completed -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[15px] font-bold">check</span>
+                  </div>
+                  <span class="font-bold text-primary">79th St Station</span>
+                </div>
+                <span class="text-[12px] font-medium text-secondary">08:08 AM</span>
+              </div>
+
+              <!-- Stop 3: Active / Highlighted -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border-2 border-primary shadow-sm">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+                    <div class="w-2.5 h-2.5 rounded-full bg-on-primary"></div>
+                  </div>
+                  <span class="font-extrabold text-primary">68th St Transit Hub</span>
+                </div>
+                <span class="px-2.5 py-1 bg-primary text-on-primary rounded-full text-[11px] font-bold tracking-tight">ETA 2 min</span>
+              </div>
+
+              <!-- Stop 4: Upcoming -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 opacity-90">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 rounded-full border-2 border-outline text-secondary flex items-center justify-center shrink-0">
+                    <div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+                  </div>
+                  <span class="font-medium text-primary">Grand Central Terminal</span>
+                </div>
+                <span class="text-[12px] font-medium text-secondary">ETA 8 min</span>
+              </div>
+
+              <!-- Stop 5: Skipped / Bypassed -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 opacity-70">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 rounded-full border-2 border-dashed border-outline text-secondary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </div>
+                  <div>
+                    <span class="font-medium text-secondary line-through block">34th St Herald Sq</span>
+                    <span class="text-[10px] text-secondary/80 font-normal block -mt-0.5">Bypassed - Construction Detour</span>
+                  </div>
+                </div>
+                <span class="text-[12px] font-medium text-secondary">Skipped</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 8: Driver Analytic -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Driver Analytic</h2>
+              <button onclick="showToast('Period: 7 Days')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
+                <span>7 Days</span><span class="material-symbols-outlined text-[14px]">expand_more</span>
+              </button>
+            </div>
+            <div class="space-y-3 text-body-sm pt-1">
+              <div class="space-y-1">
+                <div class="flex justify-between items-center"><span class="font-semibold text-primary">J. Martinez (#4082)</span><span class="font-bold text-primary">98.4</span></div>
+                <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden"><div class="bg-primary h-full rounded-full" style="width: 98.4%;"></div></div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between items-center"><span class="font-semibold text-primary">D. Chen (#1024)</span><span class="font-bold text-primary">96.1</span></div>
+                <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden"><div class="bg-primary h-full rounded-full" style="width: 96.1%;"></div></div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between items-center"><span class="font-semibold text-primary">A. Washington (#5504)</span><span class="font-bold text-primary">93.7</span></div>
+                <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden"><div class="bg-primary h-full rounded-full" style="width: 93.7%;"></div></div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between items-center"><span class="font-semibold text-primary">M. Kowalski (#1244)</span><span class="font-bold text-primary">90.2</span></div>
+                <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden"><div class="bg-primary h-full rounded-full" style="width: 90.2%;"></div></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- WIDGET 9: Performance SLA (Fleet Punctuality Rate) -->
+          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h2 class="text-headline-sm font-bold text-primary">Fleet Punctuality Rate - 94.2%</h2>
+              <span class="material-symbols-outlined text-secondary">timeline</span>
+            </div>
+            <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden flex my-2 border border-outline-variant/60">
+              <div class="bg-primary h-full" style="width: 82%;"></div>
+              <div class="bg-secondary h-full" style="width: 8%;"></div>
+              <div class="striped-pattern h-full border-l border-outline-variant" style="width: 10%;"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-y-2 pt-2 border-t border-outline-variant/40 text-body-sm">
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-primary shrink-0"></span><span class="text-secondary">On Time: <strong class="text-primary font-semibold">1,017</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-secondary shrink-0"></span><span class="text-secondary">Early: <strong class="text-primary font-semibold">99</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm striped-pattern border border-outline-variant shrink-0"></span><span class="text-secondary">Delayed: <strong class="text-on-surface font-semibold">124</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="material-symbols-outlined text-[14px] text-secondary">summarize</span><span class="text-secondary">Total: <strong class="text-primary font-semibold">1,240 trips</strong></span></div>
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 03: FLEET STATUS -->
+      <!-- ========================================================================= -->
+      <section id="status-screen" class="app-screen pb-24">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-surface-container-lowest pt-3 px-4 flex justify-between items-center text-on-surface select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-primary rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-on-surface">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-3 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/50">
+          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition">
+            <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+          </button>
+          <h1 class="text-headline-md font-headline-md font-semibold tracking-tight text-on-surface">Fleet Status</h1>
+          <div class="flex items-center space-x-1">
+            <button onclick="document.getElementById('vehicle-search-input').focus()" class="p-1.5 text-on-surface hover:bg-surface-container rounded-lg transition">
+              <span class="material-symbols-outlined text-[20px]">search</span>
+            </button>
+            <button onclick="showToast('Filter options')" class="p-1.5 text-on-surface hover:bg-surface-container rounded-lg transition">
+              <span class="material-symbols-outlined text-[20px]">tune</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="px-4 pt-3 space-y-3">
+          <!-- Real-Time Workable Search Bar -->
+          <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
+              <span class="material-symbols-outlined text-[18px]">search</span>
+            </div>
+            <input id="vehicle-search-input" type="text" placeholder="Search by vehicle number, driver, or route..." class="w-full h-11 pl-9 pr-3 bg-surface-container-lowest border border-outline-variant/80 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary transition shadow-sm"/>
+          </div>
+
+          <!-- Interactive Filter Chips -->
+          <div class="flex items-center space-x-2 overflow-x-auto hide-scrollbar py-1 -mx-4 px-4">
+            <button data-filter="all" class="js-filter-chip shrink-0 px-3.5 py-1.5 bg-primary text-on-primary rounded-full text-label-sm flex items-center space-x-1">
+              <span>All</span><span class="text-[10px] opacity-80 font-code-sm">(428)</span>
+            </button>
+            <button data-filter="running" class="js-filter-chip shrink-0 px-3.5 py-1.5 bg-surface-container-lowest text-on-surface border border-outline-variant rounded-full text-label-sm flex items-center space-x-1">
+              <span>Running</span><span class="text-[10px] text-secondary font-code-sm">(312)</span>
+            </button>
+            <button data-filter="stopped" class="js-filter-chip shrink-0 px-3.5 py-1.5 bg-surface-container-lowest text-on-surface border border-outline-variant rounded-full text-label-sm flex items-center space-x-1">
+              <span>Stopped</span><span class="text-[10px] text-secondary font-code-sm">(45)</span>
+            </button>
+            <button data-filter="idle" class="js-filter-chip shrink-0 px-3.5 py-1.5 bg-surface-container-lowest text-on-surface border border-outline-variant rounded-full text-label-sm flex items-center space-x-1">
+              <span>Idle</span><span class="text-[10px] text-secondary font-code-sm">(18)</span>
+            </button>
+            <button data-filter="offline" class="js-filter-chip shrink-0 px-3.5 py-1.5 bg-surface-container-lowest text-on-surface border border-outline-variant rounded-full text-label-sm flex items-center space-x-1">
+              <span>Offline</span><span class="text-[10px] text-secondary font-code-sm">(53)</span>
+            </button>
+          </div>
+
+          <!-- Ribbon -->
+          <div class="flex justify-between items-baseline px-0.5 pt-1">
+            <span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Active Monitoring Grid</span>
+            <span class="text-body-sm font-body-sm text-secondary">Updated 10s ago</span>
+          </div>
+
+          <!-- Vehicle Cards Stack -->
+          <div class="flex flex-col space-y-3">
+            
+            <!-- Bus #4082 (RUNNING) -->
+            <article data-status="running" onclick="navigateTo('vehicle-detail-screen')" class="js-vehicle-card bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:border-primary transition cursor-pointer flex flex-col space-y-2">
+              <div class="flex items-center justify-between pb-2 border-b border-surface-container-highest">
+                <div class="flex items-center space-x-2">
+                  <span class="text-headline-sm font-bold text-primary tracking-tight">Bus #4082</span>
+                  <span class="text-secondary text-body-sm">•</span>
+                  <span class="text-body-sm text-on-surface-variant">Mercedes Citaro E-Cell</span>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-primary text-on-primary">RUNNING</span>
+              </div>
+              <div class="grid grid-cols-1 gap-1 py-1">
+                <div class="flex items-center space-x-1.5 text-body-md font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-[16px] text-primary">alt_route</span>
+                  <span>Line 104 — Downtown Exp</span>
+                </div>
+                <div class="text-body-sm text-secondary pl-5">Driver: Marcus Vance (ID: 8821)</div>
+              </div>
+              <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between text-body-sm text-secondary">
+                <div class="flex items-center space-x-3">
+                  <span class="flex items-center space-x-1 text-on-surface font-medium"><span class="material-symbols-outlined text-[14px]">speed</span><span>42 km/h</span></span>
+                  <span>•</span>
+                  <span class="flex items-center space-x-1 text-on-surface font-medium"><span class="material-symbols-outlined text-[14px]">battery_charging_full</span><span>78%</span></span>
+                  <span>•</span>
+                  <span>Depot: West Central</span>
+                </div>
+                <span class="text-[11px] font-code-sm text-outline">Just now</span>
+              </div>
+            </article>
+
+            <!-- Bus #3019 (STOPPED) -->
+            <article data-status="stopped" onclick="showToast('Bus #3019 clicked')" class="js-vehicle-card bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:border-primary transition cursor-pointer flex flex-col space-y-2">
+              <div class="flex items-center justify-between pb-2 border-b border-surface-container-highest">
+                <div class="flex items-center space-x-2">
+                  <span class="text-headline-sm font-bold text-primary tracking-tight">Bus #3019</span>
+                  <span class="text-secondary text-body-sm">•</span>
+                  <span class="text-body-sm text-on-surface-variant">Solaris Urbino 18</span>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-surface-container border border-primary text-primary">STOPPED</span>
+              </div>
+              <div class="grid grid-cols-1 gap-1 py-1">
+                <div class="flex items-center space-x-1.5 text-body-md font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-[16px] text-primary">alt_route</span>
+                  <span>Line 22 — Bay Shore Cross</span>
+                </div>
+                <div class="text-body-sm text-secondary pl-5">Driver: Elena Rostova (ID: 4102)</div>
+              </div>
+              <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between text-body-sm text-secondary">
+                <div class="flex items-center space-x-3">
+                  <span class="flex items-center space-x-1 text-on-surface font-medium"><span class="material-symbols-outlined text-[14px]">speed</span><span>0 km/h</span></span>
+                  <span>•</span>
+                  <span class="text-on-surface">Terminal 4 Stop</span>
+                </div>
+                <span class="text-[11px] font-code-sm text-outline">2m ago</span>
+              </div>
+            </article>
+
+            <!-- Bus #5104 (IDLE) -->
+            <article data-status="idle" onclick="showToast('Bus #5104 clicked')" class="js-vehicle-card bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:border-primary transition cursor-pointer flex flex-col space-y-2">
+              <div class="flex items-center justify-between pb-2 border-b border-surface-container-highest">
+                <div class="flex items-center space-x-2">
+                  <span class="text-headline-sm font-bold text-primary tracking-tight">Bus #5104</span>
+                  <span class="text-secondary text-body-sm">•</span>
+                  <span class="text-body-sm text-on-surface-variant">Volvo 7900 Hybrid</span>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-outline-variant/60 text-on-surface-variant border border-outline">IDLE</span>
+              </div>
+              <div class="grid grid-cols-1 gap-1 py-1">
+                <div class="flex items-center space-x-1.5 text-body-md font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-[16px] text-primary">alt_route</span>
+                  <span>Line 701 — Airport Shuttle</span>
+                </div>
+                <div class="text-body-sm text-secondary pl-5">Driver: David Kim (ID: 9942)</div>
+              </div>
+              <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between text-body-sm text-secondary">
+                <div class="flex items-center space-x-3">
+                  <span class="flex items-center space-x-1 text-on-surface font-medium"><span class="material-symbols-outlined text-[14px]">speed</span><span>0 km/h (Engine on)</span></span>
+                  <span>•</span>
+                  <span class="text-on-surface">Idle time 8m</span>
+                </div>
+                <span class="text-[11px] font-code-sm text-outline">4m ago</span>
+              </div>
+            </article>
+
+            <!-- Bus #2240 (OFFLINE) -->
+            <article data-status="offline" onclick="showToast('Bus #2240 in maintenance')" class="js-vehicle-card bg-surface-container-lowest border border-dashed border-outline rounded-xl p-4 shadow-sm hover:border-primary transition cursor-pointer flex flex-col space-y-2 opacity-90">
+              <div class="flex items-center justify-between pb-2 border-b border-surface-container-highest">
+                <div class="flex items-center space-x-2">
+                  <span class="text-headline-sm font-bold text-primary tracking-tight">Bus #2240</span>
+                  <span class="text-secondary text-body-sm">•</span>
+                  <span class="text-body-sm text-on-surface-variant">BYD K9 Electric</span>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold border border-dashed border-outline text-secondary bg-surface-container-low">OFFLINE</span>
+              </div>
+              <div class="grid grid-cols-1 gap-1 py-1">
+                <div class="flex items-center space-x-1.5 text-body-md text-secondary">
+                  <span class="material-symbols-outlined text-[16px] text-secondary">build</span>
+                  <span>Unassigned • Maintenance Bay 3</span>
+                </div>
+              </div>
+              <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between text-body-sm text-secondary">
+                <div class="flex items-center space-x-3">
+                  <span class="text-on-surface-variant">Inactive 3h 12m</span>
+                  <span>•</span>
+                  <span>Depot: Eastgate Yard</span>
+                </div>
+                <span class="text-[11px] font-code-sm text-outline">Depot Sync</span>
+              </div>
+            </article>
+
+            <!-- Empty Search Results Placeholder -->
+            <div id="no-vehicles-msg" class="hidden text-center py-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 text-secondary">
+              <span class="material-symbols-outlined text-[32px] text-outline mb-1 block">search_off</span>
+              <p class="font-headline-sm text-body-md font-bold text-primary">No vehicles found</p>
+              <p class="text-body-sm text-secondary text-xs mt-0.5">Try searching for '4082', 'Marcus', 'Line 104', or 'Solaris'</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 04: VEHICLE DETAIL -->
+      <!-- ========================================================================= -->
+      <section id="vehicle-detail-screen" class="app-screen pb-28">
+        <!-- Sticky Header Bar with Status Sub-bar -->
+        <header class="bg-surface-container-lowest sticky top-0 z-40 hairline-border-b">
+          <div class="js-simulated-status-bar h-11 w-full flex justify-between items-center px-4 pt-2 text-on-surface select-none">
+            <span class="js-status-time font-headline-sm text-body-sm tracking-tight font-semibold">9:41</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="material-symbols-outlined text-[15px]">signal_cellular_4_bar</span>
+              <span class="material-symbols-outlined text-[15px]">wifi</span>
+              <span class="material-symbols-outlined text-[18px]">battery_full</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center w-full px-4 py-2">
+            <div class="flex items-center space-x-3">
+              <button onclick="goBack()" class="w-9 h-9 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container active:opacity-75 transition">
+                <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+              </button>
+              <div>
+                <div class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Fleet Unit</div>
+                <h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Vehicle #4082</h1>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1">
+              <button onclick="showToast('Telemetry shared link generated', 'share')" class="w-9 h-9 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container transition">
+                <span class="material-symbols-outlined text-[20px]">share</span>
+              </button>
+              <button onclick="showToast('Vehicle tune options')" class="w-9 h-9 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container transition">
+                <span class="material-symbols-outlined text-[20px]">tune</span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <div class="px-4 pt-3 space-y-4">
+          <!-- Vehicle Banner -->
+          <section class="bg-surface-container-lowest rounded-xl p-4 hairline-border shadow-sm">
+            <div class="flex items-start justify-between">
+              <div class="space-y-1">
+                <div class="flex items-center space-x-1.5 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+                  <span>Standard Transit Division</span>
+                  <span>•</span>
+                  <span class="font-code-sm text-code-sm text-on-surface-variant font-medium">DEPOT-N4</span>
+                </div>
+                <h2 class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">Bus #4082</h2>
+                <p class="font-body-md text-body-md text-secondary">Mercedes-Benz Citaro G (Articulated 18m)</p>
+              </div>
+              <div class="flex flex-col items-end">
+                <div class="inline-flex items-center space-x-1.5 bg-primary text-on-primary px-2.5 py-1 rounded-full">
+                  <span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"></span>
+                  <span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">IN SERVICE • RUNNING</span>
+                </div>
+                <span class="font-code-sm text-code-sm text-secondary mt-1">Synced 12s ago</span>
+              </div>
+            </div>
+            <div class="mt-3 pt-3 hairline-border-t grid grid-cols-2 gap-3">
+              <div>
+                <span class="font-label-sm text-label-sm text-secondary uppercase block">Assigned Route</span>
+                <div class="font-headline-sm text-headline-sm text-primary font-semibold mt-0.5">Line 104</div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Downtown Express</span>
+              </div>
+              <div>
+                <span class="font-label-sm text-label-sm text-secondary uppercase block">Operational Schedule</span>
+                <div class="font-headline-sm text-headline-sm text-primary font-semibold mt-0.5">Shift 04-B</div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">On Schedule (+48s)</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Vector Map Preview Section -->
+          <section class="bg-surface-container-lowest rounded-xl hairline-border overflow-hidden shadow-sm">
+            <div class="p-3 hairline-border-b flex justify-between items-center bg-surface-container-low">
+              <div class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-[18px] text-primary">explore</span>
+                <span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-primary">Live Vector Telemetry Map</span>
+              </div>
+              <span class="font-code-sm text-code-sm text-secondary tracking-tight">37.7749° N, 122.4194° W</span>
+            </div>
+            
+            <div class="relative h-52 w-full bg-[#f4f4f6] overflow-hidden flex items-center justify-center">
+              <div class="absolute inset-0 opacity-40" style="background-image: linear-gradient(#d4d4d8 1px, transparent 1px), linear-gradient(90deg, #d4d4d8 1px, transparent 1px); background-size: 24px 24px;"></div>
+              
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
+                <path d="M-20,120 L420,120 M140,-10 L140,220 M280,-10 L280,220" fill="none" stroke="#E4E4E7" stroke-width="4"/>
+                <path d="M-20,80 L420,80" fill="none" stroke="#D4D4D8" stroke-linecap="round" stroke-width="8"/>
+                <path d="M 40,80 L 140,80 L 220,120 L 360,120" fill="none" stroke="#09090B" stroke-dasharray="3,3" stroke-linecap="square" stroke-width="3.5"/>
+                <circle cx="90" cy="80" r="4.5" fill="#09090B"/>
+                <circle cx="270" cy="120" r="5.5" fill="#FFFFFF" stroke="#09090B" stroke-width="2.5"/>
+              </svg>
+
+              <div class="absolute left-[54%] top-[57%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+                <div class="relative pulse-node flex items-center justify-center">
+                  <div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg border-2 border-surface-container-lowest transform rotate-45">
+                    <span class="material-symbols-outlined text-[16px]">navigation</span>
+                  </div>
+                </div>
+                <div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-1.5 py-0.5 rounded text-[10px] font-code-sm font-semibold tracking-wide whitespace-nowrap shadow-md">
+                  #4082 • 42 KM/H
+                </div>
+              </div>
+
+              <div class="absolute bottom-3 left-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md p-2.5 rounded-lg hairline-border flex items-center justify-between shadow-md">
+                <div class="flex items-center space-x-2.5">
+                  <div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+                  </div>
+                  <div>
+                    <span class="font-label-sm text-[10px] text-secondary uppercase block">Approaching Next Station</span>
+                    <span class="font-headline-sm text-body-sm text-primary font-bold">7th Ave & Broadway</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="font-headline-sm text-body-sm text-primary font-bold">2 mins</span>
+                  <span class="font-body-sm text-[11px] text-secondary block">340m away</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Telemetry Metrics Bento -->
+          <section class="space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <h3 class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Live Telemetry & Diagnostics</h3>
+              <span class="font-code-sm text-code-sm text-secondary">CAN-BUS v4.1 Active</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border flex flex-col justify-between shadow-sm">
+                <div class="flex items-center justify-between text-secondary">
+                  <span class="font-label-sm text-label-sm uppercase font-semibold">Current Speed</span>
+                  <span class="material-symbols-outlined text-[18px]">speed</span>
+                </div>
+                <div class="my-2">
+                  <div class="flex items-baseline space-x-1">
+                    <span class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary tracking-tight">42</span>
+                    <span class="font-body-sm text-body-sm text-secondary font-medium">km/h</span>
+                  </div>
+                  <div class="w-full bg-surface-container rounded-full h-1.5 mt-1.5 overflow-hidden">
+                    <div class="bg-primary h-1.5 rounded-full" style="width: 84%;"></div>
+                  </div>
+                </div>
+                <div class="font-label-sm text-[11px] text-secondary">Limit: <span class="font-semibold text-primary">50 km/h</span> (Normal Zone)</div>
+              </div>
+
+              <div class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border flex flex-col justify-between shadow-sm">
+                <div class="flex items-center justify-between text-secondary">
+                  <span class="font-label-sm text-label-sm uppercase font-semibold">Engine / Ignition</span>
+                  <span class="material-symbols-outlined text-[18px]">power_settings_new</span>
+                </div>
+                <div class="my-2">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                    <span class="font-headline-md text-headline-md font-bold text-primary">RUNNING</span>
+                  </div>
+                  <span class="font-code-sm text-code-sm text-secondary block mt-1">Continuous: 4h 18m</span>
+                </div>
+                <div class="font-label-sm text-[11px] text-secondary">Oil Pressure: <span class="font-semibold text-primary">3.8 bar</span> (Nominal)</div>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border shadow-sm">
+              <div class="flex justify-between items-center mb-2">
+                <div class="flex items-center space-x-2">
+                  <span class="material-symbols-outlined text-[18px] text-primary">electric_meter</span>
+                  <span class="font-label-sm text-label-sm uppercase font-semibold text-primary">Energy Reserves & Range</span>
+                </div>
+                <span class="font-headline-sm text-headline-sm text-primary font-bold">78%</span>
+              </div>
+              <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden flex">
+                <div class="bg-primary h-2" style="width: 78%;"></div>
+              </div>
+              <div class="grid grid-cols-2 gap-2 mt-3 pt-2 hairline-border-t">
+                <div>
+                  <span class="font-label-sm text-[10px] text-secondary uppercase block">Estimated Distance</span>
+                  <span class="font-body-md text-body-md font-semibold text-primary">142 km remaining</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-[10px] text-secondary uppercase block">Total Odometer</span>
+                  <span class="font-code-sm text-code-sm font-semibold text-primary">84,920.4 km</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border shadow-sm">
+              <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary hairline-border">
+                    MV
+                  </div>
+                  <div>
+                    <span class="font-label-sm text-[10px] text-secondary uppercase block">Primary Assigned Driver</span>
+                    <span class="font-headline-sm text-headline-sm text-primary font-bold">Marcus Vance</span>
+                    <span class="font-body-sm text-[11px] text-secondary block">Badge ID: #DV-9912 • Rating 4.96</span>
+                  </div>
+                </div>
+                <button onclick="openContactModal()" class="w-8 h-8 rounded-lg hairline-border flex items-center justify-center hover:bg-surface-container text-primary transition">
+                  <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                </button>
+              </div>
+              <div class="mt-3 pt-2.5 hairline-border-t flex items-center justify-between text-body-sm">
+                <div class="flex items-center space-x-1.5 text-secondary">
+                  <span class="material-symbols-outlined text-[16px]">warehouse</span>
+                  <span>Home: <strong class="text-primary font-medium">North Gateway Depot</strong></span>
+                </div>
+                <div class="flex items-center space-x-1 text-secondary font-code-sm text-code-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  <span>Sensors 100% OK</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Operational Actions -->
+          <section class="space-y-2">
+            <h3 class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold px-1">Operational Actions</h3>
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="showToast('Live Trip Telemetry Feed Opened', 'sensors')" class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border flex items-center space-x-3 text-left hover:bg-surface-container transition">
+                <div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary hairline-border">
+                  <span class="material-symbols-outlined text-[20px]">sensors</span>
+                </div>
+                <div>
+                  <span class="font-headline-sm text-body-md font-semibold text-primary block">Live Trip</span>
+                  <span class="font-body-sm text-[11px] text-secondary block">Realtime feed</span>
+                </div>
+              </button>
+              <button onclick="showToast('No active fault alerts found', 'notifications_none')" class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border flex items-center space-x-3 text-left hover:bg-surface-container transition">
+                <div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary hairline-border">
+                  <span class="material-symbols-outlined text-[20px]">notifications_none</span>
+                </div>
+                <div>
+                  <span class="font-headline-sm text-body-md font-semibold text-primary block">Alerts (0)</span>
+                  <span class="font-body-sm text-[11px] text-secondary block">No fault codes</span>
+                </div>
+              </button>
+              <button onclick="showToast('Diagnostics Log downloaded', 'analytics')" class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border flex items-center space-x-3 text-left hover:bg-surface-container transition">
+                <div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary hairline-border">
+                  <span class="material-symbols-outlined text-[20px]">analytics</span>
+                </div>
+                <div>
+                  <span class="font-headline-sm text-body-md font-semibold text-primary block">Telemetry</span>
+                  <span class="font-body-sm text-[11px] text-secondary block">Diagnostics log</span>
+                </div>
+              </button>
+              <button onclick="showToast('Full Line Timetable loaded', 'schedule')" class="bg-surface-container-lowest p-3.5 rounded-xl hairline-border flex items-center space-x-3 text-left hover:bg-surface-container transition">
+                <div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary hairline-border">
+                  <span class="material-symbols-outlined text-[20px]">schedule</span>
+                </div>
+                <div>
+                  <span class="font-headline-sm text-body-md font-semibold text-primary block">Timetable</span>
+                  <span class="font-body-sm text-[11px] text-secondary block">Full line stops</span>
+                </div>
+              </button>
+            </div>
+          </section>
+
+          <!-- Realtime System Log -->
+          <section class="bg-surface-container-lowest rounded-xl hairline-border p-3.5 font-code-sm text-code-sm">
+            <div class="flex items-center justify-between pb-2 hairline-border-b text-secondary">
+              <span class="uppercase tracking-wider font-semibold font-label-sm">Hardware Node Stream</span>
+              <span class="text-primary font-medium">Port 8021 // TLS 1.3</span>
+            </div>
+            <div id="log-stream-container" class="pt-2 space-y-1.5 text-on-surface-variant font-code-sm text-[11px]">
+              <div class="flex justify-between">
+                <span>[09:41:02] GPS_FIX_L1_L5</span>
+                <span class="text-primary font-semibold">HDOP: 0.8 • 18 SVs</span>
+              </div>
+              <div class="flex justify-between">
+                <span>[09:40:48] CAN_BRAKE_PRESSURE</span>
+                <span class="text-primary font-semibold">9.4 BAR (OK)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>[09:40:15] DOOR_SENSORS_CABIN</span>
+                <span class="text-primary font-semibold">CLOSED & LOCKED</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Docked Action Tray -->
+        <div class="sticky bottom-0 left-0 right-0 z-40 bg-surface-container-lowest/95 backdrop-blur-lg hairline-border-t py-3 px-4">
+          <div class="flex items-center space-x-3">
+            <button onclick="openContactModal()" class="flex-1 h-12 rounded-[10px] border border-primary bg-surface-container-lowest text-primary font-headline-sm text-body-md font-semibold flex items-center justify-center space-x-2 active:bg-surface-container transition">
+              <span class="material-symbols-outlined text-[18px]">call</span>
+              <span>Contact Driver</span>
+            </button>
+            <button onclick="openOverrideModal()" aria-label="Dispatch Command Override" class="h-12 px-5 rounded-[10px] bg-primary text-on-primary font-headline-sm text-body-md font-semibold flex items-center justify-center space-x-1.5 active:opacity-85 transition shadow-sm">
+              <span class="material-symbols-outlined text-[18px]">terminal</span>
+              <span>Override</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 05: REPORTS (OPERATIONAL ANALYTICS) -->
+      <!-- ========================================================================= -->
+      <section id="reports-screen" class="app-screen pb-24">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-surface-container-lowest pt-3 px-4 flex justify-between items-center text-on-surface select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-primary rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-on-surface">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-2 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/50">
+          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition">
+            <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+          </button>
+          <div class="text-center">
+            <h1 class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Reports</h1>
+            <span class="text-[11px] font-body-sm text-secondary block -mt-0.5">Operational Analytics</span>
+          </div>
+          <button onclick="toggleReportsSearch()" class="p-1.5 text-on-surface hover:bg-surface-container rounded-lg transition">
+            <span class="material-symbols-outlined text-[20px]">search</span>
+          </button>
+        </header>
+
+        <!-- Real-Time Report Search Container -->
+        <div id="reports-search-container" class="hidden px-4 pt-3">
+          <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
+              <span class="material-symbols-outlined text-[18px]">search</span>
+            </div>
+            <input id="reports-search-input" type="text" placeholder="Search reports (e.g. Geofence, SYS-01, Tire)..." class="w-full h-10 pl-9 pr-8 bg-surface-container-lowest border border-outline-variant/80 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary transition shadow-sm"/>
+            <button onclick="clearReportsSearch()" class="absolute inset-y-0 right-0 pr-2.5 flex items-center text-secondary hover:text-primary">
+              <span class="material-symbols-outlined text-[16px]">close</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="px-4 pt-4 space-y-3">
+          <!-- 2-Column Bento Reports Module Grid -->
+          <div class="grid grid-cols-2 gap-3">
+            
+            <!-- Report 1: Activity -->
+            <div onclick="showToast('Opening SYS-01 Activity Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">monitoring</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Activity</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">7 sub-reports • Trips, Idle, Inactive</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-01</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 2: Geofence -->
+            <div onclick="showToast('Opening SYS-02 Geofence Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">track_changes</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Geofence</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • Boundary & Yard Entry</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-02</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 3: Alert -->
+            <div onclick="showToast('Opening SYS-03 Alert Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">notifications</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Alert</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • Faults & Safety Triggers</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-03</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 4: Sensor -->
+            <div onclick="showToast('Opening SYS-04 Sensor Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">sensors</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Sensor</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">6 sub-reports • Analog, RFID, Doors</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-04</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              </div>
+            </div>
+
+            <!-- Report 5: Logs -->
+            <div onclick="showToast('Opening SYS-05 System Logs')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">description</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Logs</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • System Logs & Commands</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-05</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              </div>
+            </div>
+
+            <!-- Report 6: Routes -->
+            <div onclick="showToast('Opening SYS-06 Routes Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">alt_route</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Routes</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • Deviations & Punctuality</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-06</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 7: Driver Behaviour -->
+            <div onclick="showToast('Opening SYS-07 Driver Behaviour')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">badge</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Driver Behaviour</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">6 sub-reports • Braking, Speeding, Shifts</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-07</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 8: Tire -->
+            <div onclick="showToast('Opening SYS-08 Tire Matrix')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">tire_repair</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Tire</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • PSI Pressure & Temp Matrix</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-08</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              </div>
+            </div>
+
+            <!-- Report 9: Fuel & Energy -->
+            <div onclick="showToast('Opening SYS-09 Fuel & Energy')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">local_gas_station</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Fuel & Energy</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • SOC %, Liters, Consumption</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-09</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 10: RPM & Engine -->
+            <div onclick="showToast('Opening SYS-10 RPM & Engine')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">speed</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">RPM & Engine</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • CAN-BUS Torque & Strain</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-10</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              </div>
+            </div>
+
+            <!-- Report 11: Stops -->
+            <div onclick="showToast('Opening SYS-11 Stops Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">pin_drop</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Stops</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • Dwell Times & Passenger...</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-11</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 12: Reminder -->
+            <div onclick="showToast('Opening SYS-12 Reminder Report')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">event_repeat</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Reminder</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • Scheduled Service &...</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-12</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              </div>
+            </div>
+
+            <!-- Report 13: Video Telematics -->
+            <div onclick="showToast('Opening SYS-13 Video Telematics')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">videocam</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">Video Telematics</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • Cabin & Dash Cam Feeds</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-13</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              </div>
+            </div>
+
+            <!-- Report 14: OBD Diagnostic -->
+            <div onclick="showToast('Opening SYS-14 OBD Diagnostic')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+              <div>
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[18px]">memory</span>
+                  </div>
+                  <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
+                </div>
+                <h3 class="font-headline-sm font-bold text-primary mt-3">OBD Diagnostic</h3>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • J1939 Telemetry & DTC Codes</p>
+              </div>
+              <div class="flex justify-between items-center pt-2.5 mt-2 border-t border-surface-container font-code-sm text-[11px] text-secondary">
+                <span>SYS-14</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Report 15: GTFS Trip Data (Full Width Card) -->
+          <div onclick="showToast('Opening SYS-15 GTFS Trip Data')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex items-center justify-between hover:border-primary transition cursor-pointer shadow-sm mt-3">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[20px]">schedule</span>
+              </div>
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="font-headline-sm font-bold text-primary">GTFS Trip Data</h3>
+                  <span class="px-1.5 py-0.5 text-[9px] font-bold bg-primary text-on-primary rounded tracking-wider uppercase">REALTIME</span>
+                </div>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5">4 sub-reports • GTFS-RT Trip & Stop Sync</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1 font-code-sm text-[11px] text-secondary shrink-0">
+              <span>SYS-15</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Empty Reports Search Placeholder -->
+          <div id="no-reports-msg" class="hidden text-center py-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-4 text-secondary">
+            <span class="material-symbols-outlined text-[32px] text-outline mb-1 block">search_off</span>
+            <p class="font-headline-sm text-body-md font-bold text-primary">No reports found</p>
+            <p class="text-body-sm text-secondary text-xs mt-0.5">Try searching for 'Geofence', 'SYS-01', 'Tire', or 'Driver'</p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SHARED BOTTOM NAVIGATION BAR -->
+    <nav id="app-bottom-nav" class="js-bottom-nav absolute bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pt-2 pb-5 bg-surface-container-lowest border-t border-outline-variant">
+      <a data-target="dashboard-screen" href="#" onclick="navigateTo('dashboard-screen')" class="flex flex-col items-center justify-center text-primary font-semibold active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+        <span class="text-label-sm mt-0.5">Dashboard</span>
+      </a>
+      <a data-target="status-screen" href="#" onclick="navigateTo('status-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">swap_calls</span>
+        <span class="text-label-sm mt-0.5">Status</span>
+      </a>
+      <a data-target="reports-screen" href="#" onclick="navigateTo('reports-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">analytics</span>
+        <span class="text-label-sm font-label-sm mt-0.5">Reports</span>
+      </a>
+      <a data-target="profile" href="#" onclick="showToast('Manager Profile & Settings')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">person</span>
+        <span class="text-label-sm font-label-sm mt-0.5">Profile</span>
+      </a>
+    </nav>
+
+    <!-- FILTER OPERATIONS BOTTOM SHEET MODAL (Contained inside iPhone Mockup Frame) -->
+    <div id="filter-modal" class="hidden absolute inset-0 bg-black/40 backdrop-blur-[2px] z-50 flex flex-col justify-end transition-opacity duration-300">
+      <!-- Backdrop Click Handler -->
+      <div class="absolute inset-0" onclick="closeFilterModal()"></div>
+
+      <!-- Sheet Container (Stays 100% inside iPhone frame boundaries) -->
+      <div class="relative w-full bg-white rounded-t-3xl border-t border-slate-200 p-5 pt-3 space-y-3.5 max-h-[88%] overflow-y-auto no-scrollbar shadow-2xl z-10 animate-slide-up">
+        <!-- Top Pill Drag Handle Bar -->
+        <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-1"></div>
+
+        <!-- Header -->
+        <div class="flex items-start justify-between pb-1">
+          <div>
+            <h2 class="text-headline-md font-bold text-slate-900 tracking-tight">Filter Operations</h2>
+            <p class="text-body-sm text-slate-500 mt-0.5">Select the filters to view relevant data</p>
+          </div>
+          <button onclick="closeFilterModal()" class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 transition" type="button">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        <!-- Filter Select Inputs (Matching Image 2 pixel-perfect) -->
+        <div class="space-y-3 pt-1">
+          <!-- 1. Company -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Company</label>
+            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+              </div>
+              <select id="filter-company" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="MTA Transportation Services">MTA Transportation Services</option>
+                <option value="NYC Transit Authority">NYC Transit Authority</option>
+                <option value="Regional Metro Fleet">Regional Metro Fleet</option>
+              </select>
+              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <!-- 2. Branch -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Branch</label>
+            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">hub</span>
+              </div>
+              <select id="filter-branch" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="Central North Depot">Central North Depot</option>
+                <option value="East Bay Ops">East Bay Ops</option>
+                <option value="South Hub Depot">South Hub Depot</option>
+              </select>
+              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <!-- 3. Depot -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
+            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">garage</span>
+              </div>
+              <select id="filter-depot" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="All Depots">All Depots</option>
+                <option value="Depot 01 - Main">Depot 01 - Main</option>
+                <option value="Depot 02 - North">Depot 02 - North</option>
+                <option value="Depot 03 - West">Depot 03 - West</option>
+              </select>
+              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <!-- 4. Vehicle Type -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Type</label>
+            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">directions_bus</span>
+              </div>
+              <select id="filter-vehicle-type" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="All Vehicle Types">All Vehicle Types</option>
+                <option value="Electric Transit Bus">Electric Transit Bus</option>
+                <option value="Diesel Hybrid">Diesel Hybrid</option>
+                <option value="Articulated 60ft Bus">Articulated 60ft Bus</option>
+              </select>
+              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <!-- 5. Vehicle Group -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Group</label>
+            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">layers</span>
+              </div>
+              <select id="filter-vehicle-group" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
+                <option value="All Vehicle Groups">All Vehicle Groups</option>
+                <option value="Express Commute">Express Commute</option>
+                <option value="Local Rapid Transit">Local Rapid Transit</option>
+                <option value="Night Owl Service">Night Owl Service</option>
+              </select>
+              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-2 space-y-2">
+          <button onclick="applyFilterModal()" class="w-full py-3.5 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 active:scale-[0.98] transition cursor-pointer" type="button">
+            Apply Filters
+          </button>
+          <button onclick="resetFilterModal()" class="w-full py-3.5 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 active:scale-[0.98] transition cursor-pointer" type="button">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- iOS HOME INDICATOR (FRAME FOOTER) -->
+    <div class="w-full py-1.5 flex justify-center bg-surface-container-lowest select-none shrink-0 border-t border-slate-100">
+      <div class="w-32 h-1 bg-primary/80 rounded-full"></div>
+    </div>
+
+  </main>
+
+  <!-- MINIMAL DISCRETE SCREEN SWITCHER PILL (Desktop Only) -->
+  <div class="desktop-only-switcher fixed bottom-4 right-4 z-50 bg-white/95 backdrop-blur-md border border-slate-200 rounded-full px-3 py-1.5 shadow-xl flex items-center space-x-2 text-xs">
+    <span class="text-slate-400 font-medium">Screen:</span>
+    <button onclick="navigateTo('login-screen')" class="hover:text-primary font-semibold text-slate-600 transition">01 Login</button>
+    <span class="text-slate-300">•</span>
+    <button onclick="navigateTo('dashboard-screen')" class="hover:text-primary font-semibold text-slate-600 transition">02 Ops</button>
+    <span class="text-slate-300">•</span>
+    <button onclick="navigateTo('status-screen')" class="hover:text-primary font-semibold text-slate-600 transition">03 Status</button>
+    <span class="text-slate-300">•</span>
+    <button onclick="navigateTo('vehicle-detail-screen')" class="hover:text-primary font-semibold text-slate-600 transition">04 Detail</button>
+    <span class="text-slate-300">•</span>
+    <button onclick="navigateTo('reports-screen')" class="hover:text-primary font-semibold text-slate-600 transition">05 Reports</button>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed top-6 right-6 flex flex-col space-y-2 z-50"></div>
+
+  <!-- GLOBAL SEARCH MODAL -->
+  <div id="global-search-modal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-start justify-center pt-16 px-4">
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 max-w-sm w-full space-y-3 shadow-2xl text-primary animate-fade-in">
+      <div class="flex items-center space-x-2 pb-2 border-b border-outline-variant">
+        <span class="material-symbols-outlined text-secondary text-[20px]">search</span>
+        <input id="global-search-input" type="text" placeholder="Search vehicles, reports, drivers, routes..." class="w-full bg-transparent text-body-md font-medium text-primary placeholder:text-secondary focus:outline-none"/>
+        <button onclick="closeGlobalSearch()" class="p-1 text-secondary hover:text-primary rounded-lg">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <div id="global-search-results" class="max-h-64 overflow-y-auto space-y-1.5 no-scrollbar py-1">
+        <!-- Live search results injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE OVERRIDE MODAL -->
+  <div id="override-modal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl text-primary">
+      <div class="flex justify-between items-center border-b border-outline-variant pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-error">terminal</span>
+          <h3 class="font-bold text-headline-sm">Command Override</h3>
+        </div>
+        <button onclick="closeOverrideModal()" class="text-secondary hover:text-primary">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <p class="text-body-sm text-secondary">
+        Send direct priority CAN-BUS signal override to <strong>Vehicle #4082</strong>.
+      </p>
+      <div class="space-y-2">
+        <button onclick="confirmOverride('SPEED_LIMITER_HOLD')" class="w-full p-3 text-left border border-outline-variant rounded-xl text-body-sm font-semibold hover:border-primary transition flex justify-between items-center">
+          <span>Enforce Speed Limiter (40 km/h)</span>
+          <span class="material-symbols-outlined text-[18px]">speed</span>
+        </button>
+        <button onclick="confirmOverride('DOOR_LOCK_REMOTELY')" class="w-full p-3 text-left border border-outline-variant rounded-xl text-body-sm font-semibold hover:border-primary transition flex justify-between items-center">
+          <span>Remote Door Lock Override</span>
+          <span class="material-symbols-outlined text-[18px]">lock</span>
+        </button>
+        <button onclick="confirmOverride('DEPOT_REROUTE_SIGNAL')" class="w-full p-3 text-left border border-outline-variant rounded-xl text-body-sm font-semibold hover:border-primary transition flex justify-between items-center">
+          <span>Reroute to Nearest Depot</span>
+          <span class="material-symbols-outlined text-[18px]">alt_route</span>
+        </button>
+      </div>
+      <div class="pt-2">
+        <button onclick="closeOverrideModal()" class="w-full py-2.5 bg-surface-container rounded-xl text-body-sm font-semibold text-secondary hover:text-primary">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE CONTACT DRIVER MODAL -->
+  <div id="contact-modal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl text-primary text-center">
+      <div class="w-16 h-16 rounded-full bg-surface-container mx-auto flex items-center justify-center font-bold text-xl hairline-border">
+        MV
+      </div>
+      <div>
+        <h3 class="font-bold text-headline-md">Marcus Vance</h3>
+        <p class="text-body-sm text-secondary">Badge ID: #DV-9912 • Rating 4.96</p>
+        <p class="text-xs text-secondary mt-1">Bus #4082 • Line 104 Downtown Express</p>
+      </div>
+      <div class="grid grid-cols-2 gap-3 pt-2">
+        <button onclick="closeContactModal(); showToast('Calling Marcus Vance...', 'call')" class="py-3 bg-primary text-on-primary rounded-xl font-semibold text-body-sm flex items-center justify-center space-x-1.5">
+          <span class="material-symbols-outlined text-[18px]">call</span>
+          <span>Voice Call</span>
+        </button>
+        <button onclick="closeContactModal(); showToast('Dispatch message sent', 'chat')" class="py-3 border border-outline-variant rounded-xl font-semibold text-body-sm flex items-center justify-center space-x-1.5 hover:border-primary">
+          <span class="material-symbols-outlined text-[18px]">chat</span>
+          <span>Dispatch Msg</span>
+        </button>
+      </div>
+      <button onclick="closeContactModal()" class="w-full py-2 text-xs text-secondary hover:text-primary">
+        Dismiss
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
