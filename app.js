@@ -526,17 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fleetSelect = document.getElementById('report-fleet-select');
     const selectedFleet = fleetSelect ? fleetSelect.value : 'All Fleets (428 Units)';
 
-    // Update Results Screen
-    const resTitle = document.getElementById('result-report-title');
-    const resDate = document.getElementById('active-result-date');
-    const resFleet = document.getElementById('active-result-fleet');
-
-    if (resTitle) resTitle.textContent = `${currentReportTitle} Report`;
-    if (resDate) resDate.textContent = activeDateRangeString;
-    if (resFleet) resFleet.textContent = `Scope: ${selectedFleet}`;
-
-    window.navigateTo('report-results-screen');
-    window.showToast(`${currentReportTitle} Report generated!`, 'analytics');
+    window.showToast(`${currentReportTitle} Report generated for ${activeDateRangeString}`, 'analytics');
   };
 
   window.editReportParameters = function() {
