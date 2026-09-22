@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         if (loginErrorMsg && loginErrorText) {
           loginErrorMsg.classList.remove('hidden');
-          loginErrorText.textContent = 'Invalid username or password. (Uffizio / Design1212)';
+          loginErrorText.textContent = 'Invalid username or password. Please try again.';
         }
         if (fleetIdInput) fleetIdInput.classList.add('border-red-500');
         if (passwordInput) passwordInput.classList.add('border-red-500');
