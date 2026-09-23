@@ -1193,7 +1193,7 @@
           <div class="grid grid-cols-2 gap-3">
             
             <!-- Report 1: Activity -->
-            <div onclick="openReportDetail('Activity')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Activity')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1202,12 +1202,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Activity</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">7 sub-reports • Trips, Idle, Inactive</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">7 sub-reports • Travel, Trip, Idle...</p>
               </div>
             </div>
 
             <!-- Report 2: Geofence -->
-            <div onclick="openReportDetail('Geofence')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Geofence')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1221,7 +1221,7 @@
             </div>
 
             <!-- Report 3: Alert -->
-            <div onclick="openReportDetail('Alert')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Alert')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1230,12 +1230,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Alert</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • Faults & Safety Triggers</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">2 sub-reports • Vehicle & Driver Alert</p>
               </div>
             </div>
 
             <!-- Report 4: Sensor -->
-            <div onclick="openReportDetail('Sensor')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Sensor')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1244,12 +1244,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Sensor</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">6 sub-reports • Analog, RFID, Doors</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • Ignition, Analog, RFID...</p>
               </div>
             </div>
 
             <!-- Report 5: Logs -->
-            <div onclick="openReportDetail('Logs')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Logs')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1258,12 +1258,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Logs</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • System Logs & Commands</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">2 sub-reports • System Log, Command</p>
               </div>
             </div>
 
             <!-- Report 6: Routes -->
-            <div onclick="openReportDetail('Routes')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Routes')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1272,12 +1272,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Routes</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • Deviations & Punctuality</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • Distance, Compliance...</p>
               </div>
             </div>
 
             <!-- Report 7: Driver Behaviour -->
-            <div onclick="openReportDetail('Driver Behaviour')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Driver Behaviour')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1286,12 +1286,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Driver Behaviour</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">6 sub-reports • Braking, Speeding, Shifts</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • Braking, Speeding...</p>
               </div>
             </div>
 
             <!-- Report 8: Tire -->
-            <div onclick="openReportDetail('Tire')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Tire')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1300,12 +1300,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Tire</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • PSI Pressure & Temp Matrix</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • PSI Pressure & Temp</p>
               </div>
             </div>
 
             <!-- Report 9: Fuel & Energy -->
-            <div onclick="openReportDetail('Fuel & Energy')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Fuel & Energy')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1319,7 +1319,7 @@
             </div>
 
             <!-- Report 10: RPM & Engine -->
-            <div onclick="openReportDetail('RPM & Engine')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('RPM & Engine')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1328,12 +1328,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">RPM & Engine</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • CAN-BUS Torque & Strain</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • CAN-BUS RPM & Torque</p>
               </div>
             </div>
 
             <!-- Report 11: Stops -->
-            <div onclick="openReportDetail('Stops')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Stops')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1342,12 +1342,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Stops</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • Dwell Times & Passenger...</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">2 sub-reports • Stop Wise & Vehicle Data</p>
               </div>
             </div>
 
             <!-- Report 12: Reminder -->
-            <div onclick="openReportDetail('Reminder')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Reminder')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1361,7 +1361,7 @@
             </div>
 
             <!-- Report 13: Video Telematics -->
-            <div onclick="openReportDetail('Video Telematics')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('Video Telematics')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1370,12 +1370,12 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">Video Telematics</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">4 sub-reports • Cabin & Dash Cam Feeds</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • Cabin & Dash Cam Feeds</p>
               </div>
             </div>
 
             <!-- Report 14: OBD Diagnostic -->
-            <div onclick="openReportDetail('OBD Diagnostic')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
+            <div onclick="openSubReportsList('OBD Diagnostic')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex flex-col justify-between hover:border-primary transition cursor-pointer shadow-sm">
               <div>
                 <div class="flex items-center justify-between">
                   <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
@@ -1384,14 +1384,14 @@
                   <span class="material-symbols-outlined text-secondary text-[16px]">chevron_right</span>
                 </div>
                 <h3 class="font-headline-sm font-bold text-primary mt-3">OBD Diagnostic</h3>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">5 sub-reports • J1939 Telemetry & DTC Codes</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5 min-h-[32px]">3 sub-reports • J1939 Telemetry & DTC Codes</p>
               </div>
             </div>
 
           </div>
 
           <!-- Report 15: GTFS Trip Data (Full Width Card) -->
-          <div onclick="openReportDetail('GTFS Trip Data')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex items-center justify-between hover:border-primary transition cursor-pointer shadow-sm mt-3">
+          <div onclick="openSubReportsList('GTFS Trip Data')" class="js-report-card bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex items-center justify-between hover:border-primary transition cursor-pointer shadow-sm mt-3">
             <div class="flex items-center space-x-3">
               <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
                 <span class="material-symbols-outlined text-[20px]">schedule</span>
@@ -1401,7 +1401,7 @@
                   <h3 class="font-headline-sm font-bold text-primary">GTFS Trip Data</h3>
                   <span class="px-1.5 py-0.5 text-[9px] font-bold bg-primary text-on-primary rounded tracking-wider uppercase">REALTIME</span>
                 </div>
-                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5">4 sub-reports • GTFS-RT Trip & Stop Sync</p>
+                <p class="text-body-sm text-secondary text-[11px] leading-tight mt-0.5">1 sub-report • GTFS-RT Trip Data Report</p>
               </div>
             </div>
             <div class="flex items-center space-x-1 font-code-sm text-[11px] text-secondary shrink-0">
@@ -1416,6 +1416,41 @@
             <p class="text-body-sm text-secondary text-xs mt-0.5">Try searching for 'Geofence', 'SYS-01', 'Tire', or 'Driver'</p>
           </div>
 
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 05B: SUB-REPORTS SELECTION SCREEN -->
+      <!-- ========================================================================= -->
+      <section id="sub-reports-screen" class="app-screen pb-24">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-surface-container-lowest pt-3 px-4 flex justify-between items-center text-on-surface select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-primary rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-on-surface">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-2 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40">
+          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition">
+            <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+          </button>
+          <div class="text-center">
+            <h1 id="sub-reports-category-title" class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Activity Sub-Reports</h1>
+            <span id="sub-reports-category-subtitle" class="text-[11px] font-body-sm text-secondary block -mt-0.5">Select a sub-report module</span>
+          </div>
+          <div class="w-8"></div>
+        </header>
+
+        <div class="px-4 pt-4 space-y-3">
+          <!-- Sub-reports dynamically injected list container -->
+          <div id="sub-reports-list-container" class="space-y-2.5">
+            <!-- Dynamic sub-report items inserted here by JS -->
+          </div>
         </div>
       </section>
 

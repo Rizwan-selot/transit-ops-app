@@ -453,10 +453,122 @@ document.addEventListener('DOMContentLoaded', () => {
     window.showToast('Filter preferences reset', 'refresh');
   };
 
-  // 8. REPORT DETAIL & GENERATION FLOW (Matching User Spec media_1790069349203.jpg)
-  let currentReportTitle = 'Activity';
-  let activeDatePreset = '7-days';
-  let activeDateRangeString = 'Oct 12, 2026 - Oct 18, 2026';
+  // SUB-REPORTS MAPPING (Matching User Table Spec media_1790137587929.png)
+  const subReportsMap = {
+    'Activity': [
+      { title: 'Travel Report', desc: 'Fleet movement, active transit & trip duration logs', icon: 'directions_bus' },
+      { title: 'Trip Report', desc: 'Detailed trip completion stats & schedule sync', icon: 'route' },
+      { title: 'Stoppage Report', desc: 'Station dwell times, layover & unexpected stops', icon: 'hail' },
+      { title: 'Idle Report', desc: 'Engine idling, fuel waste & terminal dwell times', icon: 'timer' },
+      { title: 'Inactive Report', desc: 'Yard inactive status & unassigned vehicle log', icon: 'power_off' },
+      { title: 'Vehicle Status Report', desc: 'Realtime telemetry operational availability', icon: 'analytics' },
+      { title: 'Daywise Distance Report', desc: 'Daily odometer km mileage tracking per vehicle', icon: 'straighten' }
+    ],
+    'Alert': [
+      { title: 'Vehicle Alert Report', desc: 'Critical engine faults, diagnostic DTCs & warnings', icon: 'warning' },
+      { title: 'Driver Alert Report', desc: 'Driver safety triggers, fatigue & cabin warnings', icon: 'notifications_active' }
+    ],
+    'Sensor': [
+      { title: 'Ignition Report', desc: 'Key-on ignition cycles, engine run hours log', icon: 'key' },
+      { title: 'Analog Data Report', desc: 'Analog sensor inputs, temperature & pressure matrix', icon: 'sensors' },
+      { title: 'RFID Data Report', desc: 'Driver & passenger RFID card scans & badge logs', icon: 'badge' },
+      { title: 'Digital Port Report', desc: 'Digital I/O port status & hardware sensor feeds', icon: 'settings_input_component' },
+      { title: 'Immobilize Report', desc: 'Remote starter cut & vehicle security lock status', icon: 'lock' }
+    ],
+    'Logs': [
+      { title: 'System Log Report', desc: 'Hardware node stream, gateway ping & latency logs', icon: 'description' },
+      { title: 'Send Command Report', desc: 'CAN-BUS dispatch overrides & remote command history', icon: 'terminal' }
+    ],
+    'Routes': [
+      { title: 'Distance Report', desc: 'Route distance calculations & total km traversed', icon: 'alt_route' },
+      { title: 'Route Action Report', desc: 'Waypoints reached, line stops & depot check-ins', icon: 'location_on' },
+      { title: 'Scheduled vs Actual Distance', desc: 'Timetable mileage vs actual GPS route distance', icon: 'compare' },
+      { title: 'Route Deviation Report', desc: 'Off-route alerts, detour logs & boundary breaches', icon: 'wrong_location' },
+      { title: 'Route Compliance Report', desc: 'Schedule adherence %, punctuality & headways', icon: 'verified' }
+    ],
+    'Stops': [
+      { title: 'Stop Wise Report', desc: 'Passenger boardings, stop dwell time & arrival sync', icon: 'pin_drop' },
+      { title: 'Stop Vehicle Data Report', desc: 'Door opening status, passenger counter & stop logs', icon: 'departure_board' }
+    ],
+    'GTFS Trip Data': [
+      { title: 'GTFS Trip Data Report', desc: 'GTFS-Realtime trip updates, vehicle positions & feed status', icon: 'schedule' }
+    ],
+    'Geofence': [
+      { title: 'Boundary Entry/Exit Report', desc: 'Terminal & depot geofence crossing logs', icon: 'track_changes' },
+      { title: 'Yard Dwell Duration Report', desc: 'Time spent inside depot maintenance yards', icon: 'crop_square' },
+      { title: 'Forbidden Zone Breach Report', desc: 'Unauthorized area entry & perimeter alerts', icon: 'report_problem' },
+      { title: 'Speed Limit Geofence Report', desc: 'Zone-based automatic speed restriction logs', icon: 'speed' }
+    ],
+    'Driver Behaviour': [
+      { title: 'Braking Event Report', desc: 'Harsh braking, sudden deceleration & safety scores', icon: 'car_crash' },
+      { title: 'Speeding Violations Report', desc: 'Over-speed instances, threshold breaches & alerts', icon: 'speed' },
+      { title: 'Shift Duration Report', desc: 'Driver duty hours, shift handovers & rest breaks', icon: 'badge' },
+      { title: 'Harsh Acceleration Report', desc: 'Aggressive acceleration & throttle telemetry', icon: 'play_arrow' }
+    ],
+    'Tire': [
+      { title: 'Tire PSI Pressure Report', desc: 'Realtime TPMS tire pressure monitoring matrix', icon: 'tire_repair' },
+      { title: 'Tire Temperature Matrix', desc: 'Wheel thermal sensors & overheating warnings', icon: 'thermostat' },
+      { title: 'Tire Wear Status Report', desc: 'Estimated tread wear & mileage replacement logs', icon: 'build' }
+    ],
+    'Fuel & Energy': [
+      { title: 'SOC % Charge Level Report', desc: 'EV battery State-of-Charge & range estimation', icon: 'battery_charging_full' },
+      { title: 'Fuel Consumption Report', desc: 'Liters consumed per 100km & engine efficiency', icon: 'local_gas_station' },
+      { title: 'Liters Refuel Log Report', desc: 'Depot fueling timestamps & tank volume changes', icon: 'opacity' },
+      { title: 'EV Battery Thermal Report', desc: 'Battery pack cell temperatures & cooling status', icon: 'ac_unit' }
+    ],
+    'RPM & Engine': [
+      { title: 'CAN-BUS Engine RPM Report', desc: 'Engine RPM distributions & over-revving logs', icon: 'speed' },
+      { title: 'Torque & Load Strain Report', desc: 'Engine load %, transmission strain & climbing torque', icon: 'fitness_center' },
+      { title: 'Engine Fault Codes Report', desc: 'J1939 ECU fault codes & check engine triggers', icon: 'build_circle' }
+    ],
+    'Reminder': [
+      { title: 'Scheduled Service Report', desc: 'Periodic oil, filter & brake service schedules', icon: 'event_repeat' },
+      { title: 'Inspection Due Report', desc: 'Mandatory transit safety inspection reminders', icon: 'fact_check' },
+      { title: 'License Renewal Report', desc: 'Driver license & vehicle registration expiry alerts', icon: 'badge' }
+    ],
+    'Video Telematics': [
+      { title: 'Cabin Cam Feed Report', desc: 'Driver cabin AI monitoring & fatigue video clips', icon: 'videocam' },
+      { title: 'Dash Cam Event Clips Report', desc: 'Road incident auto-captured video clip logs', icon: 'camera_roll' },
+      { title: 'ADAS Safety Warnings Report', desc: 'Lane departure & forward collision warning feeds', icon: 'warning' }
+    ],
+    'OBD Diagnostic': [
+      { title: 'J1939 Telemetry Report', desc: 'Commercial heavy-vehicle CAN bus telemetry stream', icon: 'memory' },
+      { title: 'DTC Fault Codes Report', desc: 'Diagnostic Trouble Codes & engine severity levels', icon: 'error' },
+      { title: 'MIL Indicator Log Report', desc: 'Malfunction Indicator Lamp triggers & reset logs', icon: 'flourescent' }
+    ]
+  };
+
+  window.openSubReportsList = function(categoryName) {
+    const titleEl = document.getElementById('sub-reports-category-title');
+    const subtitleEl = document.getElementById('sub-reports-category-subtitle');
+    const container = document.getElementById('sub-reports-list-container');
+
+    const subReports = subReportsMap[categoryName] || [
+      { title: `${categoryName} Main Report`, desc: `Detailed operational metrics for ${categoryName}`, icon: 'analytics' }
+    ];
+
+    if (titleEl) titleEl.textContent = `${categoryName} Sub-Reports`;
+    if (subtitleEl) subtitleEl.textContent = `${subReports.length} available report modules`;
+
+    if (container) {
+      container.innerHTML = subReports.map(item => `
+        <div onclick="openReportDetail('${item.title}')" class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 flex items-center justify-between hover:border-primary transition cursor-pointer shadow-xs active:bg-surface-container-low">
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined text-[20px]">${item.icon}</span>
+            </div>
+            <div class="truncate">
+              <h4 class="font-headline-sm font-bold text-primary text-body-md leading-tight">${item.title}</h4>
+              <p class="text-body-sm text-secondary text-[11px] truncate mt-0.5">${item.desc}</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-secondary text-[18px] shrink-0 ml-2">chevron_right</span>
+        </div>
+      `).join('');
+    }
+
+    window.navigateTo('sub-reports-screen');
+  };
 
   window.openReportDetail = function(reportTitle) {
     currentReportTitle = reportTitle || 'Activity';
