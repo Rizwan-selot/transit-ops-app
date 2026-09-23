@@ -1147,6 +1147,52 @@
       </section>
 
       <!-- ========================================================================= -->
+      <!-- SCREEN 02: STATUS (COMING SOON PLACEHOLDER - NO DATA) -->
+      <!-- ========================================================================= -->
+      <section id="status-screen" class="app-screen pb-24">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-surface-container-lowest pt-3 px-4 flex justify-between items-center text-on-surface select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-primary rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-on-surface">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-2 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40">
+          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition">
+            <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+          </button>
+          <div class="text-center">
+            <h1 class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Fleet Status</h1>
+            <span class="text-[11px] font-body-sm text-secondary block -mt-0.5">Real-time Node Telemetry</span>
+          </div>
+          <div class="w-8"></div>
+        </header>
+
+        <!-- Coming Soon Placeholder Container -->
+        <div class="px-6 py-16 flex flex-col items-center justify-center text-center space-y-4">
+          <div class="w-20 h-20 rounded-3xl bg-surface-container-low border border-outline-variant/60 flex items-center justify-center text-primary shadow-xs">
+            <span class="material-symbols-outlined text-[36px]">engineering</span>
+          </div>
+          <div class="space-y-1.5 max-w-xs">
+            <h2 class="text-headline-lg font-bold text-primary tracking-tight">Coming Soon</h2>
+            <p class="text-body-sm text-secondary text-xs leading-relaxed">
+              Real-time fleet live status telemetry and CAN-BUS node tracking module is currently under development.
+            </p>
+          </div>
+          <div class="pt-2">
+            <span class="px-3 py-1 bg-surface-container-low border border-outline-variant/60 text-secondary rounded-full font-mono text-[11px] font-semibold uppercase tracking-wider">
+              Status Module v3.0 • Pending Release
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
       <!-- SCREEN 05: REPORTS (OPERATIONAL ANALYTICS) -->
       <!-- ========================================================================= -->
       <section id="reports-screen" class="app-screen pb-24">
@@ -1904,6 +1950,10 @@
       <a data-target="dashboard-screen" href="#" onclick="navigateTo('dashboard-screen')" class="flex flex-col items-center justify-center text-primary font-semibold active:scale-95 transition">
         <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
         <span class="text-label-sm mt-0.5">Dashboard</span>
+      </a>
+      <a data-target="status-screen" href="#" onclick="navigateTo('status-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">swap_calls</span>
+        <span class="text-label-sm font-label-sm mt-0.5">Status</span>
       </a>
       <a data-target="reports-screen" href="#" onclick="navigateTo('reports-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
         <span class="material-symbols-outlined text-[22px]">analytics</span>
