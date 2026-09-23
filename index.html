@@ -470,86 +470,91 @@
             </div>
 
             <!-- Bar Chart Simulation matching Image media_1790157275791.png -->
-            <div class="pt-2 pb-1">
-              <div class="relative flex items-end h-44 pl-7 pr-1">
+            <div class="pt-2 pb-1 space-y-2">
+              <!-- Plot Area with Y-Axis Grid Lines & Bars -->
+              <div class="relative h-40 pl-7 pr-1">
                 <!-- Y-Axis Grid Lines & Labels -->
                 <div class="absolute inset-0 flex flex-col justify-between pointer-events-none text-[11px] font-medium text-slate-400">
                   <div class="flex items-center w-full"><span class="w-6 text-right pr-1">400</span><div class="flex-1 border-b border-slate-100"></div></div>
                   <div class="flex items-center w-full"><span class="w-6 text-right pr-1">300</span><div class="flex-1 border-b border-slate-100"></div></div>
                   <div class="flex items-center w-full"><span class="w-6 text-right pr-1">200</span><div class="flex-1 border-b border-slate-100"></div></div>
                   <div class="flex items-center w-full"><span class="w-6 text-right pr-1">100</span><div class="flex-1 border-b border-slate-100"></div></div>
-                  <div class="flex items-center w-full"><span class="w-6 text-right pr-1">0</span><div class="flex-1 border-b border-slate-200"></div></div>
+                  <div class="flex items-center w-full"><span class="w-6 text-right pr-1">0</span><div class="flex-1 border-b border-slate-300"></div></div>
                 </div>
 
-                <!-- Day Columns Container -->
-                <div class="w-full h-full flex items-end justify-between z-10 pt-4">
+                <!-- Bars Area -->
+                <div class="w-full h-full flex items-end justify-between relative z-10">
                   <!-- Mon -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 71%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 6%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Mon</span>
                   </div>
 
                   <!-- Tue -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 76%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 4%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Tue</span>
                   </div>
 
                   <!-- Wed -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 74%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 5%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Wed</span>
                   </div>
 
                   <!-- Thu -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 79%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 3%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Thu</span>
                   </div>
 
                   <!-- Fri -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 77%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 7%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Fri</span>
                   </div>
 
                   <!-- Sat -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 47%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 4%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Sat</span>
                   </div>
 
                   <!-- Sun -->
-                  <div class="flex flex-col items-center h-full justify-end flex-1">
+                  <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                     <div class="flex items-end space-x-0.5 h-full">
                       <div class="bg-black w-2.5 rounded-t" style="height: 45%;"></div>
                       <div class="striped-pattern border border-slate-300 w-2.5 rounded-t" style="height: 3%;"></div>
                     </div>
-                    <span class="text-[11px] font-semibold text-slate-600 mt-2">Sun</span>
                   </div>
                 </div>
               </div>
 
+              <!-- Day Labels Row below baseline -->
+              <div class="pl-7 pr-1 flex justify-between text-[11px] font-semibold text-slate-600">
+                <div class="flex-1 text-center">Mon</div>
+                <div class="flex-1 text-center">Tue</div>
+                <div class="flex-1 text-center">Wed</div>
+                <div class="flex-1 text-center">Thu</div>
+                <div class="flex-1 text-center">Fri</div>
+                <div class="flex-1 text-center">Sat</div>
+                <div class="flex-1 text-center">Sun</div>
+              </div>
+
               <!-- Legend Below Chart -->
-              <div class="flex items-center justify-center space-x-6 pt-4 text-xs">
+              <div class="flex items-center justify-center space-x-6 pt-3 text-xs">
                 <div class="flex items-center space-x-2">
                   <span class="w-3.5 h-3.5 bg-black rounded-sm shrink-0"></span>
                   <span class="text-slate-700 font-semibold">Completed</span>
