@@ -714,4 +714,82 @@ document.addEventListener('DOMContentLoaded', () => {
     window.navigateTo('login-screen');
     window.showToast('Logged out successfully', 'logout');
   };
+
+  // =========================================================================
+  // DASHBOARD WIDGET CUSTOMIZATION LOGIC
+  // =========================================================================
+  const WIDGET_KEYS = [
+    'fleet-status',
+    'object-brand',
+    'immobilize',
+    'depot-status',
+    'schedule-mgmt',
+    'route-mgmt',
+    'stop-mgmt',
+    'driver-analytics'
+  ];
+
+  window.openDashboardCustomizeModal = function() {
+    const modal = document.getElementById('dashboard-customize-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
+  };
+
+  window.closeDashboardCustomizeModal = function() {
+    const modal = document.getElementById('dashboard-customize-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  };
+
+  window.toggleWidgetVisibility = function(widgetKey, isVisible) {
+    const widgetEl = document.getElementById(`widget-${widgetKey}`);
+    if (widgetEl) {
+      if (isVisible) {
+        widgetEl.classList.remove('hidden');
+      } else {
+        widgetEl.classList.add('hidden');
+      }
+    }
+
+    const toggleEl = document.getElementById(`toggle-${widgetKey}`);
+    if (toggleEl && toggleEl.checked !== isVisible) {
+      toggleEl.checked = isVisible;
+    }
+
+    try {
+      const saved = JSON.parse(localStorage.getItem('transit_dashboard_widgets') || '{}');
+      saved[widgetKey] = isVisible;
+      localStorage.setItem('transit_dashboard_widgets', JSON.stringify(saved));
+    } catch (e) {
+      console.error('Failed to save widget settings:', e);
+    }
+  };
+
+  window.resetDashboardWidgets = function() {
+    WIDGET_KEYS.forEach(key => {
+      window.toggleWidgetVisibility(key, true);
+    });
+    if (window.showToast) {
+      window.showToast('Dashboard reset to default', 'restart_alt');
+    }
+  };
+
+  function loadDashboardWidgetPreferences() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('transit_dashboard_widgets') || '{}');
+      WIDGET_KEYS.forEach(key => {
+        if (saved.hasOwnProperty(key)) {
+          window.toggleWidgetVisibility(key, saved[key]);
+        } else {
+          window.toggleWidgetVisibility(key, true);
+        }
+      });
+    } catch (e) {
+      console.error('Failed to load widget preferences:', e);
+    }
+  }
+
+  loadDashboardWidgetPreferences();
 });

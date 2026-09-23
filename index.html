@@ -237,8 +237,8 @@
               <span class="text-[11px] font-semibold uppercase tracking-wider text-secondary block">Welcome Back 👋</span>
               <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Fleet Operations Manager</h1>
             </div>
-            <button onclick="openGlobalSearch()" class="p-2 rounded-xl text-on-surface hover:bg-surface-container-low border border-outline-variant/60 transition flex items-center justify-center" type="button">
-              <span class="material-symbols-outlined text-[20px]">search</span>
+            <button onclick="openDashboardCustomizeModal()" class="p-2 rounded-xl text-on-surface hover:bg-surface-container-low border border-outline-variant/60 transition flex items-center justify-center" type="button" title="Customize Dashboard">
+              <span class="material-symbols-outlined text-[20px]">tune</span>
             </button>
           </div>
         </header>
@@ -258,7 +258,7 @@
           <!-- ========================================================================= -->
 
           <!-- WIDGET 1: Fleet Status -->
-          <section onclick="navigateTo('status-screen')" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3 cursor-pointer hover:border-primary transition">
+          <section id="widget-fleet-status" onclick="navigateTo('status-screen')" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3 cursor-pointer hover:border-primary transition">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Fleet Status</h2>
               <button onclick="event.stopPropagation(); showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -301,7 +301,7 @@
           </section>
 
           <!-- WIDGET 2: Object Brand / Model -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3.5">
+          <section id="widget-object-brand" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3.5">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Object Brand / Model</h2>
               <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -343,7 +343,7 @@
           </section>
 
           <!-- WIDGET 3: Remote Immobilizer -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+          <section id="widget-immobilize" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Remote Immobilizer</h2>
               <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -376,7 +376,7 @@
           </section>
 
           <!-- WIDGET 4: Depot Status -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+          <section id="widget-depot-status" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Depot Status</h2>
               <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -409,7 +409,7 @@
           </section>
 
           <!-- WIDGET 5: Schedule Management -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3.5">
+          <section id="widget-schedule-mgmt" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3.5">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Schedule Management</h2>
               <button onclick="showToast('Period: Today')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -460,7 +460,7 @@
           </section>
 
           <!-- WIDGET 6: Route Performance -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+          <section id="widget-route-mgmt" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Route Performance</h2>
               <button onclick="showToast('Period: 7 Days')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -547,7 +547,7 @@
           </section>
 
           <!-- WIDGET 7: Stop Management -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+          <section id="widget-stop-mgmt" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Stop Management</h2>
               <span class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-primary flex items-center space-x-1.5">
@@ -618,7 +618,7 @@
           </section>
 
           <!-- WIDGET 8: Driver Analytic -->
-          <section class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
+          <section id="widget-driver-analytics" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Driver Analytic</h2>
               <button onclick="showToast('Period: 7 Days')" class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-secondary flex items-center space-x-1">
@@ -2003,6 +2003,134 @@
       <button onclick="closeContactModal()" class="w-full py-2 text-xs text-secondary hover:text-primary">
         Dismiss
       </button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD CUSTOMIZATION BOTTOM SHEET MODAL -->
+  <div id="dashboard-customize-modal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-end justify-center">
+    <div class="bg-surface-container-lowest border-t border-outline-variant rounded-t-3xl p-5 w-full max-w-md max-h-[85vh] flex flex-col shadow-2xl animate-in slide-in-from-bottom duration-200">
+      <!-- Handle & Header -->
+      <div class="flex flex-col items-center mb-3">
+        <div class="w-10 h-1 bg-outline-variant/60 rounded-full mb-3"></div>
+        <div class="flex items-center justify-between w-full">
+          <div>
+            <h3 class="text-headline-sm font-bold text-primary">Customize Dashboard</h3>
+            <p class="text-body-sm text-secondary text-xs">Show or hide widgets on your main view</p>
+          </div>
+          <button onclick="closeDashboardCustomizeModal()" class="p-1.5 rounded-full hover:bg-surface-container text-secondary hover:text-primary" type="button">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Widget Toggles List -->
+      <div class="flex-1 overflow-y-auto space-y-3 py-2 pr-1">
+        <!-- Fleet Status -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">directions_bus</span>
+            <span class="font-semibold text-body-md text-primary">Fleet Status</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-fleet-status" checked onchange="toggleWidgetVisibility('fleet-status', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Object Brand / Model -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">donut_large</span>
+            <span class="font-semibold text-body-md text-primary">Object Brand / Model</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-object-brand" checked onchange="toggleWidgetVisibility('object-brand', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Immobilize -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">lock_reset</span>
+            <span class="font-semibold text-body-md text-primary">Immobilize</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-immobilize" checked onchange="toggleWidgetVisibility('immobilize', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Depot Status -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">warehouse</span>
+            <span class="font-semibold text-body-md text-primary">Depot Status</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-depot-status" checked onchange="toggleWidgetVisibility('depot-status', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Schedule Management -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">calendar_month</span>
+            <span class="font-semibold text-body-md text-primary">Schedule Management</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-schedule-mgmt" checked onchange="toggleWidgetVisibility('schedule-mgmt', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Route Management -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">alt_route</span>
+            <span class="font-semibold text-body-md text-primary">Route Management</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-route-mgmt" checked onchange="toggleWidgetVisibility('route-mgmt', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Stop Management -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">location_on</span>
+            <span class="font-semibold text-body-md text-primary">Stop Management</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-stop-mgmt" checked onchange="toggleWidgetVisibility('stop-mgmt', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+
+        <!-- Driver Analytics -->
+        <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/40">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-secondary text-[20px]">badge</span>
+            <span class="font-semibold text-body-md text-primary">Driver Analytics</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="toggle-driver-analytics" checked onchange="toggleWidgetVisibility('driver-analytics', this.checked)" class="sr-only peer">
+            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="grid grid-cols-2 gap-3 pt-3 border-t border-outline-variant/50 mt-1">
+        <button onclick="resetDashboardWidgets()" class="py-2.5 px-4 border border-outline-variant hover:bg-surface-container rounded-xl font-semibold text-body-sm text-secondary hover:text-primary transition active:scale-[0.98]" type="button">
+          Reset Default
+        </button>
+        <button onclick="closeDashboardCustomizeModal()" class="py-2.5 px-4 bg-primary text-on-primary rounded-xl font-semibold text-body-sm shadow-sm transition active:scale-[0.98]" type="button">
+          Done
+        </button>
+      </div>
     </div>
   </div>
 
