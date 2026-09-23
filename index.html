@@ -1751,6 +1751,152 @@
         </div>
       </section>
 
+      <!-- ========================================================================= -->
+      <!-- SCREEN 08: USER PROFILE (100% MATCH TO USER SPEC media_1790141014890.jpg) -->
+      <!-- ========================================================================= -->
+      <section id="profile-screen" class="app-screen pb-24">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-surface-container-lowest pt-3 px-4 flex justify-between items-center text-on-surface select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-primary rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-on-surface">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <div class="px-4 pt-4 space-y-4">
+          
+          <!-- 1. USER INFO CARD (Matching Image 100%) -->
+          <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-4 shadow-2xs flex items-center justify-between">
+            <div class="flex items-center space-x-3.5">
+              <!-- Circular Black MV Avatar -->
+              <div class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-lg tracking-tight shrink-0 shadow-xs">
+                MV
+              </div>
+              <div>
+                <h2 class="text-headline-md font-bold text-primary leading-tight">Marcus Vance</h2>
+                <p class="text-body-sm text-secondary text-xs mt-0.5 font-medium">Fleet Operations Manager</p>
+              </div>
+            </div>
+            <!-- Manager Badge -->
+            <span class="px-2.5 py-1 bg-surface-container-low border border-outline-variant/60 text-secondary rounded-lg font-mono text-[11px] font-semibold shrink-0">
+              MGR-2201
+            </span>
+          </div>
+
+          <!-- 2. PREFERENCES SECTION (Matching Image 100%) -->
+          <div class="space-y-1.5">
+            <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block px-1">PREFERENCES</span>
+            <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl divide-y divide-outline-variant/40 shadow-2xs overflow-hidden">
+              
+              <!-- Notifications Toggle -->
+              <div class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">notifications</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Notifications</span>
+                </div>
+                <!-- Toggle Switch -->
+                <button type="button" onclick="toggleProfileNotification(this)" class="w-12 h-6 rounded-full bg-primary relative transition-colors duration-200 focus:outline-none cursor-pointer">
+                  <div class="w-5 h-5 rounded-full bg-white absolute top-0.5 right-0.5 transition-transform duration-200 shadow-xs"></div>
+                </button>
+              </div>
+
+              <!-- Change Password -->
+              <div onclick="showToast('Password reset link sent to registered email')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">lock</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Change Password</span>
+                </div>
+                <span class="material-symbols-outlined text-secondary text-[18px]">chevron_right</span>
+              </div>
+
+              <!-- Change Language -->
+              <div onclick="showToast('Language set to English (US)')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">language</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Change Language</span>
+                </div>
+                <div class="flex items-center space-x-1 text-secondary text-body-sm">
+                  <span>English (US)</span>
+                  <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                </div>
+              </div>
+
+              <!-- Theme -->
+              <div onclick="showToast('App Theme: Light Mode active')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">contrast</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Theme</span>
+                </div>
+                <div class="flex items-center space-x-1 text-secondary text-body-sm">
+                  <span>Light Mode</span>
+                  <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 3. INFORMATION & SUPPORT SECTION (Matching Image 100%) -->
+          <div class="space-y-1.5">
+            <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block px-1">INFORMATION & SUPPORT</span>
+            <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl divide-y divide-outline-variant/40 shadow-2xs overflow-hidden">
+              
+              <!-- About App -->
+              <div onclick="showToast('Transit Ops Manager v2.4.0 (Build 802)')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">smartphone</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">About App</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                  <span class="px-2 py-0.5 bg-surface-container-low text-secondary rounded font-mono text-[11px] font-semibold">v2.4.0</span>
+                  <span class="material-symbols-outlined text-secondary text-[18px]">chevron_right</span>
+                </div>
+              </div>
+
+              <!-- Privacy Policy -->
+              <div onclick="showToast('Opening Privacy Policy documentation...')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Privacy Policy</span>
+                </div>
+                <span class="material-symbols-outlined text-secondary text-[18px]">chevron_right</span>
+              </div>
+
+              <!-- Terms & Conditions -->
+              <div onclick="showToast('Opening Terms & Conditions...')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">description</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Terms & Conditions</span>
+                </div>
+                <span class="material-symbols-outlined text-secondary text-[18px]">chevron_right</span>
+              </div>
+
+              <!-- Support -->
+              <div onclick="showToast('Support Hotline: 1-800-TRANSIT-OPS')" class="p-3.5 flex items-center justify-between hover:bg-surface-container-low/50 transition cursor-pointer">
+                <div class="flex items-center space-x-3">
+                  <span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+                  <span class="font-headline-sm font-bold text-primary text-body-md">Support</span>
+                </div>
+                <span class="material-symbols-outlined text-secondary text-[18px]">chevron_right</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 4. LOG OUT BUTTON (Matching Image 100%) -->
+          <div class="pt-2">
+            <button type="button" onclick="handleLogout()" class="w-full py-3.5 border border-rose-200 bg-white text-rose-600 rounded-2xl font-headline-sm text-body-md font-bold flex items-center justify-center space-x-2 active:bg-rose-50 transition shadow-2xs">
+              <span class="material-symbols-outlined text-[20px]">logout</span>
+              <span>Log Out</span>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
     </div>
 
     <!-- SHARED BOTTOM NAVIGATION BAR -->
@@ -1763,7 +1909,7 @@
         <span class="material-symbols-outlined text-[22px]">analytics</span>
         <span class="text-label-sm font-label-sm mt-0.5">Reports</span>
       </a>
-      <a data-target="profile" href="#" onclick="showToast('Manager Profile & Settings')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+      <a data-target="profile-screen" href="#" onclick="navigateTo('profile-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
         <span class="material-symbols-outlined text-[22px]">person</span>
         <span class="text-label-sm font-label-sm mt-0.5">Profile</span>
       </a>

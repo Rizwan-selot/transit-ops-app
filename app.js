@@ -684,4 +684,34 @@ document.addEventListener('DOMContentLoaded', () => {
   window.editReportParameters = function() {
     window.navigateTo('report-detail-screen');
   };
+
+  // USER PROFILE ACTIONS
+  window.toggleProfileNotification = function(btn) {
+    const isChecked = btn.classList.contains('bg-primary');
+    const knob = btn.querySelector('div');
+
+    if (isChecked) {
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-outline-variant');
+      if (knob) {
+        knob.style.transform = 'translateX(-24px)';
+      }
+      window.showToast('Push notifications disabled', 'notifications_off');
+    } else {
+      btn.classList.remove('bg-outline-variant');
+      btn.classList.add('bg-primary');
+      if (knob) {
+        knob.style.transform = 'translateX(0px)';
+      }
+      window.showToast('Push notifications enabled', 'notifications');
+    }
+  };
+
+  window.handleLogout = function() {
+    if (fleetIdInput) fleetIdInput.value = '';
+    if (passwordInput) passwordInput.value = '';
+    
+    window.navigateTo('login-screen');
+    window.showToast('Logged out successfully', 'logout');
+  };
 });
