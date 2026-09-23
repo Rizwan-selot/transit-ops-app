@@ -1803,88 +1803,140 @@
           </button>
         </div>
 
-        <!-- Filter Select Inputs (Matching Image 2 pixel-perfect) -->
+        <!-- Filter Select Inputs with Searchable Dropdowns -->
         <div class="space-y-3 pt-1">
           <!-- 1. Company -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Company</label>
-            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                <span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+            <div class="searchable-dropdown relative" data-dropdown-id="company">
+              <input type="hidden" id="filter-company" value="MTA Transportation Services">
+              <div onclick="toggleSearchableDropdown('company')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+                </div>
+                <span id="filter-company-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">MTA Transportation Services</span>
+                <span id="filter-company-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
-              <select id="filter-company" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="MTA Transportation Services">MTA Transportation Services</option>
-                <option value="NYC Transit Authority">NYC Transit Authority</option>
-                <option value="Regional Metro Fleet">Regional Metro Fleet</option>
-              </select>
-              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-company" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-company" oninput="filterDropdownOptions('company', this.value)" placeholder="Search company..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('company')" id="dropdown-clear-company" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-company" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
             </div>
           </div>
 
           <!-- 2. Branch -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Branch</label>
-            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                <span class="material-symbols-outlined text-[18px]">hub</span>
+            <div class="searchable-dropdown relative" data-dropdown-id="branch">
+              <input type="hidden" id="filter-branch" value="Central North Depot">
+              <div onclick="toggleSearchableDropdown('branch')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">hub</span>
+                </div>
+                <span id="filter-branch-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Central North Depot</span>
+                <span id="filter-branch-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
-              <select id="filter-branch" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="Central North Depot">Central North Depot</option>
-                <option value="East Bay Ops">East Bay Ops</option>
-                <option value="South Hub Depot">South Hub Depot</option>
-              </select>
-              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-branch" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-branch" oninput="filterDropdownOptions('branch', this.value)" placeholder="Search branch..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('branch')" id="dropdown-clear-branch" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-branch" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
             </div>
           </div>
 
           <!-- 3. Depot -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
-            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                <span class="material-symbols-outlined text-[18px]">garage</span>
+            <div class="searchable-dropdown relative" data-dropdown-id="depot">
+              <input type="hidden" id="filter-depot" value="All Depots">
+              <div onclick="toggleSearchableDropdown('depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">garage</span>
+                </div>
+                <span id="filter-depot-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">All Depots</span>
+                <span id="filter-depot-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
-              <select id="filter-depot" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="All Depots">All Depots</option>
-                <option value="Depot 01 - Main">Depot 01 - Main</option>
-                <option value="Depot 02 - North">Depot 02 - North</option>
-                <option value="Depot 03 - West">Depot 03 - West</option>
-              </select>
-              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-depot" oninput="filterDropdownOptions('depot', this.value)" placeholder="Search depot..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('depot')" id="dropdown-clear-depot" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-depot" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
             </div>
           </div>
 
           <!-- 4. Vehicle Type -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Type</label>
-            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                <span class="material-symbols-outlined text-[18px]">directions_bus</span>
+            <div class="searchable-dropdown relative" data-dropdown-id="vehicle-type">
+              <input type="hidden" id="filter-vehicle-type" value="All Vehicle Types">
+              <div onclick="toggleSearchableDropdown('vehicle-type')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">directions_bus</span>
+                </div>
+                <span id="filter-vehicle-type-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">All Vehicle Types</span>
+                <span id="filter-vehicle-type-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
-              <select id="filter-vehicle-type" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="All Vehicle Types">All Vehicle Types</option>
-                <option value="Electric Transit Bus">Electric Transit Bus</option>
-                <option value="Diesel Hybrid">Diesel Hybrid</option>
-                <option value="Articulated 60ft Bus">Articulated 60ft Bus</option>
-              </select>
-              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-vehicle-type" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-vehicle-type" oninput="filterDropdownOptions('vehicle-type', this.value)" placeholder="Search vehicle type..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('vehicle-type')" id="dropdown-clear-vehicle-type" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-vehicle-type" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
             </div>
           </div>
 
           <!-- 5. Vehicle Group -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Group</label>
-            <div class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs">
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                <span class="material-symbols-outlined text-[18px]">layers</span>
+            <div class="searchable-dropdown relative" data-dropdown-id="vehicle-group">
+              <input type="hidden" id="filter-vehicle-group" value="All Vehicle Groups">
+              <div onclick="toggleSearchableDropdown('vehicle-group')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">layers</span>
+                </div>
+                <span id="filter-vehicle-group-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">All Vehicle Groups</span>
+                <span id="filter-vehicle-group-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
-              <select id="filter-vehicle-group" class="w-full bg-transparent [background-image:none] border-0 py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 appearance-none focus:outline-none focus:ring-0 cursor-pointer">
-                <option value="All Vehicle Groups">All Vehicle Groups</option>
-                <option value="Express Commute">Express Commute</option>
-                <option value="Local Rapid Transit">Local Rapid Transit</option>
-                <option value="Night Owl Service">Night Owl Service</option>
-              </select>
-              <span class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-vehicle-group" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-vehicle-group" oninput="filterDropdownOptions('vehicle-group', this.value)" placeholder="Search vehicle group..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('vehicle-group')" id="dropdown-clear-vehicle-group" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-vehicle-group" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
             </div>
           </div>
         </div>

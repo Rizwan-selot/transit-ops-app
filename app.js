@@ -410,20 +410,200 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal) modal.classList.add('hidden');
   };
 
+  // =========================================================================
+  // SEARCHABLE DROPDOWNS CONTROLLER (Filter Operations Bottom Sheet)
+  // =========================================================================
+  const FILTER_OPTIONS = {
+    'company': [
+      'MTA Transportation Services',
+      'NYC Transit Authority',
+      'Regional Metro Fleet',
+      'Transit Express Corp',
+      'Suburban Transit Lines',
+      'Global Logistics Transit'
+    ],
+    'branch': [
+      'Central North Depot',
+      'East Bay Ops',
+      'South Hub Depot',
+      'Westside Terminal',
+      'Downtown Central Hub',
+      'Metro Airport Shuttle'
+    ],
+    'depot': [
+      'All Depots',
+      'Depot 01 - Main',
+      'Depot 02 - North',
+      'Depot 03 - West',
+      'Depot 04 - Harbor',
+      'Depot 05 - Midtown',
+      'Depot 06 - Uptown'
+    ],
+    'vehicle-type': [
+      'All Vehicle Types',
+      'Electric Transit Bus',
+      'Diesel Hybrid',
+      'Articulated 60ft Bus',
+      'Double Decker Bus',
+      'Compressed Natural Gas (CNG)',
+      'Hydrogen Fuel Cell Bus',
+      'Mini Shuttle Bus'
+    ],
+    'vehicle-group': [
+      'All Vehicle Groups',
+      'Express Commute',
+      'Local Rapid Transit',
+      'Night Owl Service',
+      'Airport Direct Express',
+      'School District Rapid',
+      'Intercity Connector'
+    ]
+  };
+
+  const currentFilterValues = {
+    'company': 'MTA Transportation Services',
+    'branch': 'Central North Depot',
+    'depot': 'All Depots',
+    'vehicle-type': 'All Vehicle Types',
+    'vehicle-group': 'All Vehicle Groups'
+  };
+
+  window.toggleSearchableDropdown = function(dropdownId) {
+    Object.keys(FILTER_OPTIONS).forEach(id => {
+      if (id !== dropdownId) {
+        closeSearchableDropdown(id);
+      }
+    });
+
+    const panel = document.getElementById(`dropdown-panel-${dropdownId}`);
+    const arrow = document.getElementById(`filter-${dropdownId}-arrow`);
+
+    if (panel) {
+      const isHidden = panel.classList.contains('hidden');
+      if (isHidden) {
+        panel.classList.remove('hidden');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+        renderDropdownOptions(dropdownId, '');
+        
+        const searchInput = document.getElementById(`dropdown-search-${dropdownId}`);
+        if (searchInput) {
+          searchInput.value = '';
+          const clearBtn = document.getElementById(`dropdown-clear-${dropdownId}`);
+          if (clearBtn) clearBtn.classList.add('hidden');
+          setTimeout(() => searchInput.focus(), 50);
+        }
+      } else {
+        closeSearchableDropdown(dropdownId);
+      }
+    }
+  };
+
+  function closeSearchableDropdown(dropdownId) {
+    const panel = document.getElementById(`dropdown-panel-${dropdownId}`);
+    const arrow = document.getElementById(`filter-${dropdownId}-arrow`);
+    if (panel) panel.classList.add('hidden');
+    if (arrow) arrow.style.transform = 'rotate(0deg)';
+  }
+
+  window.closeAllSearchableDropdowns = function() {
+    Object.keys(FILTER_OPTIONS).forEach(id => closeSearchableDropdown(id));
+  };
+
+  window.renderDropdownOptions = function(dropdownId, query = '') {
+    const optionsContainer = document.getElementById(`dropdown-options-${dropdownId}`);
+    if (!optionsContainer) return;
+
+    const allOptions = FILTER_OPTIONS[dropdownId] || [];
+    const normalizedQuery = query.trim().toLowerCase();
+    const filtered = normalizedQuery 
+      ? allOptions.filter(opt => opt.toLowerCase().includes(normalizedQuery))
+      : allOptions;
+
+    const selectedValue = currentFilterValues[dropdownId];
+
+    if (filtered.length === 0) {
+      optionsContainer.innerHTML = `
+        <div class="py-3 text-center text-xs font-medium text-slate-400">
+          No results found
+        </div>
+      `;
+      return;
+    }
+
+    optionsContainer.innerHTML = filtered.map(opt => {
+      const isSelected = opt === selectedValue;
+      const escapedOpt = opt.replace(/'/g, "\\'");
+      return `
+        <div onclick="selectDropdownOption('${dropdownId}', '${escapedOpt}')" class="px-3 py-2 rounded-xl text-body-sm font-medium transition flex items-center justify-between cursor-pointer ${
+          isSelected 
+            ? 'bg-slate-100 text-primary font-bold' 
+            : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+        }">
+          <span class="truncate">${opt}</span>
+          ${isSelected ? '<span class="material-symbols-outlined text-[16px] text-primary shrink-0 ml-2">check</span>' : ''}
+        </div>
+      `;
+    }).join('');
+  };
+
+  window.filterDropdownOptions = function(dropdownId, query) {
+    const clearBtn = document.getElementById(`dropdown-clear-${dropdownId}`);
+    if (clearBtn) {
+      if (query && query.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+    }
+    renderDropdownOptions(dropdownId, query);
+  };
+
+  window.clearDropdownSearch = function(dropdownId) {
+    const input = document.getElementById(`dropdown-search-${dropdownId}`);
+    if (input) {
+      input.value = '';
+      filterDropdownOptions(dropdownId, '');
+      input.focus();
+    }
+  };
+
+  window.selectDropdownOption = function(dropdownId, val) {
+    currentFilterValues[dropdownId] = val;
+
+    const hiddenInput = document.getElementById(`filter-${dropdownId}`);
+    if (hiddenInput) hiddenInput.value = val;
+
+    const displayLabel = document.getElementById(`filter-${dropdownId}-display`);
+    if (displayLabel) displayLabel.textContent = val;
+
+    closeSearchableDropdown(dropdownId);
+  };
+
+  // Close searchable dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    const isDropdownClick = e.target.closest('.searchable-dropdown');
+    if (!isDropdownClick) {
+      window.closeAllSearchableDropdowns();
+    }
+  });
+
   // 7. FILTER OPERATIONS BOTTOM SHEET MODAL ACTIONS
   window.openFilterModal = function() {
+    window.closeAllSearchableDropdowns();
     const modal = document.getElementById('filter-modal');
     if (modal) modal.classList.remove('hidden');
   };
 
   window.closeFilterModal = function() {
+    window.closeAllSearchableDropdowns();
     const modal = document.getElementById('filter-modal');
     if (modal) modal.classList.add('hidden');
   };
 
   window.applyFilterModal = function() {
-    const company = document.getElementById('filter-company')?.value || 'MTA Transportation Services';
-    const branch = document.getElementById('filter-branch')?.value || 'Central North Depot';
+    window.closeAllSearchableDropdowns();
+    const company = currentFilterValues['company'] || 'MTA Transportation Services';
+    const branch = currentFilterValues['branch'] || 'Central North Depot';
     
     let compText = company.includes('MTA') ? 'MTA Transportation' : company;
     let branchText = branch.replace(' Depot', '').replace(' Ops', '');
@@ -438,11 +618,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.resetFilterModal = function() {
-    if (document.getElementById('filter-company')) document.getElementById('filter-company').value = 'MTA Transportation Services';
-    if (document.getElementById('filter-branch')) document.getElementById('filter-branch').value = 'Central North Depot';
-    if (document.getElementById('filter-depot')) document.getElementById('filter-depot').value = 'All Depots';
-    if (document.getElementById('filter-vehicle-type')) document.getElementById('filter-vehicle-type').value = 'All Vehicle Types';
-    if (document.getElementById('filter-vehicle-group')) document.getElementById('filter-vehicle-group').value = 'All Vehicle Groups';
+    window.closeAllSearchableDropdowns();
+    
+    const defaults = {
+      'company': 'MTA Transportation Services',
+      'branch': 'Central North Depot',
+      'depot': 'All Depots',
+      'vehicle-type': 'All Vehicle Types',
+      'vehicle-group': 'All Vehicle Groups'
+    };
+
+    Object.keys(defaults).forEach(id => {
+      window.selectDropdownOption(id, defaults[id]);
+    });
 
     const activeLabel = document.getElementById('active-filter-label');
     if (activeLabel) {
