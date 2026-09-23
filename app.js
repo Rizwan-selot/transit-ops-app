@@ -526,7 +526,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const fleetSelect = document.getElementById('report-fleet-select');
     const selectedFleet = fleetSelect ? fleetSelect.value : 'All Fleets (428 Units)';
 
-    window.showToast(`${currentReportTitle} Report generated for ${activeDateRangeString}`, 'analytics');
+    // Update Results Screen Headers & Scope Banner
+    const resTitle = document.getElementById('result-report-title');
+    const resDate = document.getElementById('active-result-date');
+    const resFleet = document.getElementById('active-result-fleet');
+
+    if (resTitle) resTitle.textContent = `${currentReportTitle} Report`;
+    if (resDate) resDate.textContent = activeDateRangeString;
+    if (resFleet) resFleet.textContent = `Scope: ${selectedFleet}`;
+
+    // Navigate to Results Screen
+    window.navigateTo('report-results-screen');
+    window.showToast(`${currentReportTitle} Report generated!`, 'analytics');
+  };
+
+  window.toggleReportView = function(viewType) {
+    const chartView = document.getElementById('report-view-chart');
+    const tableView = document.getElementById('report-view-table');
+    const chartBtn = document.getElementById('view-btn-chart');
+    const tableBtn = document.getElementById('view-btn-table');
+
+    if (viewType === 'chart') {
+      if (chartView) chartView.classList.remove('hidden');
+      if (tableView) tableView.classList.add('hidden');
+
+      if (chartBtn) {
+        chartBtn.className = 'px-3 py-1 rounded-lg text-[11px] font-bold transition bg-primary text-on-primary shadow-xs flex items-center space-x-1';
+      }
+      if (tableBtn) {
+        tableBtn.className = 'px-3 py-1 rounded-lg text-[11px] font-medium transition text-secondary hover:text-primary flex items-center space-x-1';
+      }
+    } else {
+      if (chartView) chartView.classList.add('hidden');
+      if (tableView) tableView.classList.remove('hidden');
+
+      if (tableBtn) {
+        tableBtn.className = 'px-3 py-1 rounded-lg text-[11px] font-bold transition bg-primary text-on-primary shadow-xs flex items-center space-x-1';
+      }
+      if (chartBtn) {
+        chartBtn.className = 'px-3 py-1 rounded-lg text-[11px] font-medium transition text-secondary hover:text-primary flex items-center space-x-1';
+      }
+    }
   };
 
   window.editReportParameters = function() {
