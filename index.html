@@ -1517,7 +1517,7 @@
       </section>
 
       <!-- ========================================================================= -->
-      <!-- SCREEN 07: REPORT RESULTS (DATA TABLE, CHART & EXPORT CONTROLS) -->
+      <!-- SCREEN 07: REPORT RESULTS (100% MATCH TO USER SPEC media_1790137123779.png) -->
       <!-- ========================================================================= -->
       <section id="report-results-screen" class="app-screen pb-24">
         <!-- Status Bar Simulation Area -->
@@ -1537,189 +1537,182 @@
             <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
           </button>
           <div class="text-center">
-            <h1 id="result-report-title" class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Sensor Report</h1>
-            <span class="text-[11px] font-body-sm text-secondary block -mt-0.5">Live Generated Telemetry</span>
+            <h1 id="result-report-title" class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Report Detail</h1>
           </div>
           <button onclick="editReportParameters()" class="p-1.5 text-primary hover:bg-surface-container rounded-lg transition" title="Edit Parameters">
             <span class="material-symbols-outlined text-[20px]">edit</span>
           </button>
         </header>
 
-        <div class="px-4 pt-3 space-y-4">
-          <!-- Active Filter Pill Banner -->
-          <div onclick="editReportParameters()" class="bg-surface-container-low border border-outline-variant rounded-xl p-3 flex items-center justify-between cursor-pointer hover:border-primary transition shadow-2xs">
-            <div class="flex items-center space-x-2.5 overflow-hidden">
-              <span class="material-symbols-outlined text-primary text-[18px] shrink-0">tune</span>
-              <div class="truncate text-body-sm">
-                <span id="active-result-date" class="font-bold text-primary block text-[13px]">Oct 12, 2026 - Oct 18, 2026</span>
-                <span id="active-result-fleet" class="text-secondary text-[11px] block truncate">Scope: All Fleets (428 Units)</span>
+        <div class="px-4 pt-3 space-y-3.5">
+          
+          <!-- 1. PARAMETERS SUMMARY CARD (Matching Image 100%) -->
+          <div onclick="editReportParameters()" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-3.5 flex items-center justify-between cursor-pointer hover:border-primary transition shadow-2xs">
+            <div class="space-y-1 overflow-hidden">
+              <div class="flex items-center space-x-2 text-primary font-bold text-body-md">
+                <span class="material-symbols-outlined text-[18px] text-secondary">calendar_today</span>
+                <span id="active-result-date">Oct 12, 2023 – Oct 18, 2023</span>
+              </div>
+              <div class="flex items-center space-x-2 text-secondary text-[12px]">
+                <span class="material-symbols-outlined text-[18px]">directions_bus</span>
+                <span id="active-result-fleet">Vehicle Group: All Fleets (428 Units)</span>
               </div>
             </div>
-            <span class="px-2.5 py-1 bg-surface-container-lowest border border-outline-variant text-primary rounded-lg text-[11px] font-semibold flex items-center space-x-1 shrink-0">
-              <span class="material-symbols-outlined text-[13px]">edit</span>
-              <span>Edit</span>
-            </span>
-          </div>
-
-          <!-- KPI Summary Cards Grid -->
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 space-y-1 shadow-xs">
-              <span class="text-[10px] uppercase font-bold text-secondary tracking-wider block">Total Trips Completed</span>
-              <div id="kpi-total-trips" class="text-headline-lg font-bold text-primary tracking-tight">1,470</div>
-              <span class="text-[11px] text-emerald-600 font-semibold flex items-center"><span class="material-symbols-outlined text-[14px] mr-0.5">trending_up</span> +4.2% vs last week</span>
-            </div>
-            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 space-y-1 shadow-xs">
-              <span class="text-[10px] uppercase font-bold text-secondary tracking-wider block">Operational Hours</span>
-              <div id="kpi-total-hours" class="text-headline-lg font-bold text-primary tracking-tight">3,840h</div>
-              <span class="text-[11px] text-secondary font-medium">Avg 8.9h / vehicle</span>
-            </div>
-          </div>
-
-          <!-- View Toggle Segmented Control (Chart vs Data Table) -->
-          <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-xs space-y-3">
-            <div class="flex items-center justify-between">
-              <h3 class="text-headline-sm font-bold text-primary">Analytics & Data</h3>
-              <!-- Segmented Switcher -->
-              <div class="bg-surface-container-low p-1 rounded-xl flex items-center space-x-1 border border-outline-variant/50">
-                <button type="button" id="view-btn-chart" onclick="toggleReportView('chart')" class="px-3 py-1 rounded-lg text-[11px] font-bold transition bg-primary text-on-primary shadow-xs flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[13px]">bar_chart</span>
-                  <span>Chart</span>
-                </button>
-                <button type="button" id="view-btn-table" onclick="toggleReportView('table')" class="px-3 py-1 rounded-lg text-[11px] font-medium transition text-secondary hover:text-primary flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[13px]">table_chart</span>
-                  <span>Data Table</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Chart Container -->
-            <div id="report-view-chart" class="space-y-2">
-              <div class="flex items-center justify-between text-[11px] text-secondary font-medium px-1">
-                <span>Daily Trend</span>
-                <span>7-Day Period</span>
-              </div>
-              <div class="h-36 pt-3 pb-1 px-3 bg-surface-container-low/40 rounded-xl border border-outline-variant/30 flex items-end justify-between">
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 85%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Mon</span>
-                </div>
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 92%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Tue</span>
-                </div>
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 88%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Wed</span>
-                </div>
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 96%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Thu</span>
-                </div>
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 98%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Fri</span>
-                </div>
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 76%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Sat</span>
-                </div>
-                <div class="flex flex-col items-center h-full justify-end w-7">
-                  <div class="w-full bg-primary rounded-t" style="height: 90%;"></div>
-                  <span class="text-[10px] font-semibold text-secondary mt-1.5">Sun</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Data Table Container (Hidden by default, togglable) -->
-            <div id="report-view-table" class="hidden space-y-2">
-              <div class="overflow-x-auto rounded-xl border border-outline-variant/60">
-                <table class="w-full text-left text-[11px]">
-                  <thead class="bg-surface-container-low text-secondary uppercase tracking-wider font-bold border-b border-outline-variant/50">
-                    <tr>
-                      <th class="p-2.5 pl-3">Vehicle</th>
-                      <th class="p-2.5">Route / Line</th>
-                      <th class="p-2.5 text-right">Trips</th>
-                      <th class="p-2.5 text-right pr-3">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-outline-variant/30 text-primary font-medium">
-                    <tr class="hover:bg-surface-container-low/50">
-                      <td class="p-2.5 pl-3 font-bold">Bus #4082</td>
-                      <td class="p-2.5 text-secondary">Line 104 Express</td>
-                      <td class="p-2.5 text-right font-semibold">48</td>
-                      <td class="p-2.5 text-right pr-3"><span class="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded font-semibold text-[10px]">Active</span></td>
-                    </tr>
-                    <tr class="hover:bg-surface-container-low/50">
-                      <td class="p-2.5 pl-3 font-bold">Bus #3019</td>
-                      <td class="p-2.5 text-secondary">Line 22 Bay Shore</td>
-                      <td class="p-2.5 text-right font-semibold">42</td>
-                      <td class="p-2.5 text-right pr-3"><span class="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded font-semibold text-[10px]">Active</span></td>
-                    </tr>
-                    <tr class="hover:bg-surface-container-low/50">
-                      <td class="p-2.5 pl-3 font-bold">Bus #5104</td>
-                      <td class="p-2.5 text-secondary">Line 701 Crosstown</td>
-                      <td class="p-2.5 text-right font-semibold">39</td>
-                      <td class="p-2.5 text-right pr-3"><span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded font-semibold text-[10px]">Idle</span></td>
-                    </tr>
-                    <tr class="hover:bg-surface-container-low/50">
-                      <td class="p-2.5 pl-3 font-bold">Bus #2240</td>
-                      <td class="p-2.5 text-secondary">Maintenance Bay 3</td>
-                      <td class="p-2.5 text-right font-semibold">12</td>
-                      <td class="p-2.5 text-right pr-3"><span class="px-1.5 py-0.5 bg-rose-100 text-rose-800 rounded font-semibold text-[10px]">In Shop</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Detailed Breakdown List -->
-          <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-xs space-y-3">
-            <h3 class="text-headline-sm font-bold text-primary">Sub-Reports Breakdown</h3>
-            <div class="space-y-2 text-body-sm">
-              <div class="bg-surface-container-low p-3 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2.5">
-                  <span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
-                  <span id="breakdown-item-1" class="font-bold text-primary">Trips Summary Report</span>
-                </div>
-                <span class="text-body-sm font-semibold text-primary">1,470 Trips</span>
-              </div>
-              <div class="bg-surface-container-low p-3 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2.5">
-                  <span class="material-symbols-outlined text-[18px] text-secondary">timer</span>
-                  <span id="breakdown-item-2" class="font-semibold text-primary">Idle Duration Log</span>
-                </div>
-                <span class="text-body-sm font-semibold text-primary">142 Hours</span>
-              </div>
-              <div class="bg-surface-container-low p-3 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2.5">
-                  <span class="material-symbols-outlined text-[18px] text-secondary">power_off</span>
-                  <span id="breakdown-item-3" class="font-semibold text-primary">Inactive Yard Status</span>
-                </div>
-                <span class="text-body-sm font-semibold text-primary">53 Vehicles</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Export Controls Bar -->
-          <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-xs space-y-3">
-            <h3 class="text-headline-sm font-bold text-primary">Export Controls</h3>
-            <div class="grid grid-cols-2 gap-3">
-              <button type="button" onclick="showToast('PDF Export started...', 'download')" class="py-3 px-4 bg-surface-container-lowest border border-outline-variant rounded-xl font-semibold text-body-sm text-primary flex items-center justify-center space-x-2 hover:border-primary transition active:bg-surface-container-low">
-                <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-                <span>Export PDF</span>
-              </button>
-              <button type="button" onclick="showToast('CSV Dataset exported', 'table_chart')" class="py-3 px-4 bg-surface-container-lowest border border-outline-variant rounded-xl font-semibold text-body-sm text-primary flex items-center justify-center space-x-2 hover:border-primary transition active:bg-surface-container-low">
-                <span class="material-symbols-outlined text-[18px]">table_chart</span>
-                <span>Export CSV</span>
-              </button>
-            </div>
-            <button type="button" onclick="showToast('Report link copied to clipboard', 'share')" class="w-full py-2.5 bg-surface-container-low border border-outline-variant/60 rounded-xl font-semibold text-body-sm text-secondary flex items-center justify-center space-x-2 hover:text-primary transition active:bg-surface-container">
-              <span class="material-symbols-outlined text-[16px]">share</span>
-              <span>Share Report Link</span>
+            <button type="button" class="p-1.5 text-secondary hover:text-primary transition shrink-0">
+              <span class="material-symbols-outlined text-[18px]">edit</span>
             </button>
           </div>
+
+          <!-- 2. TELEMETRY METRICS CARD WITH BAR CHART (Matching Image 100%) -->
+          <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-2xs space-y-3">
+            <!-- Header Row -->
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block">TELEMETRY METRICS</span>
+                <h3 id="metrics-title-text" class="text-headline-md font-bold text-primary mt-0.5">Fleet On-Time Adherence</h3>
+              </div>
+              <div class="text-right">
+                <div id="metrics-stat-value" class="text-[28px] font-bold text-primary leading-none">97.8%</div>
+                <span class="text-[11px] text-secondary font-medium block mt-1">7-day avg</span>
+              </div>
+            </div>
+
+            <div class="border-t border-outline-variant/40 pt-2"></div>
+
+            <!-- Bar Chart (7 days: 12, 13, 14, 15, 16, 17, 18) -->
+            <div class="pt-2 pb-1 space-y-1">
+              <!-- Bar chart column graph -->
+              <div class="h-28 flex items-end justify-between px-1">
+                <!-- Day 12 -->
+                <div class="flex flex-col items-center justify-end h-full w-8">
+                  <div class="w-full bg-[#5e5e65] rounded-t" style="height: 75%;"></div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">12</span>
+                </div>
+                <!-- Day 13 -->
+                <div class="flex flex-col items-center justify-end h-full w-8">
+                  <div class="w-full bg-[#5e5e65] rounded-t" style="height: 82%;"></div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">13</span>
+                </div>
+                <!-- Day 14 -->
+                <div class="flex flex-col items-center justify-end h-full w-8">
+                  <div class="w-full bg-[#5e5e65] rounded-t" style="height: 78%;"></div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">14</span>
+                </div>
+                <!-- Day 15 -->
+                <div class="flex flex-col items-center justify-end h-full w-8">
+                  <div class="w-full bg-[#5e5e65] rounded-t" style="height: 88%;"></div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">15</span>
+                </div>
+                <!-- Day 16 -->
+                <div class="flex flex-col items-center justify-end h-full w-8">
+                  <div class="w-full bg-[#5e5e65] rounded-t" style="height: 80%;"></div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">16</span>
+                </div>
+                <!-- Day 17 -->
+                <div class="flex flex-col items-center justify-end h-full w-8">
+                  <div class="w-full bg-[#5e5e65] rounded-t" style="height: 85%;"></div>
+                  <span class="text-[11px] font-semibold text-secondary mt-1.5">17</span>
+                </div>
+                <!-- Day 18 (Active Highlighted Day with 98.4% badge) -->
+                <div class="flex flex-col items-center justify-end h-full w-8 relative">
+                  <span class="text-[10px] font-bold text-primary absolute -top-4">98.4%</span>
+                  <div class="w-full bg-primary rounded-t" style="height: 94%;"></div>
+                  <span class="text-[11px] font-bold text-primary mt-1.5">18</span>
+                </div>
+              </div>
+
+              <!-- Footer metrics threshold line -->
+              <div class="border-t border-dashed border-outline-variant/60 pt-2.5 flex items-center justify-between text-[11px]">
+                <span class="text-secondary font-medium">Standard Threshold: 95.0%</span>
+                <span class="font-bold text-primary">+1.4% Target Variance</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. DETAILED DISPATCH LOGS TABLE (Matching Image 100%) -->
+          <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-2xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block">DETAILED DISPATCH LOGS</span>
+              <span class="text-[11px] font-medium text-secondary">4 Rows</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-[11px] border-collapse">
+                <thead>
+                  <tr class="text-secondary uppercase tracking-wider font-semibold border-b border-outline-variant/50 text-[10px]">
+                    <th class="py-2 pr-2 font-bold">DATE / SHIFT</th>
+                    <th class="py-2 px-2 font-bold">VEHICLE ID</th>
+                    <th class="py-2 px-2 font-bold">ROUTE</th>
+                    <th class="py-2 pl-2 text-right font-bold">ADHERENCE</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/30 text-primary font-medium">
+                  <!-- Row 1 -->
+                  <tr>
+                    <td class="py-3 pr-2">
+                      <span class="font-bold text-primary block leading-tight">Oct 18</span>
+                      <span class="text-secondary text-[10px] block">Shift 01 (AM)</span>
+                    </td>
+                    <td class="py-3 px-2 font-bold text-primary">#4012</td>
+                    <td class="py-3 px-2 text-secondary font-semibold">M-15 Exp</td>
+                    <td class="py-3 pl-2 text-right">
+                      <span class="inline-block px-2.5 py-1 bg-primary text-on-primary rounded-full text-[10px] font-bold">98.4% On-Time</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2 -->
+                  <tr>
+                    <td class="py-3 pr-2">
+                      <span class="font-bold text-primary block leading-tight">Oct 18</span>
+                      <span class="text-secondary text-[10px] block">Shift 02 (PM)</span>
+                    </td>
+                    <td class="py-3 px-2 font-bold text-primary">#4180</td>
+                    <td class="py-3 px-2 text-secondary font-semibold">B-44 Local</td>
+                    <td class="py-3 pl-2 text-right">
+                      <span class="inline-block px-2.5 py-1 bg-primary text-on-primary rounded-full text-[10px] font-bold">96.1% On-Time</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr>
+                    <td class="py-3 pr-2">
+                      <span class="font-bold text-primary block leading-tight">Oct 17</span>
+                      <span class="text-secondary text-[10px] block">Shift 02 (PM)</span>
+                    </td>
+                    <td class="py-3 px-2 font-bold text-primary">#3904</td>
+                    <td class="py-3 px-2 text-secondary font-semibold">Q-70 SBS</td>
+                    <td class="py-3 pl-2 text-right">
+                      <span class="inline-block px-2 py-0.5 border border-outline-variant text-secondary rounded-full text-[10px] font-semibold">91.2% Delayed</span>
+                    </td>
+                  </tr>
+
+                  <!-- Row 4 -->
+                  <tr>
+                    <td class="py-3 pr-2">
+                      <span class="font-bold text-primary block leading-tight">Oct 16</span>
+                      <span class="text-secondary text-[10px] block">Shift 01 (AM)</span>
+                    </td>
+                    <td class="py-3 px-2 font-bold text-primary">#5201</td>
+                    <td class="py-3 px-2 text-secondary font-semibold">M-101 Crosstown</td>
+                    <td class="py-3 pl-2 text-right">
+                      <span class="inline-block px-2.5 py-1 bg-primary text-on-primary rounded-full text-[10px] font-bold">99.0% On-Time</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+          <!-- 4. FULL-WIDTH EXPORT REPORT BUTTON (Matching Image 100%) -->
+          <div class="pt-1">
+            <button type="button" onclick="showToast('Report exported successfully!', 'download')" class="w-full h-13 bg-primary text-on-primary rounded-xl font-headline-sm text-headline-sm font-bold flex items-center justify-center space-x-2 active:opacity-90 transition shadow-sm py-3.5">
+              <span class="material-symbols-outlined text-[20px]">download</span>
+              <span>Export Report</span>
+            </button>
+          </div>
+
         </div>
       </section>
 

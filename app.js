@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (resTitle) resTitle.textContent = `${currentReportTitle} Report`;
     if (resDate) resDate.textContent = activeDateRangeString;
-    if (resFleet) resFleet.textContent = `Scope: ${selectedFleet}`;
+    if (resFleet) resFleet.textContent = `Vehicle Group: ${selectedFleet}`;
 
     // Navigate to Results Screen
     window.navigateTo('report-results-screen');
