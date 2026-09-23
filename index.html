@@ -571,69 +571,94 @@
           <section id="widget-stop-mgmt" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
               <h2 class="text-headline-sm font-bold text-primary">Stop Management</h2>
-              <span class="px-2.5 py-1 bg-surface-container-low border border-outline-variant rounded-lg text-[11px] font-semibold text-primary flex items-center space-x-1.5">
-                <span class="material-symbols-outlined text-[15px]">directions_bus</span>
-                <span>M-15 Express</span>
-              </span>
+              <button onclick="openStopFilterModal()" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-center cursor-pointer" type="button" title="Filter Stop Management">
+                <span class="material-symbols-outlined text-[20px]">tune</span>
+              </button>
             </div>
-            <!-- Timeline / Stops List -->
-            <div class="space-y-2 text-body-sm pt-1">
-              <!-- Stop 1: Completed -->
-              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
-                <div class="flex items-center space-x-3">
-                  <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[15px] font-bold">check</span>
-                  </div>
-                  <span class="font-bold text-primary">Lexington / 86th St</span>
+
+            <!-- Stop Management Combo Chart Simulation matching media_1790158650187.png -->
+            <div class="pt-2 pb-1 space-y-2">
+              <div class="flex items-stretch">
+                <!-- Rotated Y-Axis Label -->
+                <div class="flex items-center justify-center -mr-3 w-4 text-[10px] font-bold text-slate-700 tracking-tight select-none whitespace-nowrap -rotate-90">
+                  Total % of stops
                 </div>
-                <span class="text-[12px] font-medium text-secondary">08:00 AM</span>
+
+                <!-- Main Plot Container -->
+                <div class="flex-1 relative h-44 pl-8 pr-2">
+                  <!-- Gridlines & Y-Axis Labels -->
+                  <div class="absolute inset-0 flex flex-col justify-between pointer-events-none text-[11px] font-medium text-slate-400">
+                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">100</span><div class="flex-1 border-b border-slate-100"></div></div>
+                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">80</span><div class="flex-1 border-b border-slate-100"></div></div>
+                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">60</span><div class="flex-1 border-b border-slate-100"></div></div>
+                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">40</span><div class="flex-1 border-b border-slate-100"></div></div>
+                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">20</span><div class="flex-1 border-b border-slate-100"></div></div>
+                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">0</span><div class="flex-1 border-b border-slate-300"></div></div>
+                  </div>
+
+                  <!-- Bars Area for 5 Categories (Upcoming - soft grey rounded bars) -->
+                  <div class="w-full h-full flex items-end justify-between relative z-10">
+                    <!-- A -->
+                    <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
+                      <div class="bg-slate-200/90 border border-slate-300/60 w-6 rounded-t-lg" style="height: 32%;"></div>
+                    </div>
+                    <!-- B -->
+                    <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
+                      <div class="bg-slate-200/90 border border-slate-300/60 w-6 rounded-t-lg" style="height: 43%;"></div>
+                    </div>
+                    <!-- C -->
+                    <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
+                      <div class="bg-slate-200/90 border border-slate-300/60 w-6 rounded-t-lg" style="height: 20%;"></div>
+                    </div>
+                    <!-- D -->
+                    <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
+                      <div class="bg-slate-200/90 border border-slate-300/60 w-6 rounded-t-lg" style="height: 23%;"></div>
+                    </div>
+                    <!-- E -->
+                    <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
+                      <div class="bg-slate-200/90 border border-slate-300/60 w-6 rounded-t-lg" style="height: 40%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- SVG Line Plots (Visited - Solid Black & Missed - Dashed Grey) -->
+                  <svg class="absolute inset-0 w-full h-full pointer-events-none z-20 pl-8 pr-2" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <!-- Visited Solid Line: A(10, 40), B(30, 50), C(50, 27), D(70, 50), E(90, 37) -->
+                    <polyline points="10,40 30,50 50,27 70,50 90,37" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Missed Dashed Line: A(10, 89), B(30, 97), C(50, 97), D(70, 78), E(90, 67) -->
+                    <polyline points="10,89 30,97 50,97 70,78 90,67" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="3 3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
 
-              <!-- Stop 2: Completed -->
-              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30">
-                <div class="flex items-center space-x-3">
-                  <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[15px] font-bold">check</span>
-                  </div>
-                  <span class="font-bold text-primary">79th St Station</span>
-                </div>
-                <span class="text-[12px] font-medium text-secondary">08:08 AM</span>
+              <!-- X-Axis Labels Row -->
+              <div class="pl-12 pr-2 flex justify-between text-[12px] font-bold text-slate-800">
+                <div class="flex-1 text-center">A</div>
+                <div class="flex-1 text-center">B</div>
+                <div class="flex-1 text-center">C</div>
+                <div class="flex-1 text-center">D</div>
+                <div class="flex-1 text-center">E</div>
               </div>
 
-              <!-- Stop 3: Active / Highlighted -->
-              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border-2 border-primary shadow-sm">
-                <div class="flex items-center space-x-3">
-                  <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
-                    <div class="w-2.5 h-2.5 rounded-full bg-on-primary"></div>
-                  </div>
-                  <span class="font-extrabold text-primary">68th St Transit Hub</span>
-                </div>
-                <span class="px-2.5 py-1 bg-primary text-on-primary rounded-full text-[11px] font-bold tracking-tight">ETA 2 min</span>
+              <!-- X-Axis Sub-caption -->
+              <div class="text-center text-[11px] font-semibold text-slate-600 tracking-tight pt-0.5">
+                Stops Grouped in Routes Category
               </div>
 
-              <!-- Stop 4: Upcoming -->
-              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 opacity-90">
-                <div class="flex items-center space-x-3">
-                  <div class="w-6 h-6 rounded-full border-2 border-outline text-secondary flex items-center justify-center shrink-0">
-                    <div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
-                  </div>
-                  <span class="font-medium text-primary">Grand Central Terminal</span>
+              <!-- Legend Below Chart -->
+              <div class="flex items-center justify-center space-x-5 pt-3 text-xs">
+                <div class="flex items-center space-x-2">
+                  <span class="w-5 h-3 bg-slate-200 border border-slate-300 rounded-sm shrink-0"></span>
+                  <span class="text-slate-800 font-semibold">Upcoming</span>
                 </div>
-                <span class="text-[12px] font-medium text-secondary">ETA 8 min</span>
-              </div>
-
-              <!-- Stop 5: Skipped / Bypassed -->
-              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 opacity-70">
-                <div class="flex items-center space-x-3">
-                  <div class="w-6 h-6 rounded-full border-2 border-dashed border-outline text-secondary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </div>
-                  <div>
-                    <span class="font-medium text-secondary line-through block">34th St Herald Sq</span>
-                    <span class="text-[10px] text-secondary/80 font-normal block -mt-0.5">Bypassed - Construction Detour</span>
-                  </div>
+                <div class="flex items-center space-x-2">
+                  <span class="w-5 h-0.5 bg-black rounded-full shrink-0"></span>
+                  <span class="text-slate-800 font-semibold">Visited</span>
                 </div>
-                <span class="text-[12px] font-medium text-secondary">Skipped</span>
+                <div class="flex items-center space-x-2">
+                  <span class="w-5 border-b-2 border-dashed border-slate-500 shrink-0"></span>
+                  <span class="text-slate-800 font-semibold">Missed</span>
+                </div>
               </div>
             </div>
           </section>
@@ -2233,6 +2258,123 @@
             Reset
           </button>
           <button onclick="applyRouteFilterModal()" class="py-3 px-4 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 transition active:scale-[0.98] cursor-pointer" type="button">
+            Apply Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER STOP MANAGEMENT BOTTOM SHEET MODAL (Contained inside iPhone Mockup Frame) -->
+    <div id="stop-filter-modal" class="hidden absolute inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex flex-col justify-end transition-opacity duration-300">
+      <!-- Backdrop Click Handler -->
+      <div class="absolute inset-0" onclick="closeStopFilterModal()"></div>
+
+      <!-- Sheet Container -->
+      <div class="relative w-full bg-white rounded-t-3xl border-t border-slate-200 p-5 pt-3 space-y-4 shadow-2xl z-10 animate-slide-up flex flex-col max-h-[88%] overflow-y-auto no-scrollbar">
+        <!-- Top Pill Drag Handle Bar -->
+        <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-1 shrink-0"></div>
+
+        <!-- Header -->
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100 shrink-0">
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-slate-900 text-[20px]">tune</span>
+            <h2 class="text-headline-md font-bold text-slate-900 tracking-tight">Filter Stop Management</h2>
+          </div>
+          <button onclick="closeStopFilterModal()" class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 transition" type="button">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        <!-- 3 Searchable Dropdown Fields (Depot, Schedule, Time Range) -->
+        <div class="space-y-3.5 pt-1 flex-1">
+          <!-- 1. DEPOT -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
+            <div class="searchable-dropdown relative" data-dropdown-id="stop-depot">
+              <input type="hidden" id="filter-stop-depot" value="Central North Depot">
+              <div onclick="toggleSearchableDropdown('stop-depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
+                  <span class="material-symbols-outlined text-[18px]">location_on</span>
+                </div>
+                <span id="filter-stop-depot-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Central North Depot</span>
+                <span id="filter-stop-depot-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
+              </div>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-stop-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-stop-depot" oninput="filterDropdownOptions('stop-depot', this.value)" placeholder="Search depot..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('stop-depot')" id="dropdown-clear-stop-depot" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-stop-depot" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. SCHEDULE -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Schedule</label>
+            <div class="searchable-dropdown relative" data-dropdown-id="stop-schedule">
+              <input type="hidden" id="filter-stop-schedule" value="Shift A • Weekday">
+              <div onclick="toggleSearchableDropdown('stop-schedule')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
+                  <span class="material-symbols-outlined text-[18px]">schedule</span>
+                </div>
+                <span id="filter-stop-schedule-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Shift A • Weekday</span>
+                <span id="filter-stop-schedule-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
+              </div>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-stop-schedule" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-stop-schedule" oninput="filterDropdownOptions('stop-schedule', this.value)" placeholder="Search schedule..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('stop-schedule')" id="dropdown-clear-stop-schedule" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-stop-schedule" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TIME RANGE -->
+          <div>
+            <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Time Range</label>
+            <div class="searchable-dropdown relative" data-dropdown-id="stop-timerange">
+              <input type="hidden" id="filter-stop-timerange" value="Last 7 Days (Mon - Sun)">
+              <div onclick="toggleSearchableDropdown('stop-timerange')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+                <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
+                  <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                </div>
+                <span id="filter-stop-timerange-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Last 7 Days (Mon - Sun)</span>
+                <span id="filter-stop-timerange-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
+              </div>
+
+              <!-- Inline Dropdown Panel -->
+              <div id="dropdown-panel-stop-timerange" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
+                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
+                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
+                  <input type="text" id="dropdown-search-stop-timerange" oninput="filterDropdownOptions('stop-timerange', this.value)" placeholder="Search time range..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
+                  <button onclick="clearDropdownSearch('stop-timerange')" id="dropdown-clear-stop-timerange" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
+                    <span class="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </div>
+                <div id="dropdown-options-stop-timerange" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-3 pt-2 shrink-0">
+          <button onclick="resetStopFilterModal()" class="py-3 px-4 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 transition active:scale-[0.98] cursor-pointer" type="button">
+            Reset
+          </button>
+          <button onclick="applyStopFilterModal()" class="py-3 px-4 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 transition active:scale-[0.98] cursor-pointer" type="button">
             Apply Filters
           </button>
         </div>

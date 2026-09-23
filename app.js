@@ -480,6 +480,28 @@ document.addEventListener('DOMContentLoaded', () => {
       'Last 30 Days',
       'This Month',
       'Custom Range'
+    ],
+    'stop-depot': [
+      'Central North Depot',
+      'South Main Terminal',
+      'East Side Facility',
+      'West End Depot',
+      'Harbor Transit Center'
+    ],
+    'stop-schedule': [
+      'Shift A • Weekday',
+      'Shift B • Evening',
+      'Night Owl Shift',
+      'Weekend Express',
+      'Peak Hour Rapid'
+    ],
+    'stop-timerange': [
+      'Last 7 Days (Mon - Sun)',
+      'Today',
+      'Yesterday',
+      'Last 30 Days',
+      'This Month',
+      'Custom Range'
     ]
   };
 
@@ -491,7 +513,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'vehicle-group': 'All Vehicle Groups',
     'route-depot': 'Central North Depot',
     'route-schedule': 'Shift A • Weekday',
-    'route-timerange': 'Last 7 Days (Mon - Sun)'
+    'route-timerange': 'Last 7 Days (Mon - Sun)',
+    'stop-depot': 'Central North Depot',
+    'stop-schedule': 'Shift A • Weekday',
+    'stop-timerange': 'Last 7 Days (Mon - Sun)'
   };
 
   window.toggleSearchableDropdown = function(dropdownId) {
@@ -698,6 +723,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.closeRouteFilterModal();
     window.showToast('Route filters reset to default', 'refresh');
+  };
+
+  // 7c. FILTER STOP MANAGEMENT MODAL ACTIONS
+  window.openStopFilterModal = function() {
+    window.closeAllSearchableDropdowns();
+    const modal = document.getElementById('stop-filter-modal');
+    if (modal) modal.classList.remove('hidden');
+  };
+
+  window.closeStopFilterModal = function() {
+    window.closeAllSearchableDropdowns();
+    const modal = document.getElementById('stop-filter-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+
+  window.applyStopFilterModal = function() {
+    window.closeAllSearchableDropdowns();
+    const depot = currentFilterValues['stop-depot'] || 'Central North Depot';
+    const schedule = currentFilterValues['stop-schedule'] || 'Shift A • Weekday';
+    const timeRange = currentFilterValues['stop-timerange'] || 'Last 7 Days (Mon - Sun)';
+
+    window.closeStopFilterModal();
+    window.showToast(`Stop Filter: ${depot} • ${schedule}`, 'tune');
+  };
+
+  window.resetStopFilterModal = function() {
+    window.closeAllSearchableDropdowns();
+    window.selectDropdownOption('stop-depot', 'Central North Depot');
+    window.selectDropdownOption('stop-schedule', 'Shift A • Weekday');
+    window.selectDropdownOption('stop-timerange', 'Last 7 Days (Mon - Sun)');
+
+    window.closeStopFilterModal();
+    window.showToast('Stop filters reset to default', 'refresh');
   };
 
   // SUB-REPORTS MAPPING (Matching User Table Spec media_1790137587929.png)
