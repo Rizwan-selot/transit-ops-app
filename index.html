@@ -578,26 +578,36 @@
 
             <!-- Stop Management Combo Chart Simulation matching media_1790158650187.png -->
             <div class="pt-2 pb-1 space-y-2">
-              <div class="flex items-stretch">
-                <!-- Rotated Y-Axis Label -->
-                <div class="flex items-center justify-center -mr-3 w-4 text-[10px] font-bold text-slate-700 tracking-tight select-none whitespace-nowrap -rotate-90">
+              <div class="flex items-stretch space-x-1.5">
+                <!-- 1. Rotated Y-Axis Label -->
+                <div class="flex items-center justify-center w-4 text-[10px] font-bold text-slate-700 tracking-tight select-none whitespace-nowrap -rotate-90">
                   Total % of stops
                 </div>
 
-                <!-- Main Plot Container -->
-                <div class="flex-1 relative h-44 pl-8 pr-2">
-                  <!-- Gridlines & Y-Axis Labels -->
-                  <div class="absolute inset-0 flex flex-col justify-between pointer-events-none text-[11px] font-medium text-slate-400">
-                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">100</span><div class="flex-1 border-b border-slate-100"></div></div>
-                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">80</span><div class="flex-1 border-b border-slate-100"></div></div>
-                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">60</span><div class="flex-1 border-b border-slate-100"></div></div>
-                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">40</span><div class="flex-1 border-b border-slate-100"></div></div>
-                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">20</span><div class="flex-1 border-b border-slate-100"></div></div>
-                    <div class="flex items-center w-full"><span class="w-7 text-right pr-1">0</span><div class="flex-1 border-b border-slate-300"></div></div>
+                <!-- 2. Y-Axis Scale Values Column (100 to 0) -->
+                <div class="w-7 h-44 flex flex-col justify-between text-[11px] font-medium text-slate-400 text-right pr-1 select-none py-[1px] shrink-0">
+                  <span>100</span>
+                  <span>80</span>
+                  <span>60</span>
+                  <span>40</span>
+                  <span>20</span>
+                  <span>0</span>
+                </div>
+
+                <!-- 3. Plot Box Area (Isolated from Y-axis text & scale) -->
+                <div class="flex-1 relative h-44">
+                  <!-- Horizontal Grid Lines inside plot box -->
+                  <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                    <div class="w-full border-b border-slate-100"></div>
+                    <div class="w-full border-b border-slate-100"></div>
+                    <div class="w-full border-b border-slate-100"></div>
+                    <div class="w-full border-b border-slate-100"></div>
+                    <div class="w-full border-b border-slate-100"></div>
+                    <div class="w-full border-b border-slate-300"></div>
                   </div>
 
-                  <!-- Bars Area for 5 Categories (Upcoming - soft grey rounded bars) -->
-                  <div class="w-full h-full flex items-end justify-between relative z-10">
+                  <!-- Bars Container for 5 Categories (Upcoming - soft grey rounded bars) -->
+                  <div class="w-full h-full flex items-end justify-between relative z-10 px-2">
                     <!-- A -->
                     <div class="flex-1 flex justify-center items-end h-full pb-[1px]">
                       <div class="bg-slate-200/90 border border-slate-300/60 w-6 rounded-t-lg" style="height: 32%;"></div>
@@ -621,7 +631,7 @@
                   </div>
 
                   <!-- SVG Line Plots (Visited - Solid Black & Missed - Dashed Grey) -->
-                  <svg class="absolute inset-0 w-full h-full pointer-events-none z-20 pl-8 pr-2" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <svg class="absolute inset-0 w-full h-full pointer-events-none z-20 px-2" viewBox="0 0 100 100" preserveAspectRatio="none">
                     <!-- Visited Solid Line: A(10, 40), B(30, 50), C(50, 27), D(70, 50), E(90, 37) -->
                     <polyline points="10,40 30,50 50,27 70,50 90,37" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     
@@ -631,8 +641,8 @@
                 </div>
               </div>
 
-              <!-- X-Axis Labels Row -->
-              <div class="pl-12 pr-2 flex justify-between text-[12px] font-bold text-slate-800">
+              <!-- X-Axis Labels Row aligned with plot box -->
+              <div class="pl-13 pr-0 flex justify-between text-[12px] font-bold text-slate-800">
                 <div class="flex-1 text-center">A</div>
                 <div class="flex-1 text-center">B</div>
                 <div class="flex-1 text-center">C</div>
@@ -706,7 +716,7 @@
               <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-primary shrink-0"></span><span class="text-secondary">On Time: <strong class="text-primary font-semibold">1,017</strong></span></div>
               <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-secondary shrink-0"></span><span class="text-secondary">Early: <strong class="text-primary font-semibold">99</strong></span></div>
               <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm striped-pattern border border-outline-variant shrink-0"></span><span class="text-secondary">Delayed: <strong class="text-on-surface font-semibold">124</strong></span></div>
-              <div class="flex items-center space-x-2"><span class="material-symbols-outlined text-[14px] text-secondary">summarize</span><span class="text-secondary">Total: <strong class="text-primary font-semibold">1,240 trips</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="material-symbols-outlined text-[14px] text-secondary">summarize</span><span class="text-secondary">Total: <strong class="text-primary font-semibold">1,240 routes</strong></span></div>
             </div>
           </section>
 
