@@ -250,20 +250,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterReports() {
     const query = reportsSearchInput ? reportsSearchInput.value.toLowerCase().trim() : '';
-    let visibleCount = 0;
+    let totalVisible = 0;
 
-    reportCards.forEach(card => {
-      const text = card.textContent.toLowerCase();
-      if (!query || text.includes(query)) {
-        card.style.display = 'flex';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    const groups = document.querySelectorAll('.js-report-group');
+    if (groups && groups.length > 0) {
+      groups.forEach(group => {
+        const cards = group.querySelectorAll('.js-report-card');
+        let groupVisible = 0;
+        cards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          if (!query || text.includes(query)) {
+            card.style.display = 'flex';
+            groupVisible++;
+            totalVisible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        if (groupVisible > 0) {
+          group.style.display = 'block';
+        } else {
+          group.style.display = 'none';
+        }
+      });
+    } else {
+      const allCards = document.querySelectorAll('.js-report-card');
+      allCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!query || text.includes(query)) {
+          card.style.display = 'flex';
+          totalVisible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
 
     if (noReportsMsg) {
-      if (visibleCount === 0) {
+      if (totalVisible === 0) {
         noReportsMsg.classList.remove('hidden');
       } else {
         noReportsMsg.classList.add('hidden');
