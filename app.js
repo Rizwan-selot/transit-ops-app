@@ -900,13 +900,89 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.openReportDetail = function(reportTitle) {
-    currentReportTitle = reportTitle || 'Activity';
-    const headerTitle = document.getElementById('report-detail-header-title');
-    if (headerTitle) {
-      headerTitle.textContent = `${currentReportTitle} Report Detail`;
+    currentReportTitle = reportTitle || 'Fleet On-Time Adherence';
+    const detailTitle = document.getElementById('detail-report-title');
+    if (detailTitle) {
+      detailTitle.textContent = currentReportTitle;
     }
+    
+    const menu = document.getElementById('report-more-menu');
+    if (menu) menu.classList.add('hidden');
+    
     window.navigateTo('report-detail-screen');
   };
+
+  window.toggleReportMoreMenu = function(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('report-more-menu');
+    if (menu) {
+      menu.classList.toggle('hidden');
+    }
+  };
+
+  window.exportReportData = function() {
+    const menu = document.getElementById('report-more-menu');
+    if (menu) menu.classList.add('hidden');
+    window.showToast(`Exporting ${currentReportTitle || 'Report'} (CSV/PDF)...`, 'download');
+  };
+
+  window.toggleReportViewMode = function() {
+    const menu = document.getElementById('report-more-menu');
+    if (menu) menu.classList.add('hidden');
+    window.showToast('View mode: Detailed Dispatch Table', 'visibility');
+  };
+
+  window.toggleDetailTableSearch = function() {
+    const searchContainer = document.getElementById('detail-table-search-container');
+    const searchInput = document.getElementById('detail-table-search-input');
+    if (searchContainer) {
+      const isHidden = searchContainer.classList.contains('hidden');
+      if (isHidden) {
+        searchContainer.classList.remove('hidden');
+        if (searchInput) searchInput.focus();
+      } else {
+        searchContainer.classList.add('hidden');
+        if (searchInput) {
+          searchInput.value = '';
+          window.filterDetailTable('');
+        }
+      }
+    }
+  };
+
+  window.filterDetailTable = function(query) {
+    const q = query ? query.toLowerCase().trim() : '';
+    const rows = document.querySelectorAll('.js-detail-table-row');
+    let visible = 0;
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      if (!q || text.includes(q)) {
+        row.style.display = 'table-row';
+        visible++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    const countBadge = document.getElementById('detail-record-count-badge');
+    if (countBadge) {
+      countBadge.textContent = `${visible} Records`;
+    }
+  };
+
+  window.sortDetailTable = function() {
+    window.showToast('Sorted by Adherence % (Descending)', 'swap_vert');
+  };
+
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('report-more-menu');
+    if (menu && !menu.classList.contains('hidden')) {
+      const isMoreBtn = e.target.closest('button[onclick*="toggleReportMoreMenu"]');
+      if (!isMoreBtn && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    }
+  });
 
   window.selectDatePreset = function(preset) {
     activeDatePreset = preset;
