@@ -662,17 +662,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 7. FILTER OPERATIONS BOTTOM SHEET MODAL ACTIONS
+  // 7. FILTER OPERATIONS FULL SCREEN ACTIONS
   window.openFilterModal = function() {
     window.closeAllSearchableDropdowns();
-    const modal = document.getElementById('filter-modal');
-    if (modal) modal.classList.remove('hidden');
+    window.navigateTo('filter-operations-screen');
   };
 
   window.closeFilterModal = function() {
     window.closeAllSearchableDropdowns();
-    const modal = document.getElementById('filter-modal');
-    if (modal) modal.classList.add('hidden');
+    window.goBack();
   };
 
   window.applyFilterModal = function() {
@@ -688,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
       activeLabel.textContent = `${compText} • ${branchText}`;
     }
 
-    window.closeFilterModal();
+    window.goBack();
     window.showToast(`Applied: ${compText} • ${branchText}`, 'tune');
   };
 
@@ -712,21 +710,19 @@ document.addEventListener('DOMContentLoaded', () => {
       activeLabel.textContent = 'MTA Transportation • Central North';
     }
 
-    window.closeFilterModal();
+    window.goBack();
     window.showToast('Filter preferences reset', 'refresh');
   };
 
-  // 7b. FILTER ROUTE MANAGEMENT MODAL ACTIONS
+  // 7b. FILTER ROUTE MANAGEMENT FULL SCREEN ACTIONS
   window.openRouteFilterModal = function() {
     window.closeAllSearchableDropdowns();
-    const modal = document.getElementById('route-filter-modal');
-    if (modal) modal.classList.remove('hidden');
+    window.navigateTo('route-filter-screen');
   };
 
   window.closeRouteFilterModal = function() {
     window.closeAllSearchableDropdowns();
-    const modal = document.getElementById('route-filter-modal');
-    if (modal) modal.classList.add('hidden');
+    window.goBack();
   };
 
   window.applyRouteFilterModal = function() {
@@ -735,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const schedule = currentFilterValues['route-schedule'] || 'Shift A • Weekday';
     const timeRange = currentFilterValues['route-timerange'] || 'Last 7 Days (Mon - Sun)';
 
-    window.closeRouteFilterModal();
+    window.goBack();
     window.showToast(`Route Filter: ${depot} • ${schedule}`, 'tune');
   };
 
@@ -745,21 +741,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectDropdownOption('route-schedule', 'Shift A • Weekday');
     window.selectDropdownOption('route-timerange', 'Last 7 Days (Mon - Sun)');
 
-    window.closeRouteFilterModal();
+    window.goBack();
     window.showToast('Route filters reset to default', 'refresh');
   };
 
-  // 7c. FILTER STOP MANAGEMENT MODAL ACTIONS
+  // 7c. FILTER STOP MANAGEMENT FULL SCREEN ACTIONS
   window.openStopFilterModal = function() {
     window.closeAllSearchableDropdowns();
-    const modal = document.getElementById('stop-filter-modal');
-    if (modal) modal.classList.remove('hidden');
+    window.navigateTo('stop-filter-screen');
   };
 
   window.closeStopFilterModal = function() {
     window.closeAllSearchableDropdowns();
-    const modal = document.getElementById('stop-filter-modal');
-    if (modal) modal.classList.add('hidden');
+    window.goBack();
   };
 
   window.applyStopFilterModal = function() {
@@ -768,7 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const schedule = currentFilterValues['stop-schedule'] || 'Shift A • Weekday';
     const timeRange = currentFilterValues['stop-timerange'] || 'Last 7 Days (Mon - Sun)';
 
-    window.closeStopFilterModal();
+    window.goBack();
     window.showToast(`Stop Filter: ${depot} • ${schedule}`, 'tune');
   };
 
@@ -778,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectDropdownOption('stop-schedule', 'Shift A • Weekday');
     window.selectDropdownOption('stop-timerange', 'Last 7 Days (Mon - Sun)');
 
-    window.closeStopFilterModal();
+    window.goBack();
     window.showToast('Stop filters reset to default', 'refresh');
   };
 
@@ -1135,17 +1129,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   window.openDashboardCustomizeModal = function() {
-    const modal = document.getElementById('dashboard-customize-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-    }
+    window.navigateTo('dashboard-customize-screen');
   };
 
   window.closeDashboardCustomizeModal = function() {
-    const modal = document.getElementById('dashboard-customize-modal');
-    if (modal) {
-      modal.classList.add('hidden');
-    }
+    window.goBack();
   };
 
   window.toggleWidgetVisibility = function(widgetKey, isVisible) {

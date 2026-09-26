@@ -1785,29 +1785,29 @@
       </a>
     </nav>
 
-    <!-- FILTER OPERATIONS BOTTOM SHEET MODAL (Contained inside iPhone Mockup Frame) -->
-    <div id="filter-modal" class="hidden absolute inset-0 bg-black/40 backdrop-blur-[2px] z-50 flex flex-col justify-end transition-opacity duration-300">
-      <!-- Backdrop Click Handler -->
-      <div class="absolute inset-0" onclick="closeFilterModal()"></div>
-
-      <!-- Sheet Container (Stays 100% inside iPhone frame boundaries) -->
-      <div class="relative w-full bg-white rounded-t-3xl border-t border-slate-200 p-5 pt-3 space-y-3.5 max-h-[88%] overflow-y-auto no-scrollbar shadow-2xl z-10 animate-slide-up">
-        <!-- Top Pill Drag Handle Bar -->
-        <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-1"></div>
-
-        <!-- Header -->
-        <div class="flex items-start justify-between pb-1">
-          <div>
-            <h2 class="text-headline-md font-bold text-slate-900 tracking-tight">Filter Operations</h2>
-            <p class="text-body-sm text-slate-500 mt-0.5">Select the filters to view relevant data</p>
-          </div>
-          <button onclick="closeFilterModal()" class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 transition" type="button">
-            <span class="material-symbols-outlined text-[18px]">close</span>
+    <!-- ========================================================================= -->
+    <!-- SCREEN 06: FILTER OPERATIONS FULL SCREEN -->
+    <!-- ========================================================================= -->
+    <section id="filter-operations-screen" class="app-screen pb-24">
+      <!-- Top Sticky Header with Back Navigation -->
+      <header class="bg-surface-container-lowest text-primary sticky top-0 z-40 border-b border-outline-variant px-4 pt-3.5 pb-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <button onclick="goBack()" class="p-1.5 -ml-1 rounded-xl text-primary hover:bg-surface-container-low transition flex items-center justify-center cursor-pointer" type="button" title="Back">
+            <span class="material-symbols-outlined text-[22px]">arrow_back</span>
           </button>
+          <div>
+            <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Filter Operations</h1>
+            <p class="text-xs text-secondary">Select company, branch, depot & vehicle types</p>
+          </div>
         </div>
+        <button onclick="resetFilterModal()" class="text-body-sm text-secondary hover:text-primary font-medium px-2 py-1 rounded-lg hover:bg-surface-container-low transition cursor-pointer" type="button">
+          Reset
+        </button>
+      </header>
 
+      <div class="px-4 pt-4 space-y-4">
         <!-- Filter Select Inputs with Searchable Dropdowns -->
-        <div class="space-y-3 pt-1">
+        <div class="space-y-3.5 pt-1">
           <!-- 1. Company -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Company</label>
@@ -1945,40 +1945,40 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="pt-2 space-y-2">
+        <div class="pt-3 space-y-2">
           <button onclick="applyFilterModal()" class="w-full py-3.5 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 active:scale-[0.98] transition cursor-pointer" type="button">
             Apply Filters
           </button>
           <button onclick="resetFilterModal()" class="w-full py-3.5 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 active:scale-[0.98] transition cursor-pointer" type="button">
-            Reset
+            Reset Defaults
           </button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- DASHBOARD CUSTOMIZATION BOTTOM SHEET MODAL (Contained inside iPhone Mockup Frame) -->
-    <div id="dashboard-customize-modal" class="hidden absolute inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex flex-col justify-end transition-opacity duration-300">
-      <!-- Backdrop Click Handler -->
-      <div class="absolute inset-0" onclick="closeDashboardCustomizeModal()"></div>
-
-      <!-- Sheet Container (Stays 100% inside iPhone frame boundaries) -->
-      <div class="relative w-full bg-surface-container-lowest rounded-t-3xl border-t border-outline-variant p-5 pt-3 space-y-3.5 max-h-[88%] overflow-y-auto no-scrollbar shadow-2xl z-10 animate-slide-up flex flex-col">
-        <!-- Top Pill Drag Handle Bar -->
-        <div class="w-10 h-1 bg-outline-variant/60 rounded-full mx-auto mb-1 shrink-0"></div>
-
-        <!-- Header -->
-        <div class="flex items-start justify-between pb-1 shrink-0">
-          <div>
-            <h2 class="text-headline-md font-bold text-primary tracking-tight">Customize Dashboard</h2>
-            <p class="text-body-sm text-secondary mt-0.5">Show or hide widgets on your main view</p>
-          </div>
-          <button onclick="closeDashboardCustomizeModal()" class="w-8 h-8 rounded-lg bg-surface-container-low border border-outline-variant flex items-center justify-center text-secondary hover:text-primary transition" type="button">
-            <span class="material-symbols-outlined text-[18px]">close</span>
+    <!-- ========================================================================= -->
+    <!-- SCREEN 07: DASHBOARD CUSTOMIZE FULL SCREEN -->
+    <!-- ========================================================================= -->
+    <section id="dashboard-customize-screen" class="app-screen pb-24">
+      <!-- Header -->
+      <header class="bg-surface-container-lowest text-primary sticky top-0 z-40 border-b border-outline-variant px-4 pt-3.5 pb-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <button onclick="goBack()" class="p-1.5 -ml-1 rounded-xl text-primary hover:bg-surface-container-low transition flex items-center justify-center cursor-pointer" type="button" title="Back">
+            <span class="material-symbols-outlined text-[22px]">arrow_back</span>
           </button>
+          <div>
+            <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Customize Dashboard</h1>
+            <p class="text-xs text-secondary">Show or hide widgets on main view</p>
+          </div>
         </div>
+        <button onclick="resetDashboardWidgets()" class="text-body-sm text-secondary hover:text-primary font-medium px-2 py-1 rounded-lg hover:bg-surface-container-low transition cursor-pointer" type="button">
+          Reset
+        </button>
+      </header>
 
+      <div class="px-4 pt-4 space-y-4">
         <!-- Widget Toggles List -->
-        <div class="space-y-2.5 py-1 overflow-y-auto no-scrollbar flex-1">
+        <div class="space-y-2.5 py-1">
           <!-- 1. Fleet Status -->
           <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
             <div class="flex items-center space-x-3">
@@ -2093,40 +2093,37 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="grid grid-cols-2 gap-3 pt-2 shrink-0">
-          <button onclick="resetDashboardWidgets()" class="py-3 px-4 border border-outline-variant hover:bg-surface-container rounded-2xl font-semibold text-body-md text-primary transition active:scale-[0.98] cursor-pointer" type="button">
-            Reset Default
-          </button>
-          <button onclick="closeDashboardCustomizeModal()" class="py-3 px-4 bg-primary text-on-primary rounded-2xl font-semibold text-body-md shadow transition active:scale-[0.98] cursor-pointer" type="button">
+        <div class="pt-2">
+          <button onclick="goBack()" class="w-full py-3.5 bg-primary text-on-primary rounded-2xl font-semibold text-body-md shadow transition active:scale-[0.98] cursor-pointer" type="button">
             Done
           </button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- FILTER ROUTE MANAGEMENT BOTTOM SHEET MODAL (Contained inside iPhone Mockup Frame) -->
-    <div id="route-filter-modal" class="hidden absolute inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex flex-col justify-end transition-opacity duration-300">
-      <!-- Backdrop Click Handler -->
-      <div class="absolute inset-0" onclick="closeRouteFilterModal()"></div>
-
-      <!-- Sheet Container -->
-      <div class="relative w-full bg-white rounded-t-3xl border-t border-slate-200 p-5 pt-3 space-y-4 shadow-2xl z-10 animate-slide-up flex flex-col max-h-[88%] overflow-y-auto no-scrollbar">
-        <!-- Top Pill Drag Handle Bar -->
-        <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-1 shrink-0"></div>
-
-        <!-- Header -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-100 shrink-0">
-          <div class="flex items-center space-x-2">
-            <span class="material-symbols-outlined text-slate-900 text-[20px]">tune</span>
-            <h2 class="text-headline-md font-bold text-slate-900 tracking-tight">Filter Route Management</h2>
-          </div>
-          <button onclick="closeRouteFilterModal()" class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 transition" type="button">
-            <span class="material-symbols-outlined text-[18px]">close</span>
+    <!-- ========================================================================= -->
+    <!-- SCREEN 08: FILTER ROUTE MANAGEMENT FULL SCREEN -->
+    <!-- ========================================================================= -->
+    <section id="route-filter-screen" class="app-screen pb-24">
+      <!-- Header -->
+      <header class="bg-surface-container-lowest text-primary sticky top-0 z-40 border-b border-outline-variant px-4 pt-3.5 pb-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <button onclick="goBack()" class="p-1.5 -ml-1 rounded-xl text-primary hover:bg-surface-container-low transition flex items-center justify-center cursor-pointer" type="button" title="Back">
+            <span class="material-symbols-outlined text-[22px]">arrow_back</span>
           </button>
+          <div>
+            <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Filter Route Management</h1>
+            <p class="text-xs text-secondary">Filter routes by depot, schedule, & time range</p>
+          </div>
         </div>
+        <button onclick="resetRouteFilterModal()" class="text-body-sm text-secondary hover:text-primary font-medium px-2 py-1 rounded-lg hover:bg-surface-container-low transition cursor-pointer" type="button">
+          Reset
+        </button>
+      </header>
 
-        <!-- 3 Searchable Dropdown Fields (Matching Image 2 media_1790157295743.png) -->
-        <div class="space-y-3.5 pt-1 flex-1">
+      <div class="px-4 pt-4 space-y-4">
+        <!-- 3 Searchable Dropdown Fields -->
+        <div class="space-y-3.5 pt-1">
           <!-- 1. DEPOT -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
@@ -2210,40 +2207,40 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="grid grid-cols-2 gap-3 pt-2 shrink-0">
-          <button onclick="resetRouteFilterModal()" class="py-3 px-4 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 transition active:scale-[0.98] cursor-pointer" type="button">
-            Reset
-          </button>
-          <button onclick="applyRouteFilterModal()" class="py-3 px-4 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 transition active:scale-[0.98] cursor-pointer" type="button">
+        <div class="pt-3 space-y-2">
+          <button onclick="applyRouteFilterModal()" class="w-full py-3.5 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 transition active:scale-[0.98] cursor-pointer" type="button">
             Apply Filters
+          </button>
+          <button onclick="resetRouteFilterModal()" class="w-full py-3.5 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 transition active:scale-[0.98] cursor-pointer" type="button">
+            Reset Defaults
           </button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- FILTER STOP MANAGEMENT BOTTOM SHEET MODAL (Contained inside iPhone Mockup Frame) -->
-    <div id="stop-filter-modal" class="hidden absolute inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex flex-col justify-end transition-opacity duration-300">
-      <!-- Backdrop Click Handler -->
-      <div class="absolute inset-0" onclick="closeStopFilterModal()"></div>
-
-      <!-- Sheet Container -->
-      <div class="relative w-full bg-white rounded-t-3xl border-t border-slate-200 p-5 pt-3 space-y-4 shadow-2xl z-10 animate-slide-up flex flex-col max-h-[88%] overflow-y-auto no-scrollbar">
-        <!-- Top Pill Drag Handle Bar -->
-        <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-1 shrink-0"></div>
-
-        <!-- Header -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-100 shrink-0">
-          <div class="flex items-center space-x-2">
-            <span class="material-symbols-outlined text-slate-900 text-[20px]">tune</span>
-            <h2 class="text-headline-md font-bold text-slate-900 tracking-tight">Filter Stop Management</h2>
-          </div>
-          <button onclick="closeStopFilterModal()" class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 transition" type="button">
-            <span class="material-symbols-outlined text-[18px]">close</span>
+    <!-- ========================================================================= -->
+    <!-- SCREEN 09: FILTER STOP MANAGEMENT FULL SCREEN -->
+    <!-- ========================================================================= -->
+    <section id="stop-filter-screen" class="app-screen pb-24">
+      <!-- Header -->
+      <header class="bg-surface-container-lowest text-primary sticky top-0 z-40 border-b border-outline-variant px-4 pt-3.5 pb-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <button onclick="goBack()" class="p-1.5 -ml-1 rounded-xl text-primary hover:bg-surface-container-low transition flex items-center justify-center cursor-pointer" type="button" title="Back">
+            <span class="material-symbols-outlined text-[22px]">arrow_back</span>
           </button>
+          <div>
+            <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Filter Stop Management</h1>
+            <p class="text-xs text-secondary">Filter stops by depot, schedule, & time range</p>
+          </div>
         </div>
+        <button onclick="resetStopFilterModal()" class="text-body-sm text-secondary hover:text-primary font-medium px-2 py-1 rounded-lg hover:bg-surface-container-low transition cursor-pointer" type="button">
+          Reset
+        </button>
+      </header>
 
-        <!-- 3 Searchable Dropdown Fields (Depot, Schedule, Time Range) -->
-        <div class="space-y-3.5 pt-1 flex-1">
+      <div class="px-4 pt-4 space-y-4">
+        <!-- 3 Searchable Dropdown Fields -->
+        <div class="space-y-3.5 pt-1">
           <!-- 1. DEPOT -->
           <div>
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
@@ -2327,16 +2324,16 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="grid grid-cols-2 gap-3 pt-2 shrink-0">
-          <button onclick="resetStopFilterModal()" class="py-3 px-4 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 transition active:scale-[0.98] cursor-pointer" type="button">
-            Reset
-          </button>
-          <button onclick="applyStopFilterModal()" class="py-3 px-4 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 transition active:scale-[0.98] cursor-pointer" type="button">
+        <div class="pt-3 space-y-2">
+          <button onclick="applyStopFilterModal()" class="w-full py-3.5 bg-black text-white rounded-2xl font-semibold text-body-md shadow hover:bg-slate-800 transition active:scale-[0.98] cursor-pointer" type="button">
             Apply Filters
+          </button>
+          <button onclick="resetStopFilterModal()" class="w-full py-3.5 border border-slate-300 bg-white text-slate-800 rounded-2xl font-semibold text-body-md hover:bg-slate-50 transition active:scale-[0.98] cursor-pointer" type="button">
+            Reset Defaults
           </button>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- iOS HOME INDICATOR (FRAME FOOTER) -->
     <div class="w-full py-1.5 flex justify-center bg-surface-container-lowest select-none shrink-0 border-t border-slate-100">
