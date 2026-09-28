@@ -1768,31 +1768,8 @@
               <span>Log Out</span>
             </button>
           </div>
-
         </div>
       </section>
-
-    </div>
-
-    <!-- SHARED BOTTOM NAVIGATION BAR -->
-    <nav id="app-bottom-nav" class="js-bottom-nav absolute bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pt-2 pb-5 bg-surface-container-lowest border-t border-outline-variant">
-      <a data-target="dashboard-screen" href="#" onclick="navigateTo('dashboard-screen')" class="flex flex-col items-center justify-center text-primary font-semibold active:scale-95 transition">
-        <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
-        <span class="text-label-sm mt-0.5">Dashboard</span>
-      </a>
-      <a data-target="status-screen" href="#" onclick="navigateTo('status-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
-        <span class="material-symbols-outlined text-[22px]">swap_calls</span>
-        <span class="text-label-sm font-label-sm mt-0.5">Status</span>
-      </a>
-      <a data-target="reports-screen" href="#" onclick="navigateTo('reports-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
-        <span class="material-symbols-outlined text-[22px]">analytics</span>
-        <span class="text-label-sm font-label-sm mt-0.5">Reports</span>
-      </a>
-      <a data-target="profile-screen" href="#" onclick="navigateTo('profile-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
-        <span class="material-symbols-outlined text-[22px]">person</span>
-        <span class="text-label-sm font-label-sm mt-0.5">Profile</span>
-      </a>
-    </nav>
 
     <!-- ========================================================================= -->
     <!-- SCREEN 06: FILTER OPERATIONS FULL SCREEN -->
@@ -2387,6 +2364,28 @@
         </div>
       </div>
     </section>
+
+    </div><!-- END OF SCROLLABLE INNER CANVAS (#device-viewport) -->
+
+    <!-- SHARED BOTTOM NAVIGATION BAR -->
+    <nav id="app-bottom-nav" class="js-bottom-nav absolute bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pt-2 pb-5 bg-surface-container-lowest border-t border-outline-variant">
+      <a data-target="dashboard-screen" href="#" onclick="navigateTo('dashboard-screen')" class="flex flex-col items-center justify-center text-primary font-semibold active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+        <span class="text-label-sm mt-0.5">Dashboard</span>
+      </a>
+      <a data-target="status-screen" href="#" onclick="navigateTo('status-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">swap_calls</span>
+        <span class="text-label-sm font-label-sm mt-0.5">Status</span>
+      </a>
+      <a data-target="reports-screen" href="#" onclick="navigateTo('reports-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">analytics</span>
+        <span class="text-label-sm font-label-sm mt-0.5">Reports</span>
+      </a>
+      <a data-target="profile-screen" href="#" onclick="navigateTo('profile-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
+        <span class="material-symbols-outlined text-[22px]">person</span>
+        <span class="text-label-sm font-label-sm mt-0.5">Profile</span>
+      </a>
+    </nav>
 
     <!-- iOS HOME INDICATOR (FRAME FOOTER) -->
     <div class="w-full py-1.5 flex justify-center bg-surface-container-lowest select-none shrink-0 border-t border-slate-100">
