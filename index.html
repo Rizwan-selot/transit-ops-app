@@ -288,24 +288,12 @@
               <div class="bg-outline h-full" style="width: 4.2%;"></div>
               <div class="striped-pattern h-full border-l border-outline-variant" style="width: 12.4%;"></div>
             </div>
-            <!-- 2x2 Grid Chips -->
-            <div class="grid grid-cols-2 gap-2 text-body-sm pt-1">
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Running</span></div>
-                <span class="font-bold text-primary">312 <span class="font-normal text-secondary text-[11px]">72.9%</span></span>
-              </div>
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-medium text-primary">Stopped</span></div>
-                <span class="font-bold text-primary">45 <span class="font-normal text-secondary text-[11px]">10.5%</span></span>
-              </div>
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-outline"></span><span class="font-medium text-primary">Idle / Delay</span></div>
-                <span class="font-bold text-primary">18 <span class="font-normal text-secondary text-[11px]">4.2%</span></span>
-              </div>
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-dashed border-outline"></span><span class="font-medium text-primary">Depot</span></div>
-                <span class="font-bold text-primary">53 <span class="font-normal text-secondary text-[11px]">12.4%</span></span>
-              </div>
+            <!-- Clean Legend Layout (Matching Image 2 Spec for 5-Digit Number Support) -->
+            <div class="grid grid-cols-2 gap-y-2 pt-2 border-t border-outline-variant/40 text-body-sm">
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-primary shrink-0"></span><span class="text-secondary">Running: <strong class="text-primary font-semibold">312</strong> <span class="text-secondary text-[11px] font-normal">72.9%</span></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-secondary shrink-0"></span><span class="text-secondary">Stopped: <strong class="text-primary font-semibold">45</strong> <span class="text-secondary text-[11px] font-normal">10.5%</span></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-outline shrink-0"></span><span class="text-secondary">Idle / Delay: <strong class="text-primary font-semibold">18</strong> <span class="text-secondary text-[11px] font-normal">4.2%</span></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm striped-pattern border border-outline-variant shrink-0"></span><span class="text-secondary">Depot: <strong class="text-primary font-semibold">53</strong> <span class="text-secondary text-[11px] font-normal">12.4%</span></span></div>
             </div>
           </section>
 
@@ -371,16 +359,10 @@
               <div class="bg-primary h-full" style="width: 96.7%;"></div>
               <div class="bg-outline-variant h-full" style="width: 3.3%;"></div>
             </div>
-            <!-- Status Chips -->
-            <div class="grid grid-cols-2 gap-2 text-body-sm pt-1">
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Active</span></div>
-                <span class="font-bold text-primary">414 <span class="font-normal text-secondary text-[11px]">96.7%</span></span>
-              </div>
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-medium text-primary">Inactive</span></div>
-                <span class="font-bold text-primary">14 <span class="font-normal text-secondary text-[11px]">3.3%</span></span>
-              </div>
+            <!-- Clean Legend Layout (Supporting 5-Digit Numbers) -->
+            <div class="grid grid-cols-2 gap-y-2 pt-2 border-t border-outline-variant/40 text-body-sm">
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-primary shrink-0"></span><span class="text-secondary">Active: <strong class="text-primary font-semibold">414</strong> <span class="text-secondary text-[11px] font-normal">96.7%</span></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm border border-secondary shrink-0"></span><span class="text-secondary">Inactive: <strong class="text-primary font-semibold">14</strong> <span class="text-secondary text-[11px] font-normal">3.3%</span></span></div>
             </div>
           </section>
 
@@ -404,16 +386,10 @@
               <div class="bg-primary h-full" style="width: 84.9%;"></div>
               <div class="bg-outline-variant h-full" style="width: 15.1%;"></div>
             </div>
-            <!-- Status Chips -->
-            <div class="grid grid-cols-2 gap-2 text-body-sm pt-1">
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Active</span></div>
-                <span class="font-bold text-primary">45 <span class="font-normal text-secondary text-[11px]">84.9%</span></span>
-              </div>
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/40">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-medium text-primary">Inactive</span></div>
-                <span class="font-bold text-primary">8 <span class="font-normal text-secondary text-[11px]">15.1%</span></span>
-              </div>
+            <!-- Clean Legend Layout (Supporting 5-Digit Numbers) -->
+            <div class="grid grid-cols-2 gap-y-2 pt-2 border-t border-outline-variant/40 text-body-sm">
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-primary shrink-0"></span><span class="text-secondary">Active: <strong class="text-primary font-semibold">45</strong> <span class="text-secondary text-[11px] font-normal">84.9%</span></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm border border-secondary shrink-0"></span><span class="text-secondary">Inactive: <strong class="text-primary font-semibold">8</strong> <span class="text-secondary text-[11px] font-normal">15.1%</span></span></div>
             </div>
           </section>
 
@@ -439,32 +415,13 @@
                 <span class="text-[10px] text-secondary font-medium -mt-1">Schedules</span>
               </div>
             </div>
-            <!-- Metric Grid -->
-            <div class="space-y-2 text-body-sm pt-1">
-              <div class="grid grid-cols-2 gap-2">
-                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
-                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-medium text-primary">Running</span></div>
-                  <span class="font-bold text-primary">152</span>
-                </div>
-                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
-                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-medium text-primary">Completed</span></div>
-                  <span class="font-bold text-primary">142</span>
-                </div>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
-                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="font-medium text-primary">Upcoming</span></div>
-                  <span class="font-bold text-primary">64</span>
-                </div>
-                <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
-                  <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-surface-container-highest"></span><span class="font-medium text-primary">Partially Done</span></div>
-                  <span class="font-bold text-primary">21</span>
-                </div>
-              </div>
-              <div class="bg-surface-container-low p-2.5 rounded-xl flex items-center justify-between border border-outline-variant/30">
-                <div class="flex items-center space-x-2"><span class="w-2 h-2 rounded-full border border-secondary"></span><span class="font-medium text-primary">Failed / Cancelled</span></div>
-                <span class="font-bold text-primary">9</span>
-              </div>
+            <!-- Clean Legend Layout (Supporting 5-Digit Numbers) -->
+            <div class="grid grid-cols-2 gap-y-2 pt-2 border-t border-outline-variant/40 text-body-sm">
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-primary shrink-0"></span><span class="text-secondary">Running: <strong class="text-primary font-semibold">152</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-secondary shrink-0"></span><span class="text-secondary">Completed: <strong class="text-primary font-semibold">142</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-outline shrink-0"></span><span class="text-secondary">Upcoming: <strong class="text-primary font-semibold">64</strong></span></div>
+              <div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-sm bg-outline-variant shrink-0"></span><span class="text-secondary">Partially Done: <strong class="text-primary font-semibold">21</strong></span></div>
+              <div class="flex items-center space-x-2 col-span-2"><span class="w-2.5 h-2.5 rounded-sm border border-secondary shrink-0"></span><span class="text-secondary">Failed / Cancelled: <strong class="text-primary font-semibold">9</strong></span></div>
             </div>
           </section>
 
@@ -1092,32 +1049,40 @@
           </div>
         </div>
 
-        <!-- Top Navigation Header -->
-        <header class="flex justify-between items-center w-full px-4 pt-2 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40">
-          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition">
-            <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
-          </button>
-          <div class="text-center">
-            <h1 class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Reports</h1>
-            <span class="text-[11px] font-body-sm text-secondary block -mt-0.5">Transit Operations Fleet Analytics</span>
-          </div>
-          <button onclick="toggleReportsSearch()" class="p-1.5 text-on-surface hover:bg-surface-container rounded-lg transition">
-            <span class="material-symbols-outlined text-[20px]">search</span>
-          </button>
-        </header>
-
-        <!-- Real-Time Report Search Container -->
-        <div id="reports-search-container" class="hidden px-4 pt-3">
-          <div class="relative w-full">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
-              <span class="material-symbols-outlined text-[18px]">search</span>
+        <!-- Top Navigation Header with Transformative Header Search -->
+        <header class="relative w-full bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40 min-h-[52px] flex items-center px-3 py-2">
+          <!-- 1. Standard Header Mode -->
+          <div id="reports-header-standard" class="flex items-center justify-between w-full">
+            <div class="flex items-center space-x-2">
+              <button onclick="goBack()" class="flex items-center justify-center p-1.5 text-primary hover:bg-surface-container rounded-lg transition cursor-pointer" type="button">
+                <span class="material-symbols-outlined text-[22px]">chevron_left</span>
+              </button>
+              <h1 class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Reports</h1>
             </div>
-            <input id="reports-search-input" type="text" placeholder="Search reports (e.g. Travel, Ignition, Distance)..." class="w-full h-10 pl-9 pr-8 bg-surface-container-lowest border border-outline-variant/80 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary transition shadow-sm"/>
-            <button onclick="clearReportsSearch()" class="absolute inset-y-0 right-0 pr-2.5 flex items-center text-secondary hover:text-primary">
-              <span class="material-symbols-outlined text-[16px]">close</span>
+
+            <button onclick="openReportsHeaderSearch()" class="p-1.5 text-slate-700 hover:bg-slate-100 rounded-lg transition cursor-pointer" type="button" title="Search Reports">
+              <span class="material-symbols-outlined text-[20px]">search</span>
             </button>
           </div>
-        </div>
+
+          <!-- 2. Header Search Mode (Active when Search Icon is Clicked) -->
+          <div id="reports-header-search" class="hidden flex items-center justify-between w-full space-x-2">
+            <div class="relative flex-1 flex items-center">
+              <div class="absolute left-3 flex items-center pointer-events-none text-slate-400">
+                <span class="material-symbols-outlined text-[18px]">search</span>
+              </div>
+              <input id="reports-header-search-input" type="text" oninput="onReportsHeaderSearchInput(this.value)" placeholder="Search reports (e.g. Travel, Ignition)..." class="w-full h-10 pl-9 pr-8 bg-slate-100/90 border border-slate-300/80 rounded-xl text-body-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition" />
+              <button id="reports-search-clear-btn" onclick="clearReportsSearchInput()" class="hidden absolute right-2.5 p-1 text-slate-400 hover:text-slate-600 transition" type="button">
+                <span class="material-symbols-outlined text-[16px]">cancel</span>
+              </button>
+            </div>
+
+            <!-- Right-Side Close (X) Icon Button -->
+            <button onclick="closeReportsHeaderSearch()" class="w-9 h-9 flex items-center justify-center text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition cursor-pointer shrink-0" type="button" title="Close Search">
+              <span class="material-symbols-outlined text-[22px]">close</span>
+            </button>
+          </div>
+        </header>
 
         <div class="px-3.5 pt-3 space-y-2.5">
 
@@ -1432,30 +1397,51 @@
           </div>
         </div>
 
-        <!-- Top Navigation Header (Matching media_1790406393417.png) -->
-        <header class="relative flex justify-between items-center w-full px-4 pt-2 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40">
-          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition" type="button">
-            <span class="material-symbols-outlined text-[20px]">chevron_left</span>
-          </button>
-          
-          <!-- Dynamic Report Title -->
-          <div class="text-center flex-1 px-2 overflow-hidden">
-            <h1 id="detail-report-title" class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface truncate">Fleet On-Time Adherence</h1>
+        <!-- Top Navigation Header with Transformative Header Search -->
+        <header class="relative w-full bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40 min-h-[52px] flex items-center px-3 py-2">
+          <!-- 1. Standard Header View Mode -->
+          <div id="detail-header-standard" class="flex items-center justify-between w-full">
+            <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition" type="button">
+              <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+            </button>
+            
+            <!-- Dynamic Report Title -->
+            <div class="text-center flex-1 px-2 overflow-hidden">
+              <h1 id="detail-report-title" class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface truncate">Travel</h1>
+            </div>
+
+            <!-- Header Action Icons -->
+            <div class="flex items-center space-x-1 shrink-0">
+              <!-- Search Icon (Triggers Header Search Transformation) -->
+              <button onclick="openHeaderSearch()" class="p-1.5 text-slate-700 hover:bg-slate-100 rounded-lg transition cursor-pointer" type="button" title="Search Table">
+                <span class="material-symbols-outlined text-[20px]">search</span>
+              </button>
+              <!-- Filter Icon -->
+              <button onclick="openRouteFilterModal()" class="p-1.5 text-slate-700 hover:bg-slate-100 rounded-lg transition cursor-pointer" type="button" title="Filter Options">
+                <span class="material-symbols-outlined text-[20px]">tune</span>
+              </button>
+              <!-- Three Dot Options Icon -->
+              <button onclick="toggleReportMoreMenu(event)" class="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition cursor-pointer" type="button" title="More Options">
+                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Header Action Icons -->
-          <div class="flex items-center space-x-1 shrink-0">
-            <!-- Search Icon -->
-            <button onclick="toggleDetailTableSearch()" class="p-1.5 text-slate-700 hover:bg-slate-100 rounded-lg transition" type="button" title="Search Table">
-              <span class="material-symbols-outlined text-[20px]">search</span>
-            </button>
-            <!-- Filter Icon -->
-            <button onclick="openRouteFilterModal()" class="p-1.5 text-slate-700 hover:bg-slate-100 rounded-lg transition" type="button" title="Filter Options">
-              <span class="material-symbols-outlined text-[20px]">tune</span>
-            </button>
-            <!-- Three Dot Options Icon -->
-            <button onclick="toggleReportMoreMenu(event)" class="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition" type="button" title="More Options">
-              <span class="material-symbols-outlined text-[18px]">more_vert</span>
+          <!-- 2. Header Search Mode (Active when Search Icon is Clicked) -->
+          <div id="detail-header-search" class="hidden flex items-center justify-between w-full space-x-2">
+            <div class="relative flex-1 flex items-center">
+              <div class="absolute left-3 flex items-center pointer-events-none text-slate-400">
+                <span class="material-symbols-outlined text-[18px]">search</span>
+              </div>
+              <input id="detail-header-search-input" type="text" oninput="onDetailHeaderSearchInput(this.value)" placeholder="Search vehicle, route, shift..." class="w-full h-10 pl-9 pr-8 bg-slate-100/90 border border-slate-300/80 rounded-xl text-body-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition" />
+              <button id="header-search-clear-btn" onclick="clearHeaderSearchInput()" class="hidden absolute right-2.5 p-1 text-slate-400 hover:text-slate-600 transition" type="button">
+                <span class="material-symbols-outlined text-[16px]">cancel</span>
+              </button>
+            </div>
+
+            <!-- Right-Side Close (X) Icon Button -->
+            <button onclick="closeHeaderSearch()" class="w-9 h-9 flex items-center justify-center text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition cursor-pointer shrink-0" type="button" title="Close Search">
+              <span class="material-symbols-outlined text-[22px]">close</span>
             </button>
           </div>
 
@@ -1477,16 +1463,6 @@
           <div class="flex items-center space-x-1.5 overflow-hidden">
             <span class="material-symbols-outlined text-[16px] text-slate-400 shrink-0">calendar_month</span>
             <span id="detail-date-range-text" class="truncate text-slate-700">Oct 12 – Oct 18, 2023 • All Fleets</span>
-          </div>
-        </div>
-
-        <!-- Real-time Detail Table Search Container -->
-        <div id="detail-table-search-container" class="hidden px-4 pt-3">
-          <div class="relative w-full">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
-              <span class="material-symbols-outlined text-[18px]">search</span>
-            </div>
-            <input id="detail-table-search-input" type="text" oninput="filterDetailTable(this.value)" placeholder="Search vehicle, route, shift..." class="w-full h-10 pl-9 pr-8 bg-surface-container-lowest border border-outline-variant/80 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary transition shadow-sm"/>
           </div>
         </div>
 
@@ -1984,125 +1960,125 @@
         </div>
       </header>
 
-      <div class="px-4 pt-4 space-y-4">
-        <!-- Widget Toggles List -->
-        <div class="space-y-2.5 py-1">
+      <div class="px-3.5 pt-3 space-y-3">
+        <!-- Compact Widget Toggles Card -->
+        <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl divide-y divide-outline-variant/30 shadow-2xs overflow-hidden">
           <!-- 1. Fleet Status -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">directions_bus</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">directions_bus</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Fleet Status</span>
+              <span class="font-semibold text-primary text-[13px]">Fleet Status</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-fleet-status" checked onchange="toggleWidgetVisibility('fleet-status', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 2. Object Brand / Model -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">donut_large</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">donut_large</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Object Brand / Model</span>
+              <span class="font-semibold text-primary text-[13px]">Object Brand / Model</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-object-brand" checked onchange="toggleWidgetVisibility('object-brand', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 3. Immobilize -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">history_toggle_off</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Immobilize</span>
+              <span class="font-semibold text-primary text-[13px]">Immobilize</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-immobilize" checked onchange="toggleWidgetVisibility('immobilize', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 4. Depot Status -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">warehouse</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">warehouse</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Depot Status</span>
+              <span class="font-semibold text-primary text-[13px]">Depot Status</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-depot-status" checked onchange="toggleWidgetVisibility('depot-status', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 5. Schedule Management -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">calendar_month</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Schedule Management</span>
+              <span class="font-semibold text-primary text-[13px]">Schedule Management</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-schedule-mgmt" checked onchange="toggleWidgetVisibility('schedule-mgmt', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 6. Route Management -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">alt_route</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">alt_route</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Route Management</span>
+              <span class="font-semibold text-primary text-[13px]">Route Management</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-route-mgmt" checked onchange="toggleWidgetVisibility('route-mgmt', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 7. Stop Management -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">location_on</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">location_on</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Stop Management</span>
+              <span class="font-semibold text-primary text-[13px]">Stop Management</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-stop-mgmt" checked onchange="toggleWidgetVisibility('stop-mgmt', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
 
           <!-- 8. Driver Analytics -->
-          <div class="flex items-center justify-between p-3.5 bg-surface-container-low rounded-2xl border border-outline-variant/40">
-            <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 border border-outline-variant/30">
-                <span class="material-symbols-outlined text-[18px]">badge</span>
+          <div class="flex items-center justify-between px-3 py-2.5 min-h-[44px]">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-7 h-7 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[16px]">badge</span>
               </div>
-              <span class="font-semibold text-body-md text-primary">Driver Analytics</span>
+              <span class="font-semibold text-primary text-[13px]">Driver Analytics</span>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="toggle-driver-analytics" checked onchange="toggleWidgetVisibility('driver-analytics', this.checked)" class="sr-only peer">
-              <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
             </label>
           </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="pt-2">
-          <button onclick="goBack()" class="w-full py-3.5 bg-primary text-on-primary rounded-2xl font-semibold text-body-md shadow transition active:scale-[0.98] cursor-pointer" type="button">
+        <div class="pt-1">
+          <button onclick="goBack()" class="w-full py-2.5 bg-primary text-on-primary rounded-xl font-semibold text-body-sm shadow transition active:scale-[0.98] cursor-pointer" type="button">
             Done
           </button>
         </div>

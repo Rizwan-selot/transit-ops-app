@@ -222,35 +222,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. REPORTS SCREEN REAL-TIME SEARCH
-  const reportsSearchInput = document.getElementById('reports-search-input');
-  const reportsSearchContainer = document.getElementById('reports-search-container');
-  const reportCards = document.querySelectorAll('.js-report-card');
-  const noReportsMsg = document.getElementById('no-reports-msg');
+  // 3. REPORTS SCREEN REAL-TIME SEARCH (Transformative Header Search)
+  window.openReportsHeaderSearch = function() {
+    const stdHeader = document.getElementById('reports-header-standard');
+    const searchHeader = document.getElementById('reports-header-search');
+    const input = document.getElementById('reports-header-search-input');
 
-  window.toggleReportsSearch = function() {
-    if (reportsSearchContainer) {
-      const isHidden = reportsSearchContainer.classList.contains('hidden');
-      if (isHidden) {
-        reportsSearchContainer.classList.remove('hidden');
-        if (reportsSearchInput) reportsSearchInput.focus();
+    if (stdHeader && searchHeader) {
+      stdHeader.classList.add('hidden');
+      searchHeader.classList.remove('hidden');
+      if (input) input.focus();
+    }
+  };
+
+  window.closeReportsHeaderSearch = function() {
+    const stdHeader = document.getElementById('reports-header-standard');
+    const searchHeader = document.getElementById('reports-header-search');
+    const input = document.getElementById('reports-header-search-input');
+    const clearBtn = document.getElementById('reports-search-clear-btn');
+
+    if (stdHeader && searchHeader) {
+      searchHeader.classList.add('hidden');
+      stdHeader.classList.remove('hidden');
+      if (input) input.value = '';
+      if (clearBtn) clearBtn.classList.add('hidden');
+      window.filterReportsWithInput('');
+    }
+  };
+
+  window.onReportsHeaderSearchInput = function(val) {
+    const clearBtn = document.getElementById('reports-search-clear-btn');
+    if (clearBtn) {
+      if (val && val.length > 0) {
+        clearBtn.classList.remove('hidden');
       } else {
-        window.clearReportsSearch();
-        reportsSearchContainer.classList.add('hidden');
+        clearBtn.classList.add('hidden');
       }
     }
+    window.filterReportsWithInput(val);
   };
 
-  window.clearReportsSearch = function() {
-    if (reportsSearchInput) {
-      reportsSearchInput.value = '';
-      filterReports();
+  window.clearReportsSearchInput = function() {
+    const input = document.getElementById('reports-header-search-input');
+    const clearBtn = document.getElementById('reports-search-clear-btn');
+    if (input) {
+      input.value = '';
+      input.focus();
     }
+    if (clearBtn) clearBtn.classList.add('hidden');
+    window.filterReportsWithInput('');
   };
 
-  function filterReports() {
-    const query = reportsSearchInput ? reportsSearchInput.value.toLowerCase().trim() : '';
+  window.filterReportsWithInput = function(query) {
+    const q = query ? query.toLowerCase().trim() : '';
     let totalVisible = 0;
+    const noReportsMsg = document.getElementById('no-reports-msg');
 
     const groups = document.querySelectorAll('.js-report-group');
     if (groups && groups.length > 0) {
@@ -259,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let groupVisible = 0;
         cards.forEach(card => {
           const text = card.textContent.toLowerCase();
-          if (!query || text.includes(query)) {
+          if (!q || text.includes(q)) {
             card.style.display = 'flex';
             groupVisible++;
             totalVisible++;
@@ -273,17 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
           group.style.display = 'none';
         }
       });
-    } else {
-      const allCards = document.querySelectorAll('.js-report-card');
-      allCards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (!query || text.includes(query)) {
-          card.style.display = 'flex';
-          totalVisible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
     }
 
     if (noReportsMsg) {
@@ -293,11 +308,11 @@ document.addEventListener('DOMContentLoaded', () => {
         noReportsMsg.classList.add('hidden');
       }
     }
-  }
+  };
 
-  if (reportsSearchInput) {
-    reportsSearchInput.addEventListener('input', filterReports);
-  }
+  window.toggleReportsSearch = function() {
+    window.openReportsHeaderSearch();
+  };
 
   // 4. GLOBAL SEARCH MODAL
   const globalSearchModal = document.getElementById('global-search-modal');
@@ -893,6 +908,64 @@ document.addEventListener('DOMContentLoaded', () => {
     window.navigateTo('sub-reports-screen');
   };
 
+  window.openHeaderSearch = function() {
+    const stdHeader = document.getElementById('detail-header-standard');
+    const searchHeader = document.getElementById('detail-header-search');
+    const input = document.getElementById('detail-header-search-input');
+
+    if (stdHeader && searchHeader) {
+      stdHeader.classList.add('hidden');
+      searchHeader.classList.remove('hidden');
+      if (input) {
+        input.focus();
+      }
+    }
+  };
+
+  window.closeHeaderSearch = function() {
+    const stdHeader = document.getElementById('detail-header-standard');
+    const searchHeader = document.getElementById('detail-header-search');
+    const input = document.getElementById('detail-header-search-input');
+    const clearBtn = document.getElementById('header-search-clear-btn');
+
+    if (stdHeader && searchHeader) {
+      searchHeader.classList.add('hidden');
+      stdHeader.classList.remove('hidden');
+      if (input) {
+        input.value = '';
+      }
+      if (clearBtn) {
+        clearBtn.classList.add('hidden');
+      }
+      window.filterDetailTable('');
+    }
+  };
+
+  window.onDetailHeaderSearchInput = function(val) {
+    const clearBtn = document.getElementById('header-search-clear-btn');
+    if (clearBtn) {
+      if (val && val.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+    }
+    window.filterDetailTable(val);
+  };
+
+  window.clearHeaderSearchInput = function() {
+    const input = document.getElementById('detail-header-search-input');
+    const clearBtn = document.getElementById('header-search-clear-btn');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+    if (clearBtn) {
+      clearBtn.classList.add('hidden');
+    }
+    window.filterDetailTable('');
+  };
+
   window.openReportDetail = function(reportTitle) {
     currentReportTitle = reportTitle || 'Fleet On-Time Adherence';
     const detailTitle = document.getElementById('detail-report-title');
@@ -902,6 +975,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const menu = document.getElementById('report-more-menu');
     if (menu) menu.classList.add('hidden');
+
+    window.closeHeaderSearch();
     
     window.navigateTo('report-detail-screen');
   };
@@ -927,21 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.toggleDetailTableSearch = function() {
-    const searchContainer = document.getElementById('detail-table-search-container');
-    const searchInput = document.getElementById('detail-table-search-input');
-    if (searchContainer) {
-      const isHidden = searchContainer.classList.contains('hidden');
-      if (isHidden) {
-        searchContainer.classList.remove('hidden');
-        if (searchInput) searchInput.focus();
-      } else {
-        searchContainer.classList.add('hidden');
-        if (searchInput) {
-          searchInput.value = '';
-          window.filterDetailTable('');
-        }
-      }
-    }
+    window.openHeaderSearch();
   };
 
   window.filterDetailTable = function(query) {
