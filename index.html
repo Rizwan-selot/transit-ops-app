@@ -1786,24 +1786,18 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Company</label>
             <div class="searchable-dropdown relative" data-dropdown-id="company">
               <input type="hidden" id="filter-company" value="MTA Transportation Services">
-              <div onclick="toggleSearchableDropdown('company')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('company')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+                  <span id="dropdown-icon-company" class="material-symbols-outlined text-[18px]">corporate_fare</span>
                 </div>
                 <span id="filter-company-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">MTA Transportation Services</span>
+                <input id="dropdown-input-company" type="text" oninput="renderDropdownOptions('company', this.value)" placeholder="Search company..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-company-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-company" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-company" oninput="filterDropdownOptions('company', this.value)" placeholder="Search company..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('company')" id="dropdown-clear-company" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-company" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <!-- Inline Dropdown Options Panel (No redundant inner search bar) -->
+              <div id="dropdown-panel-company" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-company" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -1813,24 +1807,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Branch</label>
             <div class="searchable-dropdown relative" data-dropdown-id="branch">
               <input type="hidden" id="filter-branch" value="Central North Depot">
-              <div onclick="toggleSearchableDropdown('branch')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('branch')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <span class="material-symbols-outlined text-[18px]">hub</span>
+                  <span id="dropdown-icon-branch" class="material-symbols-outlined text-[18px]">hub</span>
                 </div>
                 <span id="filter-branch-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Central North Depot</span>
+                <input id="dropdown-input-branch" type="text" oninput="renderDropdownOptions('branch', this.value)" placeholder="Search branch..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-branch-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-branch" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-branch" oninput="filterDropdownOptions('branch', this.value)" placeholder="Search branch..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('branch')" id="dropdown-clear-branch" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-branch" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-branch" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-branch" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -1840,24 +1827,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
             <div class="searchable-dropdown relative" data-dropdown-id="depot">
               <input type="hidden" id="filter-depot" value="All Depots">
-              <div onclick="toggleSearchableDropdown('depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <span class="material-symbols-outlined text-[18px]">garage</span>
+                  <span id="dropdown-icon-depot" class="material-symbols-outlined text-[18px]">garage</span>
                 </div>
                 <span id="filter-depot-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">All Depots</span>
+                <input id="dropdown-input-depot" type="text" oninput="renderDropdownOptions('depot', this.value)" placeholder="Search depot..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-depot-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-depot" oninput="filterDropdownOptions('depot', this.value)" placeholder="Search depot..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('depot')" id="dropdown-clear-depot" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-depot" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-depot" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -1867,24 +1847,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Type</label>
             <div class="searchable-dropdown relative" data-dropdown-id="vehicle-type">
               <input type="hidden" id="filter-vehicle-type" value="All Vehicle Types">
-              <div onclick="toggleSearchableDropdown('vehicle-type')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('vehicle-type')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <span class="material-symbols-outlined text-[18px]">directions_bus</span>
+                  <span id="dropdown-icon-vehicle-type" class="material-symbols-outlined text-[18px]">directions_bus</span>
                 </div>
                 <span id="filter-vehicle-type-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">All Vehicle Types</span>
+                <input id="dropdown-input-vehicle-type" type="text" oninput="renderDropdownOptions('vehicle-type', this.value)" placeholder="Search vehicle type..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-vehicle-type-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-vehicle-type" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-vehicle-type" oninput="filterDropdownOptions('vehicle-type', this.value)" placeholder="Search vehicle type..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('vehicle-type')" id="dropdown-clear-vehicle-type" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-vehicle-type" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-vehicle-type" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-vehicle-type" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -1894,24 +1867,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Vehicle Group</label>
             <div class="searchable-dropdown relative" data-dropdown-id="vehicle-group">
               <input type="hidden" id="filter-vehicle-group" value="All Vehicle Groups">
-              <div onclick="toggleSearchableDropdown('vehicle-group')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('vehicle-group')" class="relative flex items-center border border-slate-200 rounded-2xl bg-white p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                  <span class="material-symbols-outlined text-[18px]">layers</span>
+                  <span id="dropdown-icon-vehicle-group" class="material-symbols-outlined text-[18px]">layers</span>
                 </div>
                 <span id="filter-vehicle-group-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">All Vehicle Groups</span>
+                <input id="dropdown-input-vehicle-group" type="text" oninput="renderDropdownOptions('vehicle-group', this.value)" placeholder="Search vehicle group..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-vehicle-group-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-vehicle-group" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-vehicle-group" oninput="filterDropdownOptions('vehicle-group', this.value)" placeholder="Search vehicle group..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('vehicle-group')" id="dropdown-clear-vehicle-group" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-vehicle-group" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-vehicle-group" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-vehicle-group" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -2124,24 +2090,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
             <div class="searchable-dropdown relative" data-dropdown-id="route-depot">
               <input type="hidden" id="filter-route-depot" value="Central North Depot">
-              <div onclick="toggleSearchableDropdown('route-depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('route-depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
-                  <span class="material-symbols-outlined text-[18px]">location_on</span>
+                  <span id="dropdown-icon-route-depot" class="material-symbols-outlined text-[18px]">location_on</span>
                 </div>
                 <span id="filter-route-depot-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Central North Depot</span>
+                <input id="dropdown-input-route-depot" type="text" oninput="renderDropdownOptions('route-depot', this.value)" placeholder="Search depot..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-route-depot-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-route-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-route-depot" oninput="filterDropdownOptions('route-depot', this.value)" placeholder="Search depot..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('route-depot')" id="dropdown-clear-route-depot" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-route-depot" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-route-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-route-depot" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -2151,24 +2110,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Schedule</label>
             <div class="searchable-dropdown relative" data-dropdown-id="route-schedule">
               <input type="hidden" id="filter-route-schedule" value="Shift A • Weekday">
-              <div onclick="toggleSearchableDropdown('route-schedule')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('route-schedule')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
-                  <span class="material-symbols-outlined text-[18px]">schedule</span>
+                  <span id="dropdown-icon-route-schedule" class="material-symbols-outlined text-[18px]">schedule</span>
                 </div>
                 <span id="filter-route-schedule-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Shift A • Weekday</span>
+                <input id="dropdown-input-route-schedule" type="text" oninput="renderDropdownOptions('route-schedule', this.value)" placeholder="Search schedule..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-route-schedule-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-route-schedule" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-route-schedule" oninput="filterDropdownOptions('route-schedule', this.value)" placeholder="Search schedule..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('route-schedule')" id="dropdown-clear-route-schedule" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-route-schedule" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-route-schedule" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-route-schedule" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -2178,24 +2130,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Time Range</label>
             <div class="searchable-dropdown relative" data-dropdown-id="route-timerange">
               <input type="hidden" id="filter-route-timerange" value="Last 7 Days (Mon - Sun)">
-              <div onclick="toggleSearchableDropdown('route-timerange')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('route-timerange')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
-                  <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                  <span id="dropdown-icon-route-timerange" class="material-symbols-outlined text-[18px]">calendar_month</span>
                 </div>
                 <span id="filter-route-timerange-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Last 7 Days (Mon - Sun)</span>
+                <input id="dropdown-input-route-timerange" type="text" oninput="renderDropdownOptions('route-timerange', this.value)" placeholder="Search time range..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-route-timerange-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-route-timerange" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-route-timerange" oninput="filterDropdownOptions('route-timerange', this.value)" placeholder="Search time range..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('route-timerange')" id="dropdown-clear-route-timerange" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-route-timerange" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-route-timerange" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-route-timerange" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -2252,24 +2197,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Depot</label>
             <div class="searchable-dropdown relative" data-dropdown-id="stop-depot">
               <input type="hidden" id="filter-stop-depot" value="Central North Depot">
-              <div onclick="toggleSearchableDropdown('stop-depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('stop-depot')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
-                  <span class="material-symbols-outlined text-[18px]">location_on</span>
+                  <span id="dropdown-icon-stop-depot" class="material-symbols-outlined text-[18px]">location_on</span>
                 </div>
                 <span id="filter-stop-depot-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Central North Depot</span>
+                <input id="dropdown-input-stop-depot" type="text" oninput="renderDropdownOptions('stop-depot', this.value)" placeholder="Search depot..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-stop-depot-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-stop-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-stop-depot" oninput="filterDropdownOptions('stop-depot', this.value)" placeholder="Search depot..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('stop-depot')" id="dropdown-clear-stop-depot" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-stop-depot" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-stop-depot" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-stop-depot" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -2279,24 +2217,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Schedule</label>
             <div class="searchable-dropdown relative" data-dropdown-id="stop-schedule">
               <input type="hidden" id="filter-stop-schedule" value="Shift A • Weekday">
-              <div onclick="toggleSearchableDropdown('stop-schedule')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('stop-schedule')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
-                  <span class="material-symbols-outlined text-[18px]">schedule</span>
+                  <span id="dropdown-icon-stop-schedule" class="material-symbols-outlined text-[18px]">schedule</span>
                 </div>
                 <span id="filter-stop-schedule-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Shift A • Weekday</span>
+                <input id="dropdown-input-stop-schedule" type="text" oninput="renderDropdownOptions('stop-schedule', this.value)" placeholder="Search schedule..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-stop-schedule-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-stop-schedule" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-stop-schedule" oninput="filterDropdownOptions('stop-schedule', this.value)" placeholder="Search schedule..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('stop-schedule')" id="dropdown-clear-stop-schedule" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-stop-schedule" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-stop-schedule" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-stop-schedule" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
@@ -2306,24 +2237,17 @@
             <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Time Range</label>
             <div class="searchable-dropdown relative" data-dropdown-id="stop-timerange">
               <input type="hidden" id="filter-stop-timerange" value="Last 7 Days (Mon - Sun)">
-              <div onclick="toggleSearchableDropdown('stop-timerange')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 transition shadow-2xs cursor-pointer">
+              <div onclick="toggleSearchableDropdown('stop-timerange')" class="relative flex items-center border border-slate-200 rounded-2xl bg-slate-50/80 p-1 px-1.5 hover:border-slate-400 focus-within:border-primary transition shadow-2xs cursor-pointer min-h-[46px]">
                 <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-slate-700 shrink-0 border border-slate-200/60">
-                  <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                  <span id="dropdown-icon-stop-timerange" class="material-symbols-outlined text-[18px]">calendar_month</span>
                 </div>
                 <span id="filter-stop-timerange-display" class="w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 truncate">Last 7 Days (Mon - Sun)</span>
+                <input id="dropdown-input-stop-timerange" type="text" oninput="renderDropdownOptions('stop-timerange', this.value)" placeholder="Search time range..." class="hidden w-full py-2 pl-3 pr-8 text-body-md font-semibold text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none" />
                 <span id="filter-stop-timerange-arrow" class="material-symbols-outlined text-slate-400 text-[18px] absolute right-3 pointer-events-none transition-transform duration-200">expand_more</span>
               </div>
 
-              <!-- Inline Dropdown Panel -->
-              <div id="dropdown-panel-stop-timerange" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-2 animate-fade-in">
-                <div class="relative flex items-center border border-slate-200 rounded-xl bg-slate-50 px-2.5 py-1.5 focus-within:border-primary focus-within:bg-white transition">
-                  <span class="material-symbols-outlined text-slate-400 text-[16px] mr-2 shrink-0">search</span>
-                  <input type="text" id="dropdown-search-stop-timerange" oninput="filterDropdownOptions('stop-timerange', this.value)" placeholder="Search time range..." class="w-full bg-transparent text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"/>
-                  <button onclick="clearDropdownSearch('stop-timerange')" id="dropdown-clear-stop-timerange" class="hidden p-0.5 text-slate-400 hover:text-slate-700 rounded-full shrink-0" type="button">
-                    <span class="material-symbols-outlined text-[14px]">close</span>
-                  </button>
-                </div>
-                <div id="dropdown-options-stop-timerange" class="max-h-40 overflow-y-auto space-y-0.5 no-scrollbar py-1"></div>
+              <div id="dropdown-panel-stop-timerange" class="hidden absolute left-0 right-0 top-[calc(100%+4px)] bg-white border border-slate-200 rounded-2xl shadow-xl z-30 p-2 animate-fade-in">
+                <div id="dropdown-options-stop-timerange" class="max-h-48 overflow-y-auto space-y-0.5 no-scrollbar py-0.5"></div>
               </div>
             </div>
           </div>
