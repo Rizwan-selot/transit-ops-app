@@ -340,7 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
     { type: 'driver', title: 'Marcus Vance (Driver)', sub: 'Badge #DV-9912 • Rating 4.96', icon: 'person', target: 'vehicle-detail-screen' },
     { type: 'driver', title: 'Elena Rostova (Driver)', sub: 'Badge #DV-4102 • Rating 4.91', icon: 'person', target: 'status-screen' },
     { type: 'route', title: 'Line 104 — Downtown Express', sub: 'Assigned 4 Vehicles', icon: 'alt_route', target: 'status-screen' },
-    { type: 'route', title: 'Line 22 — Bay Shore Cross', sub: 'Assigned 2 Vehicles', icon: 'alt_route', target: 'status-screen' }
+    { type: 'route', title: 'Line 22 — Bay Shore Cross', sub: 'Assigned 2 Vehicles', icon: 'alt_route', target: 'status-screen' },
+    { type: 'alert', title: 'Route Deviation Alert', sub: 'MH12 AB1234 • High Severity', icon: 'warning', target: 'notifications-screen', badge: 'HIGH' },
+    { type: 'alert', title: 'Idle Alert', sub: 'MH12 CD5678 • Medium Severity', icon: 'timer', target: 'notifications-screen', badge: 'MEDIUM' }
   ];
 
   window.openGlobalSearch = function() {
@@ -1343,5 +1345,73 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.add('hidden');
       }
     });
+  };
+
+  // NOTIFICATIONS SCREEN INTERACTIVE LOGIC
+  window.filterNotificationCards = function(filter, chipBtn) {
+    const chips = document.querySelectorAll('#notifications-screen .notification-chip');
+    chips.forEach(chip => {
+      chip.classList.remove('bg-black', 'text-white', 'border-black', 'active-chip');
+      chip.classList.add('bg-white', 'text-gray-700', 'border-gray-300');
+      const badge = chip.querySelector('span:last-child');
+      if (badge) {
+        badge.classList.remove('bg-gray-800', 'text-white');
+        badge.classList.add('bg-gray-100', 'text-gray-600');
+      }
+    });
+
+    if (chipBtn) {
+      chipBtn.classList.remove('bg-white', 'text-gray-700', 'border-gray-300');
+      chipBtn.classList.add('bg-black', 'text-white', 'border-black', 'active-chip');
+      const activeBadge = chipBtn.querySelector('span:last-child');
+      if (activeBadge) {
+        activeBadge.classList.remove('bg-gray-100', 'text-gray-600');
+        activeBadge.classList.add('bg-gray-800', 'text-white');
+      }
+    }
+
+    const cards = document.querySelectorAll('#notifications-screen .notification-card');
+    cards.forEach(card => {
+      if (filter === 'all') {
+        card.classList.remove('hidden');
+      } else if (filter === 'unread') {
+        if (card.getAttribute('data-unread') === 'true') {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      } else if (filter === 'high') {
+        if (card.getAttribute('data-severity') === 'high') {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      } else if (filter === 'maintenance') {
+        if (card.getAttribute('data-category') === 'maintenance') {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      }
+    });
+  };
+
+  window.markAllNotificationsRead = function() {
+    const cards = document.querySelectorAll('#notifications-screen .notification-card');
+    cards.forEach(card => {
+      card.setAttribute('data-unread', 'false');
+    });
+
+    const unreadBellBadge = document.getElementById('unread-bell-badge');
+    if (unreadBellBadge) {
+      unreadBellBadge.classList.add('hidden');
+    }
+
+    const unreadChipCount = document.getElementById('unread-chip-count');
+    if (unreadChipCount) {
+      unreadChipCount.textContent = '0';
+    }
+
+    window.showToast('All notifications marked as read', 'done_all');
   };
 });

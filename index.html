@@ -246,9 +246,15 @@
               <span class="text-[11px] font-semibold uppercase tracking-wider text-secondary block">Welcome Back 👋</span>
               <h1 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">Fleet Operations Manager</h1>
             </div>
-            <button onclick="openDashboardCustomizeModal()" class="p-2 rounded-xl text-on-surface hover:bg-surface-container-low border border-outline-variant/60 transition flex items-center justify-center cursor-pointer" type="button" title="Customize Dashboard">
-              <span class="material-symbols-outlined text-[20px]">tune</span>
-            </button>
+            <div class="flex items-center space-x-2">
+              <button onclick="navigateTo('notifications-screen')" class="relative p-2 rounded-xl text-on-surface hover:bg-surface-container-low border border-outline-variant/60 transition flex items-center justify-center cursor-pointer" type="button" title="Notifications">
+                <span class="material-symbols-outlined text-[20px]">notifications</span>
+                <span id="unread-bell-badge" class="absolute -top-1 -right-1 w-4.5 h-4.5 bg-black text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white">3</span>
+              </button>
+              <button onclick="openDashboardCustomizeModal()" class="p-2 rounded-xl text-on-surface hover:bg-surface-container-low border border-outline-variant/60 transition flex items-center justify-center cursor-pointer" type="button" title="Customize Dashboard">
+                <span class="material-symbols-outlined text-[20px]">tune</span>
+              </button>
+            </div>
           </div>
         </header>
 
@@ -3084,6 +3090,229 @@
       </div>
     </section>
 
+      <!-- ========================================================================= -->
+      <!-- SCREEN 06: NOTIFICATIONS (100% MATCH TO USER DESIGN media_1790757418180.jpg) -->
+      <!-- ========================================================================= -->
+      <section id="notifications-screen" class="app-screen pb-24 bg-[#f6f6f8] min-h-full">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-white pt-2.5 px-4 flex justify-between items-center text-black select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-black rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-black">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-3 pb-3 bg-white text-black sticky top-0 z-20 border-b border-gray-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="p-1 -ml-1 hover:bg-gray-100 rounded-lg transition text-black flex items-center justify-center">
+              <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+            </button>
+            <h1 class="text-xl font-bold tracking-tight text-black">Notifications</h1>
+          </div>
+          <button onclick="markAllNotificationsRead()" class="flex items-center space-x-1 text-xs font-medium text-gray-600 hover:text-black transition cursor-pointer">
+            <span class="material-symbols-outlined text-[16px] text-gray-500">done_all</span>
+            <span>Mark all read</span>
+          </button>
+        </header>
+
+        <!-- Horizontal Filter Chips Bar -->
+        <div class="bg-white border-b border-gray-200 px-4 py-2.5">
+          <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pr-2">
+            <!-- All 6 (Active) -->
+            <button onclick="filterNotificationCards('all', this)" class="notification-chip active-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-black text-white border border-black flex items-center space-x-1.5 transition whitespace-nowrap">
+              <span>All</span>
+              <span class="bg-gray-800 text-white rounded-full px-1.5 py-0.2 text-[10px] font-bold">6</span>
+            </button>
+            <!-- Unread 3 -->
+            <button onclick="filterNotificationCards('unread', this)" class="notification-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-gray-700 border border-gray-300 flex items-center space-x-1.5 hover:bg-gray-50 transition whitespace-nowrap">
+              <span>Unread</span>
+              <span id="unread-chip-count" class="bg-gray-100 text-gray-600 rounded-full px-1.5 py-0.2 text-[10px] font-semibold">3</span>
+            </button>
+            <!-- High Severity 2 -->
+            <button onclick="filterNotificationCards('high', this)" class="notification-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-gray-700 border border-gray-300 flex items-center space-x-1.5 hover:bg-gray-50 transition whitespace-nowrap">
+              <span>High Severity</span>
+              <span class="bg-gray-100 text-gray-600 rounded-full px-1.5 py-0.2 text-[10px] font-semibold">2</span>
+            </button>
+            <!-- Maintenance 1 -->
+            <button onclick="filterNotificationCards('maintenance', this)" class="notification-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-gray-700 border border-gray-300 flex items-center space-x-1.5 hover:bg-gray-50 transition whitespace-nowrap">
+              <span>Maintenance</span>
+              <span class="bg-gray-100 text-gray-600 rounded-full px-1.5 py-0.2 text-[10px] font-semibold">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Notification List Cards Container -->
+        <div class="px-4 pt-3.5 pb-6 space-y-3">
+
+          <!-- CARD 1: Route Deviation (HIGH) -->
+          <div data-severity="high" data-unread="true" class="notification-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-2.5 transition">
+            <!-- Top Line: Title, Badge, Time -->
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-black text-[15px] tracking-tight">Route Deviation</h3>
+              <div class="flex items-center space-x-2">
+                <span class="bg-black text-white text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md tracking-wider">HIGH</span>
+                <span class="text-xs text-gray-500 font-normal">2 min ago</span>
+              </div>
+            </div>
+
+            <!-- Second Line: Entity tag & context -->
+            <div class="flex items-center space-x-2 text-xs">
+              <div class="bg-[#f0f0f4] border border-gray-200/50 px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[14px] text-gray-700">directions_bus</span>
+                <span class="font-bold text-gray-900 text-xs">MH12 AB1234</span>
+              </div>
+              <span class="text-gray-300">•</span>
+              <span class="text-gray-500 font-medium">Route 12 Morning</span>
+            </div>
+
+            <!-- Body Description -->
+            <p class="text-xs text-gray-600 leading-relaxed font-normal">
+              Vehicle off prescribed path by &gt;450m on Ring Road bypass. Auto-rerouting not acknowledged.
+            </p>
+          </div>
+
+          <!-- CARD 2: Idle Alert (MEDIUM) -->
+          <div data-severity="medium" data-unread="true" class="notification-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-2.5 transition">
+            <!-- Top Line: Title, Badge, Time -->
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-black text-[15px] tracking-tight">Idle Alert</h3>
+              <div class="flex items-center space-x-2">
+                <span class="bg-white text-black border border-black text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md tracking-wider">MEDIUM</span>
+                <span class="text-xs text-gray-500 font-normal">10 min ago</span>
+              </div>
+            </div>
+
+            <!-- Second Line: Entity tag & context -->
+            <div class="flex items-center space-x-2 text-xs">
+              <div class="bg-[#f0f0f4] border border-gray-200/50 px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[14px] text-gray-700">local_shipping</span>
+                <span class="font-bold text-gray-900 text-xs">MH12 CD5678</span>
+              </div>
+              <span class="text-gray-300">•</span>
+              <span class="text-gray-500 font-medium">Driver: Amit Saxena</span>
+            </div>
+
+            <!-- Body Description -->
+            <p class="text-xs text-gray-600 leading-relaxed font-normal">
+              Engine continuous idling exceeded threshold (&gt;15 mins) at Market Square Bay 2 without route pause.
+            </p>
+          </div>
+
+          <!-- CARD 3: Trip Completed (INFO) -->
+          <div data-severity="info" data-unread="true" class="notification-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-2.5 transition">
+            <!-- Top Line: Title, Badge, Time -->
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-black text-[15px] tracking-tight">Trip Completed</h3>
+              <div class="flex items-center space-x-2">
+                <span class="bg-[#f0f0f4] text-gray-500 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md tracking-wider">INFO</span>
+                <span class="text-xs text-gray-500 font-normal">1 day ago</span>
+              </div>
+            </div>
+
+            <!-- Second Line: Entity tag & context -->
+            <div class="flex items-center space-x-2 text-xs">
+              <div class="bg-[#f0f0f4] border border-gray-200/50 px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[14px] text-gray-700">alt_route</span>
+                <span class="font-bold text-gray-900 text-xs">RT-201</span>
+              </div>
+              <span class="text-gray-300">•</span>
+              <span class="text-gray-500 font-medium">Inbound Express</span>
+            </div>
+
+            <!-- Body Description -->
+            <p class="text-xs text-gray-600 leading-relaxed font-normal">
+              All 12 scheduled platform stops logged on time. Fare validator logs sync verified with central server.
+            </p>
+          </div>
+
+          <!-- CARD 4: Driver Shift Sign-On (LOW) -->
+          <div data-severity="low" data-unread="false" class="notification-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-2.5 transition">
+            <!-- Top Line: Title, Badge, Time -->
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-black text-[15px] tracking-tight">Driver Shift Sign-On</h3>
+              <div class="flex items-center space-x-2">
+                <span class="bg-[#f0f0f4] text-gray-500 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md tracking-wider">LOW</span>
+                <span class="text-xs text-gray-500 font-normal">1 day ago</span>
+              </div>
+            </div>
+
+            <!-- Second Line: Entity tag & context -->
+            <div class="flex items-center space-x-2 text-xs">
+              <div class="bg-[#f0f0f4] border border-gray-200/50 px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[14px] text-gray-700">badge</span>
+                <span class="font-bold text-gray-900 text-xs">TS09 UA4112</span>
+              </div>
+              <span class="text-gray-300">•</span>
+              <span class="text-gray-500 font-medium">Manpreet Kaur</span>
+            </div>
+
+            <!-- Body Description -->
+            <p class="text-xs text-gray-600 leading-relaxed font-normal">
+              Shift 04-B commenced on schedule. Breathalyzer interlock and cab inspection checklist completed.
+            </p>
+          </div>
+
+          <!-- CARD 5: Maintenance Required (HIGH / MAINTENANCE) -->
+          <div data-severity="high" data-category="maintenance" data-unread="false" class="notification-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-2.5 transition">
+            <!-- Top Line: Title, Badge, Time -->
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-black text-[15px] tracking-tight">Maintenance Required</h3>
+              <div class="flex items-center space-x-2">
+                <span class="bg-black text-white text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md tracking-wider">HIGH</span>
+                <span class="text-xs text-gray-500 font-normal">2 days ago</span>
+              </div>
+            </div>
+
+            <!-- Second Line: Entity tag & context -->
+            <div class="flex items-center space-x-2 text-xs">
+              <div class="bg-[#f0f0f4] border border-gray-200/50 px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[14px] text-gray-700">build</span>
+                <span class="font-bold text-gray-900 text-xs">DL01 XY8821</span>
+              </div>
+              <span class="text-gray-300">•</span>
+              <span class="text-gray-500 font-medium">Volvo 7900 Hybrid</span>
+            </div>
+
+            <!-- Body Description -->
+            <p class="text-xs text-gray-600 leading-relaxed font-normal">
+              Brake pad wear sensor triggered threshold alert (12% remaining). Scheduled for depot servicing.
+            </p>
+          </div>
+
+          <!-- CARD 6: Speed Limiter Warning (MEDIUM) -->
+          <div data-severity="medium" data-unread="false" class="notification-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-2.5 transition">
+            <!-- Top Line: Title, Badge, Time -->
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-black text-[15px] tracking-tight">Speed Limiter Warning</h3>
+              <div class="flex items-center space-x-2">
+                <span class="bg-white text-black border border-black text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md tracking-wider">MEDIUM</span>
+                <span class="text-xs text-gray-500 font-normal">3 days ago</span>
+              </div>
+            </div>
+
+            <!-- Second Line: Entity tag & context -->
+            <div class="flex items-center space-x-2 text-xs">
+              <div class="bg-[#f0f0f4] border border-gray-200/50 px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[14px] text-gray-700">speed</span>
+                <span class="font-bold text-gray-900 text-xs">KA04 EE9910</span>
+              </div>
+              <span class="text-gray-300">•</span>
+              <span class="text-gray-500 font-medium">Route 24 Express</span>
+            </div>
+
+            <!-- Body Description -->
+            <p class="text-xs text-gray-600 leading-relaxed font-normal">
+              Maximum velocity exceeded 65 km/h for 45s in 50 km/h speed control zone.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
     </div><!-- END OF SCROLLABLE INNER CANVAS (#device-viewport) -->
 
     <!-- SHARED BOTTOM NAVIGATION BAR -->
@@ -3129,6 +3358,8 @@
     <button onclick="navigateTo('vehicle-detail-screen')" class="hover:text-primary font-semibold text-slate-600 transition">04 Detail</button>
     <span class="text-slate-300">•</span>
     <button onclick="navigateTo('reports-screen')" class="hover:text-primary font-semibold text-slate-600 transition">05 Reports</button>
+    <span class="text-slate-300">•</span>
+    <button onclick="navigateTo('notifications-screen')" class="hover:text-primary font-semibold text-slate-600 transition">06 Alerts</button>
   </div>
 
   <!-- TOAST NOTIFICATION CONTAINER -->
