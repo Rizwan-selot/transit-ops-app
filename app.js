@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const globalSearchResults = document.getElementById('global-search-results');
 
   const searchableItems = [
-    { type: 'vehicle', title: 'Bus #4082', sub: 'Line 104 • Driver Marcus Vance', icon: 'directions_bus', target: 'vehicle-detail-screen', badge: 'RUNNING' },
+    { type: 'vehicle', title: 'Bus #4082', sub: 'Line 104 • Driver Marcus Vance', icon: 'directions_bus', target: 'status-screen', badge: 'RUNNING' },
     { type: 'vehicle', title: 'Bus #3019', sub: 'Line 22 • Driver Elena Rostova', icon: 'directions_bus', target: 'status-screen', badge: 'STOPPED' },
     { type: 'vehicle', title: 'Bus #5104', sub: 'Line 701 • Driver David Kim', icon: 'directions_bus', target: 'status-screen', badge: 'IDLE' },
     { type: 'vehicle', title: 'Bus #2240', sub: 'Maintenance Bay 3', icon: 'build', target: 'status-screen', badge: 'OFFLINE' },
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { type: 'report', title: 'SYS-07 Driver Behaviour', sub: 'Braking, Speeding, Shifts', icon: 'badge', target: 'reports-screen' },
     { type: 'report', title: 'SYS-09 Fuel & Energy', sub: 'SOC %, Liters, Consumption', icon: 'local_gas_station', target: 'reports-screen' },
     { type: 'report', title: 'SYS-15 GTFS Trip Data', sub: 'GTFS-RT Trip & Stop Sync', icon: 'schedule', target: 'reports-screen' },
-    { type: 'driver', title: 'Marcus Vance (Driver)', sub: 'Badge #DV-9912 • Rating 4.96', icon: 'person', target: 'vehicle-detail-screen' },
+    { type: 'driver', title: 'Marcus Vance (Driver)', sub: 'Badge #DV-9912 • Rating 4.96', icon: 'person', target: 'status-screen' },
     { type: 'driver', title: 'Elena Rostova (Driver)', sub: 'Badge #DV-4102 • Rating 4.91', icon: 'person', target: 'status-screen' },
     { type: 'route', title: 'Line 104 — Downtown Express', sub: 'Assigned 4 Vehicles', icon: 'alt_route', target: 'status-screen' },
     { type: 'route', title: 'Line 22 — Bay Shore Cross', sub: 'Assigned 2 Vehicles', icon: 'alt_route', target: 'status-screen' },

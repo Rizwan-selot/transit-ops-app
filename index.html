@@ -698,40 +698,10 @@
 
 
       <!-- ========================================================================= -->
-      <!-- SCREEN 04: VEHICLE DETAIL -->
+      <!-- VEHICLE DETAIL SCREEN REMOVED FROM FLOW -->
       <!-- ========================================================================= -->
-      <section id="vehicle-detail-screen" class="app-screen pb-28">
-        <!-- Sticky Header Bar with Status Sub-bar -->
-        <header class="bg-surface-container-lowest sticky top-0 z-40 hairline-border-b">
-          <div class="js-simulated-status-bar h-11 w-full flex justify-between items-center px-4 pt-2 text-on-surface select-none">
-            <span class="js-status-time font-headline-sm text-body-sm tracking-tight font-semibold">9:41</span>
-            <div class="flex items-center space-x-1.5">
-              <span class="material-symbols-outlined text-[15px]">signal_cellular_4_bar</span>
-              <span class="material-symbols-outlined text-[15px]">wifi</span>
-              <span class="material-symbols-outlined text-[18px]">battery_full</span>
-            </div>
-          </div>
-          <div class="flex justify-between items-center w-full px-4 py-2">
-            <div class="flex items-center space-x-3">
-              <button onclick="goBack()" class="w-9 h-9 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container active:opacity-75 transition">
-                <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
-              </button>
-              <div>
-                <div class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Fleet Unit</div>
-                <h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Vehicle #4082</h1>
-              </div>
-            </div>
-            <div class="flex items-center space-x-1">
-              <button onclick="showToast('Telemetry shared link generated', 'share')" class="w-9 h-9 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container transition">
-                <span class="material-symbols-outlined text-[20px]">share</span>
-              </button>
-              <button onclick="showToast('Vehicle tune options')" class="w-9 h-9 rounded-lg flex items-center justify-center text-primary hover:bg-surface-container transition">
-                <span class="material-symbols-outlined text-[20px]">tune</span>
-              </button>
-            </div>
-          </div>
-        </header>
 
+        <template id="removed-vehicle-detail-screen">
         <div class="px-4 pt-3 space-y-4">
           <!-- Vehicle Banner -->
           <section class="bg-surface-container-lowest rounded-xl p-4 hairline-border shadow-sm">
@@ -975,21 +945,7 @@
             </div>
           </section>
         </div>
-
-        <!-- Docked Action Tray -->
-        <div class="sticky bottom-0 left-0 right-0 z-40 bg-surface-container-lowest/95 backdrop-blur-lg hairline-border-t py-3 px-4">
-          <div class="flex items-center space-x-3">
-            <button onclick="openContactModal()" class="flex-1 h-12 rounded-[10px] border border-primary bg-surface-container-lowest text-primary font-headline-sm text-body-md font-semibold flex items-center justify-center space-x-2 active:bg-surface-container transition">
-              <span class="material-symbols-outlined text-[18px]">call</span>
-              <span>Contact Driver</span>
-            </button>
-            <button onclick="openOverrideModal()" aria-label="Dispatch Command Override" class="h-12 px-5 rounded-[10px] bg-primary text-on-primary font-headline-sm text-body-md font-semibold flex items-center justify-center space-x-1.5 active:opacity-85 transition shadow-sm">
-              <span class="material-symbols-outlined text-[18px]">terminal</span>
-              <span>Override</span>
-            </button>
-          </div>
-        </div>
-      </section>
+      </template>
 
       <!-- ========================================================================= -->
       <!-- SCREEN 02: STATUS (COMING SOON PLACEHOLDER - NO DATA) -->
@@ -1223,7 +1179,7 @@
         <div id="status-vehicle-view" class="hidden px-4 pt-4 pb-6 bg-[#f6f6f8]">
           <div class="bg-white border border-gray-200/80 rounded-3xl overflow-hidden shadow-xs divide-y divide-gray-100">
             <!-- Vehicle 1: MH 12 AB 1234 -->
-            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (Black Circle) -->
                 <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
@@ -1242,7 +1198,7 @@
             </div>
 
             <!-- Vehicle 2: DL 01 XY 8821 -->
-            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (Black Circle) -->
                 <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
@@ -1261,7 +1217,7 @@
             </div>
 
             <!-- Vehicle 3: KA 04 EE 9910 -->
-            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (Black Circle) -->
                 <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
@@ -1280,7 +1236,7 @@
             </div>
 
             <!-- Vehicle 4: TS 09 UA 4112 (Stopped / Key OFF) -->
-            <div data-status="signon" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="signon" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (White Circle) -->
                 <div class="w-12 h-12 rounded-full bg-white border border-gray-300 text-gray-400 flex flex-col items-center justify-center shrink-0">
@@ -1299,7 +1255,7 @@
             </div>
 
             <!-- Vehicle 5: MH 12 CD 5678 -->
-            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (Black Circle) -->
                 <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
@@ -1318,7 +1274,7 @@
             </div>
 
             <!-- Vehicle 6: MH 02 EF 7890 -->
-            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (Black Circle) -->
                 <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
@@ -1337,7 +1293,7 @@
             </div>
 
             <!-- Vehicle 7: GJ 06 TR 2049 -->
-            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition">
               <div class="flex items-center space-x-3 min-w-0">
                 <!-- Speed Badge (Black Circle) -->
                 <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
@@ -1709,7 +1665,7 @@
         <!-- Stops Cards List Area -->
         <div class="px-4 pt-3 pb-6 space-y-2">
           <!-- STOP 1: City Center Hub (Visited) -->
-          <div data-status="visited" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="visited" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2">
             <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
               <h3 class="font-bold text-black text-[15px]">1. City Center Hub</h3>
               <span class="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center space-x-1">
@@ -1740,7 +1696,7 @@
           </div>
 
           <!-- STOP 2: Market Square (Visited - Early) -->
-          <div data-status="visited" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="visited" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2">
             <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
               <h3 class="font-bold text-black text-[15px]">2. Market Square</h3>
               <span class="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center space-x-1">
@@ -1771,7 +1727,7 @@
           </div>
 
           <!-- STOP 3: Riverside (Upcoming) -->
-          <div data-status="upcoming" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="upcoming" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2">
             <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
               <h3 class="font-bold text-black text-[15px]">3. Riverside</h3>
               <span class="bg-white text-gray-800 border border-gray-400 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Upcoming</span>
@@ -1799,7 +1755,7 @@
           </div>
 
           <!-- STOP 4: Central Mall (Missed) -->
-          <div data-status="missed" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="missed" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2">
             <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
               <h3 class="font-bold text-black text-[15px]">4. Central Mall</h3>
               <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Missed</span>
@@ -1827,7 +1783,7 @@
           </div>
 
           <!-- STOP 5: University Gate (Unwanted) -->
-          <div data-status="unwanted" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="unwanted" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2">
             <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
               <h3 class="font-bold text-black text-[15px]">5. University Gate</h3>
               <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Unwanted</span>
@@ -3354,8 +3310,6 @@
     <button onclick="navigateTo('dashboard-screen')" class="hover:text-primary font-semibold text-slate-600 transition">02 Ops</button>
     <span class="text-slate-300">•</span>
     <button onclick="navigateTo('status-screen')" class="hover:text-primary font-semibold text-slate-600 transition">03 Status</button>
-    <span class="text-slate-300">•</span>
-    <button onclick="navigateTo('vehicle-detail-screen')" class="hover:text-primary font-semibold text-slate-600 transition">04 Detail</button>
     <span class="text-slate-300">•</span>
     <button onclick="navigateTo('reports-screen')" class="hover:text-primary font-semibold text-slate-600 transition">05 Reports</button>
     <span class="text-slate-300">•</span>
