@@ -988,12 +988,12 @@
       <!-- ========================================================================= -->
       <!-- SCREEN 02: STATUS (COMING SOON PLACEHOLDER - NO DATA) -->
       <!-- ========================================================================= -->
-      <section id="status-screen" class="app-screen pb-24">
+      <section id="status-screen" class="app-screen pb-24 bg-white min-h-full">
         <!-- Status Bar Simulation Area -->
-        <div class="js-simulated-status-bar w-full bg-surface-container-lowest pt-3 px-4 flex justify-between items-center text-on-surface select-none z-30">
+        <div class="js-simulated-status-bar w-full bg-white pt-2.5 px-4 flex justify-between items-center text-black select-none z-30">
           <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
-          <div class="w-24 h-4 bg-primary rounded-full mx-auto"></div>
-          <div class="flex items-center space-x-1.5 text-on-surface">
+          <div class="w-24 h-4 bg-black rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-black">
             <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
             <span class="material-symbols-outlined text-[15px]">wifi</span>
             <span class="material-symbols-outlined text-[17px]">battery_full</span>
@@ -1001,32 +1001,634 @@
         </div>
 
         <!-- Top Navigation Header -->
-        <header class="flex justify-between items-center w-full px-4 pt-2 pb-3 bg-surface-container-lowest text-primary sticky top-0 z-20 border-b border-outline-variant/40">
-          <button onclick="goBack()" class="flex items-center justify-center p-1.5 -ml-1 text-primary hover:bg-surface-container rounded-lg transition">
-            <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+        <header class="flex justify-between items-center w-full px-4 pt-2.5 pb-2.5 bg-white text-black sticky top-0 z-20 border-b border-gray-200">
+          <h1 class="text-2xl font-bold tracking-tight text-black">Status</h1>
+          <button onclick="showToast('Status filter settings', 'tune')" class="p-1 rounded-lg text-black hover:bg-gray-100 transition">
+            <span class="material-symbols-outlined text-[24px]">tune</span>
           </button>
-          <div class="text-center">
-            <h1 class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">Fleet Status</h1>
-            <span class="text-[11px] font-body-sm text-secondary block -mt-0.5">Real-time Node Telemetry</span>
-          </div>
-          <div class="w-8"></div>
         </header>
 
-        <!-- Coming Soon Placeholder Container -->
-        <div class="px-6 py-16 flex flex-col items-center justify-center text-center space-y-4">
-          <div class="w-20 h-20 rounded-3xl bg-surface-container-low border border-outline-variant/60 flex items-center justify-center text-primary shadow-xs">
-            <span class="material-symbols-outlined text-[36px]">engineering</span>
+        <!-- Segmented Tab Switcher (Schedule vs Vehicle) -->
+        <div class="px-4 pt-3 pb-3 border-b border-gray-200">
+          <div class="bg-[#ededf0] p-1 rounded-2xl flex font-semibold text-sm">
+            <button id="status-tab-schedule" onclick="switchStatusTab('schedule')" class="flex-1 py-2 text-center rounded-xl bg-white text-black font-bold shadow-xs transition duration-200">
+              Schedule
+            </button>
+            <button id="status-tab-vehicle" onclick="switchStatusTab('vehicle')" class="flex-1 py-2 text-center rounded-xl text-gray-500 hover:text-black font-medium transition duration-200">
+              Vehicle
+            </button>
           </div>
-          <div class="space-y-1.5 max-w-xs">
-            <h2 class="text-headline-lg font-bold text-primary tracking-tight">Coming Soon</h2>
-            <p class="text-body-sm text-secondary text-xs leading-relaxed">
-              Real-time fleet live status telemetry and CAN-BUS node tracking module is currently under development.
-            </p>
+        </div>
+
+        <!-- Horizontal Filter Chips -->
+        <div class="px-4 py-2.5 border-b border-gray-200">
+          <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pr-2">
+            <button onclick="filterStatusItems('all', this)" class="status-chip active-chip shrink-0 px-3.5 py-1 rounded-full text-[11px] font-bold bg-black text-white border border-black transition whitespace-nowrap">
+              All 6
+            </button>
+            <button onclick="filterStatusItems('running', this)" class="status-chip shrink-0 px-3 py-1 rounded-full text-[11px] font-medium bg-white text-gray-800 border border-gray-300 flex items-center space-x-1.5 hover:bg-gray-50 transition whitespace-nowrap">
+              <span class="w-2 h-2 rounded-full bg-black inline-block"></span>
+              <span>Running • 2</span>
+            </button>
+            <button onclick="filterStatusItems('completed', this)" class="status-chip shrink-0 px-3 py-1 rounded-full text-[11px] font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Completed • 1
+            </button>
+            <button onclick="filterStatusItems('signon', this)" class="status-chip shrink-0 px-3 py-1 rounded-full text-[11px] font-medium bg-white text-gray-800 border border-dashed border-gray-400 hover:bg-gray-50 transition whitespace-nowrap">
+              Sign On • 1
+            </button>
+            <button onclick="filterStatusItems('dno', this)" class="status-chip shrink-0 px-3 py-1 rounded-full text-[11px] font-medium bg-[#e5e5ea] text-gray-700 border border-transparent hover:bg-gray-300 transition whitespace-nowrap">
+              DNO • 1
+            </button>
           </div>
-          <div class="pt-2">
-            <span class="px-3 py-1 bg-surface-container-low border border-outline-variant/60 text-secondary rounded-full font-mono text-[11px] font-semibold uppercase tracking-wider">
-              Status Module v3.0 • Pending Release
-            </span>
+        </div>
+
+        <!-- SCHEDULE VIEW -->
+        <div id="status-schedule-view" class="divide-y divide-gray-200">
+          <!-- Item 1: Route 12 Morning -->
+          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('schedule-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">Route 12 Morning</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">SCH-1042</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">alt_route</span>
+                  <span>3 Routes</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
+                  <span class="font-semibold text-black">2 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-black text-white whitespace-nowrap">
+                Running
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Route 07 Evening -->
+          <div data-status="completed" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('schedule-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">Route 07 Evening</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">SCH-1043</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">alt_route</span>
+                  <span>2 Routes</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-400">notifications</span>
+                  <span>0 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-black border border-black whitespace-nowrap">
+                Completed
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Route 24 Express -->
+          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('schedule-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">Route 24 Express</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">SCH-1044</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">alt_route</span>
+                  <span>4 Routes</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
+                  <span class="font-semibold text-black">1 Alert</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#e5e5ea] text-gray-700 whitespace-nowrap">
+                Partially Completed
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Item 4: Route 03 Early Bird -->
+          <div data-status="signon" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('schedule-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">Route 03 Early Bird</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">SCH-1045</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">alt_route</span>
+                  <span>2 Routes</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-400">notifications</span>
+                  <span>0 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-gray-700 border border-dashed border-gray-400 whitespace-nowrap">
+                Sign On
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Item 5: Route 19 Night Owl -->
+          <div data-status="dno" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('schedule-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">Route 19 Night Owl</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">SCH-1046</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">alt_route</span>
+                  <span>1 Route</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
+                  <span class="font-semibold text-black">3 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#e5e5ea] text-gray-700 whitespace-nowrap">
+                DNO
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Item 6: Route 44 Crosstown -->
+          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('schedule-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">Route 44 Crosstown</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">SCH-1047</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">alt_route</span>
+                  <span>3 Routes</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-400">notifications</span>
+                  <span>0 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-black text-white whitespace-nowrap">
+                Running
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VEHICLE VIEW -->
+        <div id="status-vehicle-view" class="hidden divide-y divide-gray-200">
+          <!-- Vehicle 1: BUS-101 -->
+          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-101 (Volvo B9R)</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">REG-8821</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+                  <span>Depot North</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-400">notifications</span>
+                  <span>0 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-black text-white whitespace-nowrap">
+                Running
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Vehicle 2: BUS-104 -->
+          <div data-status="completed" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-104 (Scania K360)</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">REG-4491</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+                  <span>Depot South</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
+                  <span class="font-semibold text-black">1 Alert</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-black border border-black whitespace-nowrap">
+                Completed
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Vehicle 3: BUS-108 -->
+          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-108 (Mercedes Citaro)</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">REG-1204</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+                  <span>Express Terminal</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
+                  <span class="font-semibold text-black">2 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#e5e5ea] text-gray-700 whitespace-nowrap">
+                Partially Completed
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Vehicle 4: BUS-112 -->
+          <div data-status="signon" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-112 (BYD K9)</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">REG-7732</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+                  <span>Central Depot</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="text-gray-500">0 Alerts</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-gray-700 border border-dashed border-gray-400 whitespace-nowrap">
+                Sign On
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- Vehicle 5: BUS-115 -->
+          <div data-status="dno" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
+              <div class="flex items-center space-x-1.5 min-w-0">
+                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-115 (MAN Lion's City)</span>
+                <span class="text-gray-300 shrink-0">•</span>
+                <span class="text-xs text-gray-500 font-normal shrink-0">REG-9910</span>
+              </div>
+              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+                  <span>Depot East</span>
+                </span>
+                <span class="text-gray-300">•</span>
+                <span class="flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
+                  <span class="font-semibold text-black">3 Alerts</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#e5e5ea] text-gray-700 whitespace-nowrap">
+                DNO
+              </span>
+              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 02-B: SCHEDULE DETAIL (100% MATCH TO USER DESIGN media_1790749118609.jpg) -->
+      <!-- ========================================================================= -->
+      <section id="schedule-detail-screen" class="app-screen pb-24 bg-[#f6f6f8] min-h-full">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-white pt-2.5 px-4 flex justify-between items-center text-black select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-black rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-black">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-2.5 pb-2.5 bg-white text-black sticky top-0 z-20 border-b border-gray-200">
+          <button onclick="goBack()" class="p-1 -ml-1 hover:bg-gray-100 rounded-lg transition text-black">
+            <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+          </button>
+          <div class="text-center">
+            <h1 class="text-base font-bold text-black tracking-tight leading-tight">Schedule Detail</h1>
+            <p class="text-[11px] text-gray-500 font-medium leading-tight">Route 12 Morning SCH-1042</p>
+          </div>
+          <button onclick="showToast('Schedule filters', 'tune')" class="p-1 -mr-1 text-black hover:bg-gray-100 rounded-lg transition">
+            <span class="material-symbols-outlined text-[24px]">tune</span>
+          </button>
+        </header>
+
+        <!-- Horizontal Filter Chips Bar -->
+        <div class="bg-white border-b border-gray-200 px-4 py-2.5">
+          <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pr-2">
+            <button onclick="filterScheduleDetailCards('all', this)" class="status-chip active-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-black text-white border border-black transition whitespace-nowrap">
+              All Routes
+            </button>
+            <button onclick="filterScheduleDetailCards('running', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Running
+            </button>
+            <button onclick="filterScheduleDetailCards('completed', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Completed
+            </button>
+            <button onclick="filterScheduleDetailCards('partially', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Partially Completed
+            </button>
+          </div>
+        </div>
+
+        <!-- Schedule Cards List Area -->
+        <div class="px-4 pt-3 pb-6 space-y-2">
+          <!-- CARD 1: Route A (Running) -->
+          <div data-status="running" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <h3 class="font-bold text-black text-base">Route A</h3>
+                <span class="bg-[#efeff2] text-gray-600 px-2 py-0.5 rounded-md text-[11px] font-semibold">RT-201</span>
+              </div>
+              <span class="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Running</span>
+            </div>
+
+            <div class="flex items-center space-x-1.5 text-xs text-gray-500">
+              <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+              <span>MH12 AB1234</span>
+              <span class="text-gray-300">•</span>
+              <span class="material-symbols-outlined text-[15px] text-gray-600">badge</span>
+              <span>Rakesh Sharma <span class="text-gray-400">DR-88</span></span>
+            </div>
+
+            <div class="bg-[#f8f8fa] border border-gray-100 rounded-xl px-3 py-2 flex items-center justify-around text-xs text-gray-600">
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-gray-500">location_on</span>
+                <span><strong class="text-black font-bold">4/16</strong> Visited</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-black font-bold">warning</span>
+                <span class="text-gray-700">0 Alerts</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-black inline-block"></span>
+                <span class="font-bold text-black">+6m Late</span>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <div class="flex justify-between items-end text-xs">
+                <div>
+                  <span class="text-gray-400 text-[11px] block">Start <strong class="text-black font-bold text-xs">07:45</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 07:40)</span>
+                </div>
+                <div class="flex-1 px-4 text-center">
+                  <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden mb-1">
+                    <div class="bg-black h-full rounded-full w-[25%]"></div>
+                  </div>
+                  <span class="text-[11px] text-gray-500 font-medium">
+                    <strong class="text-black font-bold">12/48km</strong> (25%)
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-gray-400 text-[11px] block">End <strong class="text-black font-bold text-xs">10:05</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 09:55)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Route B (Running) -->
+          <div data-status="running" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <h3 class="font-bold text-black text-base">Route B</h3>
+                <span class="bg-[#efeff2] text-gray-600 px-2 py-0.5 rounded-md text-[11px] font-semibold">RT-202</span>
+              </div>
+              <span class="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Running</span>
+            </div>
+
+            <div class="flex items-center space-x-1.5 text-xs text-gray-500">
+              <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+              <span>MH12 AB5678</span>
+              <span class="text-gray-300">•</span>
+              <span class="material-symbols-outlined text-[15px] text-gray-600">badge</span>
+              <span>Rakesh Sharma <span class="text-gray-400">DR-88</span></span>
+            </div>
+
+            <div class="bg-[#f8f8fa] border border-gray-100 rounded-xl px-3 py-2 flex items-center justify-around text-xs text-gray-600">
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-gray-500">location_on</span>
+                <span><strong class="text-black font-bold">4/16</strong> Visited</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-black font-bold">warning</span>
+                <span class="text-gray-700">0 Alerts</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-black inline-block"></span>
+                <span class="font-bold text-black">+6m Late</span>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <div class="flex justify-between items-end text-xs">
+                <div>
+                  <span class="text-gray-400 text-[11px] block">Start <strong class="text-black font-bold text-xs">07:45</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 07:40)</span>
+                </div>
+                <div class="flex-1 px-4 text-center">
+                  <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden mb-1">
+                    <div class="bg-black h-full rounded-full w-[25%]"></div>
+                  </div>
+                  <span class="text-[11px] text-gray-500 font-medium">
+                    <strong class="text-black font-bold">12/48km</strong> (25%)
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-gray-400 text-[11px] block">End <strong class="text-black font-bold text-xs">10:05</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 09:55)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Route C (Completed) -->
+          <div data-status="completed" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <h3 class="font-bold text-black text-base">Route C</h3>
+                <span class="bg-[#efeff2] text-gray-600 px-2 py-0.5 rounded-md text-[11px] font-semibold">RT-203</span>
+              </div>
+              <span class="bg-white text-black border border-black px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Completed</span>
+            </div>
+
+            <div class="flex items-center space-x-1.5 text-xs text-gray-500">
+              <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+              <span>MH12 CD9012</span>
+              <span class="text-gray-300">•</span>
+              <span class="material-symbols-outlined text-[15px] text-gray-600">badge</span>
+              <span>Suresh Patel <span class="text-gray-400">DR-92</span></span>
+            </div>
+
+            <div class="bg-[#f8f8fa] border border-gray-100 rounded-xl px-3 py-2 flex items-center justify-around text-xs text-gray-600">
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-gray-500">location_on</span>
+                <span><strong class="text-black font-bold">16/16</strong> Visited</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-gray-400">notifications</span>
+                <span class="text-gray-700">0 Alerts</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                <span class="font-bold text-emerald-600">On Time</span>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <div class="flex justify-between items-end text-xs">
+                <div>
+                  <span class="text-gray-400 text-[11px] block">Start <strong class="text-black font-bold text-xs">06:30</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 06:30)</span>
+                </div>
+                <div class="flex-1 px-4 text-center">
+                  <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden mb-1">
+                    <div class="bg-black h-full rounded-full w-[100%]"></div>
+                  </div>
+                  <span class="text-[11px] text-gray-500 font-medium">
+                    <strong class="text-black font-bold">48/48km</strong> (100%)
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-gray-400 text-[11px] block">End <strong class="text-black font-bold text-xs">08:50</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 08:50)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: Route D (Partially Completed) -->
+          <div data-status="partially" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <h3 class="font-bold text-black text-base">Route D</h3>
+                <span class="bg-[#efeff2] text-gray-600 px-2 py-0.5 rounded-md text-[11px] font-semibold">RT-204</span>
+              </div>
+              <span class="bg-[#e5e5ea] text-gray-700 px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Partially Completed</span>
+            </div>
+
+            <div class="flex items-center space-x-1.5 text-xs text-gray-500">
+              <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
+              <span>MH12 EF3456</span>
+              <span class="text-gray-300">•</span>
+              <span class="material-symbols-outlined text-[15px] text-gray-600">badge</span>
+              <span>Amit Kumar <span class="text-gray-400">DR-45</span></span>
+            </div>
+
+            <div class="bg-[#f8f8fa] border border-gray-100 rounded-xl px-3 py-2 flex items-center justify-around text-xs text-gray-600">
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-gray-500">location_on</span>
+                <span><strong class="text-black font-bold">10/16</strong> Visited</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[16px] text-black font-bold">warning</span>
+                <span class="text-gray-700">1 Alert</span>
+              </div>
+              <span class="text-gray-200 font-light">|</span>
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
+                <span class="font-bold text-amber-600">+12m Late</span>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <div class="flex justify-between items-end text-xs">
+                <div>
+                  <span class="text-gray-400 text-[11px] block">Start <strong class="text-black font-bold text-xs">08:15</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 08:15)</span>
+                </div>
+                <div class="flex-1 px-4 text-center">
+                  <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden mb-1">
+                    <div class="bg-black h-full rounded-full w-[62%]"></div>
+                  </div>
+                  <span class="text-[11px] text-gray-500 font-medium">
+                    <strong class="text-black font-bold">30/48km</strong> (62%)
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-gray-400 text-[11px] block">End <strong class="text-black font-bold text-xs">11:15</strong></span>
+                  <span class="text-gray-400 text-[11px]">(ETA 10:45)</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -2268,22 +2870,26 @@
     </div><!-- END OF SCROLLABLE INNER CANVAS (#device-viewport) -->
 
     <!-- SHARED BOTTOM NAVIGATION BAR -->
-    <nav id="app-bottom-nav" class="js-bottom-nav absolute bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pt-2 pb-5 bg-surface-container-lowest border-t border-outline-variant">
+    <nav id="app-bottom-nav" class="js-bottom-nav absolute bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pt-2 pb-3 bg-white border-t border-gray-200">
       <a data-target="dashboard-screen" href="#" onclick="navigateTo('dashboard-screen')" class="flex flex-col items-center justify-center text-primary font-semibold active:scale-95 transition">
-        <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
-        <span class="text-label-sm mt-0.5">Dashboard</span>
+        <span class="material-symbols-outlined text-[22px]">grid_view</span>
+        <span class="text-xs mt-0.5">Dashboard</span>
+        <div class="nav-indicator hidden w-4 h-[2px] bg-black rounded-full mt-0.5"></div>
       </a>
       <a data-target="status-screen" href="#" onclick="navigateTo('status-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
         <span class="material-symbols-outlined text-[22px]">swap_calls</span>
-        <span class="text-label-sm font-label-sm mt-0.5">Status</span>
+        <span class="text-xs mt-0.5">Status</span>
+        <div class="nav-indicator hidden w-4 h-[2px] bg-black rounded-full mt-0.5"></div>
       </a>
       <a data-target="reports-screen" href="#" onclick="navigateTo('reports-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
         <span class="material-symbols-outlined text-[22px]">analytics</span>
-        <span class="text-label-sm font-label-sm mt-0.5">Reports</span>
+        <span class="text-xs mt-0.5">Reports</span>
+        <div class="nav-indicator hidden w-4 h-[2px] bg-black rounded-full mt-0.5"></div>
       </a>
       <a data-target="profile-screen" href="#" onclick="navigateTo('profile-screen')" class="flex flex-col items-center justify-center text-secondary font-normal hover:text-primary active:scale-95 transition">
         <span class="material-symbols-outlined text-[22px]">person</span>
-        <span class="text-label-sm font-label-sm mt-0.5">Profile</span>
+        <span class="text-xs mt-0.5">Profile</span>
+        <div class="nav-indicator hidden w-4 h-[2px] bg-black rounded-full mt-0.5"></div>
       </a>
     </nav>
 

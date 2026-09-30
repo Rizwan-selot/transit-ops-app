@@ -91,15 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function updateBottomNavState(screenId) {
+    let activeTarget = screenId;
+    if (screenId === 'schedule-detail-screen') {
+      activeTarget = 'status-screen';
+    }
     const navItems = document.querySelectorAll('.js-bottom-nav a');
     navItems.forEach(item => {
       const target = item.getAttribute('data-target');
-      if (target === screenId) {
-        item.classList.add('text-primary', 'font-semibold');
+      const indicator = item.querySelector('.nav-indicator');
+      if (target === activeTarget) {
+        item.classList.add('text-black', 'font-bold');
         item.classList.remove('text-secondary', 'font-normal');
+        if (indicator) indicator.classList.remove('hidden');
       } else {
-        item.classList.remove('text-primary', 'font-semibold');
+        item.classList.remove('text-black', 'font-bold');
         item.classList.add('text-secondary', 'font-normal');
+        if (indicator) indicator.classList.add('hidden');
       }
     });
   }
@@ -1248,4 +1255,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadDashboardWidgetPreferences();
+
+  // STATUS SCREEN INTERACTIVE LOGIC
+  window.switchStatusTab = function(tab) {
+    const scheduleBtn = document.getElementById('status-tab-schedule');
+    const vehicleBtn = document.getElementById('status-tab-vehicle');
+    const scheduleView = document.getElementById('status-schedule-view');
+    const vehicleView = document.getElementById('status-vehicle-view');
+
+    if (!scheduleBtn || !vehicleBtn || !scheduleView || !vehicleView) return;
+
+    if (tab === 'schedule') {
+      scheduleBtn.className = "flex-1 py-2.5 text-center rounded-xl bg-white text-black shadow-xs transition duration-200";
+      vehicleBtn.className = "flex-1 py-2.5 text-center rounded-xl text-gray-500 hover:text-black transition duration-200";
+      scheduleView.classList.remove('hidden');
+      vehicleView.classList.add('hidden');
+    } else {
+      vehicleBtn.className = "flex-1 py-2.5 text-center rounded-xl bg-white text-black shadow-xs transition duration-200";
+      scheduleBtn.className = "flex-1 py-2.5 text-center rounded-xl text-gray-500 hover:text-black transition duration-200";
+      vehicleView.classList.remove('hidden');
+      scheduleView.classList.add('hidden');
+    }
+  };
+
+  window.filterStatusItems = function(filter, btnEl) {
+    const chips = document.querySelectorAll('.status-chip');
+    chips.forEach(c => {
+      if (c.getAttribute('onclick') && c.getAttribute('onclick').includes('signon')) {
+        c.className = 'status-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-gray-800 border border-dashed border-gray-400 hover:bg-gray-50 transition';
+      } else if (c.getAttribute('onclick') && c.getAttribute('onclick').includes('dno')) {
+        c.className = 'status-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200 transition';
+      } else {
+        c.className = 'status-chip shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-gray-800 border border-gray-300 flex items-center space-x-1.5 hover:bg-gray-50 transition';
+      }
+    });
+
+    if (btnEl) {
+      btnEl.className = 'status-chip active-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-black text-white border border-black transition';
+    }
+
+    const items = document.querySelectorAll('.status-list-item');
+    items.forEach(item => {
+      const itemStatus = item.getAttribute('data-status');
+      if (filter === 'all' || itemStatus === filter) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  };
+
+  // SCHEDULE DETAIL SCREEN INTERACTIVE LOGIC
+  window.filterScheduleDetailCards = function(filter, btnEl) {
+    const chips = document.querySelectorAll('#schedule-detail-screen .status-chip');
+    chips.forEach(c => {
+      c.className = 'status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap';
+    });
+    if (btnEl) {
+      btnEl.className = 'status-chip active-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-black text-white border border-black transition whitespace-nowrap';
+    }
+    const cards = document.querySelectorAll('#schedule-detail-screen .schedule-detail-card');
+    cards.forEach(card => {
+      const cardStatus = card.getAttribute('data-status');
+      if (filter === 'all' || cardStatus === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  };
 });
