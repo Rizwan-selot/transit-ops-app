@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const username = fleetIdInput ? fleetIdInput.value.trim() : '';
       const password = passwordInput ? passwordInput.value.trim() : '';
 
-      if (password === 'Test1234' || (username === 'Uffizio' && password === 'Design1212')) {
+      if (password === 'Test1234') {
         if (loginErrorMsg) loginErrorMsg.classList.add('hidden');
         if (fleetIdInput) fleetIdInput.classList.remove('border-red-500');
         if (passwordInput) passwordInput.classList.remove('border-red-500');
