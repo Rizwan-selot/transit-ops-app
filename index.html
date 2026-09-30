@@ -1021,7 +1021,7 @@
         </div>
 
         <!-- Horizontal Filter Chips -->
-        <div class="px-4 py-2.5 border-b border-gray-200">
+        <div id="status-filter-chips-bar" class="px-4 py-2.5 border-b border-gray-200">
           <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pr-2">
             <button onclick="filterStatusItems('all', this)" class="status-chip active-chip shrink-0 px-3.5 py-1 rounded-full text-[11px] font-bold bg-black text-white border border-black transition whitespace-nowrap">
               All 6
@@ -1213,142 +1213,140 @@
           </div>
         </div>
 
-        <!-- VEHICLE VIEW -->
-        <div id="status-vehicle-view" class="hidden divide-y divide-gray-200">
-          <!-- Vehicle 1: BUS-101 -->
-          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
-            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
-              <div class="flex items-center space-x-1.5 min-w-0">
-                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-101 (Volvo B9R)</span>
-                <span class="text-gray-300 shrink-0">•</span>
-                <span class="text-xs text-gray-500 font-normal shrink-0">REG-8821</span>
+        <!-- VEHICLE VIEW (100% MATCH TO USER DESIGN media_1790752994054.jpg) -->
+        <div id="status-vehicle-view" class="hidden px-4 pt-4 pb-6 bg-[#f6f6f8]">
+          <div class="bg-white border border-gray-200/80 rounded-3xl overflow-hidden shadow-xs divide-y divide-gray-100">
+            <!-- Vehicle 1: MH 12 AB 1234 -->
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (Black Circle) -->
+                <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none">84</span>
+                  <span class="text-[8px] tracking-wider text-gray-300 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">MH 12 AB 1234</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">Rakesh Sharma</p>
+                </div>
               </div>
-              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
-                  <span>Depot North</span>
-                </span>
-                <span class="text-gray-300">•</span>
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-gray-400">notifications</span>
-                  <span>0 Alerts</span>
-                </span>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-black text-[20px]">key</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">1m ago</span>
               </div>
             </div>
-            <div class="flex items-center space-x-1.5 shrink-0">
-              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-black text-white whitespace-nowrap">
-                Running
-              </span>
-              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
-            </div>
-          </div>
 
-          <!-- Vehicle 2: BUS-104 -->
-          <div data-status="completed" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
-            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
-              <div class="flex items-center space-x-1.5 min-w-0">
-                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-104 (Scania K360)</span>
-                <span class="text-gray-300 shrink-0">•</span>
-                <span class="text-xs text-gray-500 font-normal shrink-0">REG-4491</span>
+            <!-- Vehicle 2: DL 01 XY 8821 -->
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (Black Circle) -->
+                <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none">62</span>
+                  <span class="text-[8px] tracking-wider text-gray-300 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">DL 01 XY 8821</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">Anil Deshmukh</p>
+                </div>
               </div>
-              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
-                  <span>Depot South</span>
-                </span>
-                <span class="text-gray-300">•</span>
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
-                  <span class="font-semibold text-black">1 Alert</span>
-                </span>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-black text-[20px]">key</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">Just now</span>
               </div>
             </div>
-            <div class="flex items-center space-x-1.5 shrink-0">
-              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-black border border-black whitespace-nowrap">
-                Completed
-              </span>
-              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
-            </div>
-          </div>
 
-          <!-- Vehicle 3: BUS-108 -->
-          <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
-            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
-              <div class="flex items-center space-x-1.5 min-w-0">
-                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-108 (Mercedes Citaro)</span>
-                <span class="text-gray-300 shrink-0">•</span>
-                <span class="text-xs text-gray-500 font-normal shrink-0">REG-1204</span>
+            <!-- Vehicle 3: KA 04 EE 9910 -->
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (Black Circle) -->
+                <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none">45</span>
+                  <span class="text-[8px] tracking-wider text-gray-300 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">KA 04 EE 9910</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">S. Sundaram</p>
+                </div>
               </div>
-              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
-                  <span>Express Terminal</span>
-                </span>
-                <span class="text-gray-300">•</span>
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
-                  <span class="font-semibold text-black">2 Alerts</span>
-                </span>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-black text-[20px]">key</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">2m ago</span>
               </div>
             </div>
-            <div class="flex items-center space-x-1.5 shrink-0">
-              <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#e5e5ea] text-gray-700 whitespace-nowrap">
-                Partially Completed
-              </span>
-              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
-            </div>
-          </div>
 
-          <!-- Vehicle 4: BUS-112 -->
-          <div data-status="signon" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
-            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
-              <div class="flex items-center space-x-1.5 min-w-0">
-                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-112 (BYD K9)</span>
-                <span class="text-gray-300 shrink-0">•</span>
-                <span class="text-xs text-gray-500 font-normal shrink-0">REG-7732</span>
+            <!-- Vehicle 4: TS 09 UA 4112 (Stopped / Key OFF) -->
+            <div data-status="signon" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (White Circle) -->
+                <div class="w-12 h-12 rounded-full bg-white border border-gray-300 text-gray-400 flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none text-gray-400">00</span>
+                  <span class="text-[8px] tracking-wider text-gray-400 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">TS 09 UA 4112</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">Manpreet Kaur</p>
+                </div>
               </div>
-              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
-                  <span>Central Depot</span>
-                </span>
-                <span class="text-gray-300">•</span>
-                <span class="text-gray-500">0 Alerts</span>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-gray-300 text-[20px]">key_off</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">5m ago</span>
               </div>
             </div>
-            <div class="flex items-center space-x-1.5 shrink-0">
-              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-white text-gray-700 border border-dashed border-gray-400 whitespace-nowrap">
-                Sign On
-              </span>
-              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
-            </div>
-          </div>
 
-          <!-- Vehicle 5: BUS-115 -->
-          <div data-status="dno" class="status-list-item flex items-center justify-between px-4 py-3 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
-            <div class="space-y-0.5 min-w-0 flex-1 pr-2">
-              <div class="flex items-center space-x-1.5 min-w-0">
-                <span class="font-bold text-black text-[14px] whitespace-nowrap">BUS-115 (MAN Lion's City)</span>
-                <span class="text-gray-300 shrink-0">•</span>
-                <span class="text-xs text-gray-500 font-normal shrink-0">REG-9910</span>
+            <!-- Vehicle 5: MH 12 CD 5678 -->
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (Black Circle) -->
+                <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none">78</span>
+                  <span class="text-[8px] tracking-wider text-gray-300 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">MH 12 CD 5678</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">Amit Saxena</p>
+                </div>
               </div>
-              <div class="flex items-center space-x-2 text-xs text-gray-500 whitespace-nowrap">
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-gray-600">directions_bus</span>
-                  <span>Depot East</span>
-                </span>
-                <span class="text-gray-300">•</span>
-                <span class="flex items-center space-x-1">
-                  <span class="material-symbols-outlined text-[15px] text-black font-bold">warning</span>
-                  <span class="font-semibold text-black">3 Alerts</span>
-                </span>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-black text-[20px]">key</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">3m ago</span>
               </div>
             </div>
-            <div class="flex items-center space-x-1.5 shrink-0">
-              <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#e5e5ea] text-gray-700 whitespace-nowrap">
-                DNO
-              </span>
-              <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
+
+            <!-- Vehicle 6: MH 02 EF 7890 -->
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (Black Circle) -->
+                <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none">53</span>
+                  <span class="text-[8px] tracking-wider text-gray-300 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">MH 02 EF 7890</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">K. Somnath</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-black text-[20px]">key</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">8m ago</span>
+              </div>
+            </div>
+
+            <!-- Vehicle 7: GJ 06 TR 2049 -->
+            <div data-status="running" class="status-list-item flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/80 transition cursor-pointer" onclick="navigateTo('vehicle-detail-screen')">
+              <div class="flex items-center space-x-3 min-w-0">
+                <!-- Speed Badge (Black Circle) -->
+                <div class="w-12 h-12 rounded-full bg-black text-white flex flex-col items-center justify-center shrink-0">
+                  <span class="font-bold text-sm leading-none">91</span>
+                  <span class="text-[8px] tracking-wider text-gray-300 font-semibold uppercase leading-none mt-0.5">KM/H</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-black text-[15px] tracking-tight whitespace-nowrap">GJ 06 TR 2049</h3>
+                  <p class="text-xs text-gray-400 font-normal mt-0.5">Virender Negi</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2.5 shrink-0">
+                <span class="material-symbols-outlined text-black text-[20px]">key</span>
+                <span class="bg-[#f0f0f4] text-gray-500 px-3 py-1 rounded-full text-xs font-normal whitespace-nowrap">4m ago</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1404,7 +1402,7 @@
         <!-- Schedule Cards List Area -->
         <div class="px-4 pt-3 pb-6 space-y-2">
           <!-- CARD 1: Route A (Running) -->
-          <div data-status="running" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="running" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('route-detail-screen')">
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-2">
                 <h3 class="font-bold text-black text-base">Route A</h3>
@@ -1461,7 +1459,7 @@
           </div>
 
           <!-- CARD 2: Route B (Running) -->
-          <div data-status="running" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="running" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('route-detail-screen')">
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-2">
                 <h3 class="font-bold text-black text-base">Route B</h3>
@@ -1518,7 +1516,7 @@
           </div>
 
           <!-- CARD 3: Route C (Completed) -->
-          <div data-status="completed" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="completed" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('route-detail-screen')">
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-2">
                 <h3 class="font-bold text-black text-base">Route C</h3>
@@ -1575,7 +1573,7 @@
           </div>
 
           <!-- CARD 4: Route D (Partially Completed) -->
-          <div data-status="partially" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+          <div data-status="partially" class="schedule-detail-card bg-white border border-gray-200/80 rounded-2xl p-4 shadow-xs space-y-3 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('route-detail-screen')">
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-2">
                 <h3 class="font-bold text-black text-base">Route D</h3>
@@ -1627,6 +1625,225 @@
                   <span class="text-gray-400 text-[11px] block">End <strong class="text-black font-bold text-xs">11:15</strong></span>
                   <span class="text-gray-400 text-[11px]">(ETA 10:45)</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 02-C: ROUTE DETAIL -> STOPS LIST (100% MATCH TO USER DESIGN media_1790751192451.jpg) -->
+      <!-- ========================================================================= -->
+      <section id="route-detail-screen" class="app-screen pb-24 bg-[#f6f6f8] min-h-full">
+        <!-- Status Bar Simulation Area -->
+        <div class="js-simulated-status-bar w-full bg-white pt-2.5 px-4 flex justify-between items-center text-black select-none z-30">
+          <span class="js-status-time text-[14px] font-semibold tracking-tight">09:41</span>
+          <div class="w-24 h-4 bg-black rounded-full mx-auto"></div>
+          <div class="flex items-center space-x-1.5 text-black">
+            <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+            <span class="material-symbols-outlined text-[15px]">wifi</span>
+            <span class="material-symbols-outlined text-[17px]">battery_full</span>
+          </div>
+        </div>
+
+        <!-- Top Navigation Header -->
+        <header class="flex justify-between items-center w-full px-4 pt-2.5 pb-2.5 bg-white text-black sticky top-0 z-20 border-b border-gray-200">
+          <button onclick="goBack()" class="p-1 -ml-1 hover:bg-gray-100 rounded-lg transition text-black">
+            <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+          </button>
+          <h1 class="text-base font-bold text-black tracking-tight text-center">Route A • Inbound Express</h1>
+          <button onclick="showToast('Route filters', 'tune')" class="p-1 -mr-1 text-black hover:bg-gray-100 rounded-lg transition">
+            <span class="material-symbols-outlined text-[24px]">tune</span>
+          </button>
+        </header>
+
+        <!-- Horizontal Filter Chips Bar -->
+        <div class="bg-white border-b border-gray-200 px-4 py-2.5">
+          <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pr-2">
+            <button onclick="filterRouteStops('all', this)" class="status-chip active-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-black text-white border border-black transition whitespace-nowrap">
+              All Stops (12)
+            </button>
+            <button onclick="filterRouteStops('visited', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Visited (8)
+            </button>
+            <button onclick="filterRouteStops('upcoming', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Upcoming (3)
+            </button>
+            <button onclick="filterRouteStops('missed', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Missed (1)
+            </button>
+            <button onclick="filterRouteStops('unwanted', this)" class="status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap">
+              Unwanted (0)
+            </button>
+          </div>
+        </div>
+
+        <!-- Route Progress & Summary Strip Bar -->
+        <div class="bg-white border-b border-gray-200 px-4 py-3">
+          <div class="flex justify-between items-end text-xs">
+            <div>
+              <span class="text-gray-400 text-[11px] block">Start <strong class="text-black font-bold text-xs">07:45</strong></span>
+              <span class="text-gray-400 text-[11px]">(ETA 07:40)</span>
+            </div>
+            <div class="flex-1 px-4 text-center">
+              <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden mb-1">
+                <div class="bg-black h-full rounded-full w-[25%]"></div>
+              </div>
+              <span class="text-[11px] text-gray-500 font-medium">
+                <strong class="text-black font-bold">12/48km</strong> (25%)
+              </span>
+            </div>
+            <div class="text-right">
+              <span class="text-gray-400 text-[11px] block">End <strong class="text-black font-bold text-xs">10:05</strong></span>
+              <span class="text-gray-400 text-[11px]">(ETA 09:55)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stops Cards List Area -->
+        <div class="px-4 pt-3 pb-6 space-y-2">
+          <!-- STOP 1: City Center Hub (Visited) -->
+          <div data-status="visited" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
+              <h3 class="font-bold text-black text-[15px]">1. City Center Hub</h3>
+              <span class="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[13px]">check</span>
+                <span>Visited</span>
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between pt-0.5 text-xs">
+              <div class="flex items-center space-x-3">
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Arrival</span>
+                  <span class="font-bold text-black text-xs">07:05 AM</span>
+                </div>
+                <span class="text-gray-200 font-light">|</span>
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Departure</span>
+                  <span class="font-bold text-black text-xs">07:10 AM</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-black inline-block"></span>
+                <span class="font-bold text-black text-xs">On Time</span>
+                <span class="material-symbols-outlined text-gray-400 text-[16px] ml-0.5">chevron_right</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STOP 2: Market Square (Visited - Early) -->
+          <div data-status="visited" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
+              <h3 class="font-bold text-black text-[15px]">2. Market Square</h3>
+              <span class="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center space-x-1">
+                <span class="material-symbols-outlined text-[13px]">check</span>
+                <span>Visited</span>
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between pt-0.5 text-xs">
+              <div class="flex items-center space-x-3">
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Arrival</span>
+                  <span class="font-bold text-black text-xs">07:20 AM</span>
+                </div>
+                <span class="text-gray-200 font-light">|</span>
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Departure</span>
+                  <span class="font-bold text-black text-xs">07:22 AM</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                <span class="font-bold text-emerald-600 text-xs">Early (-2m)</span>
+                <span class="material-symbols-outlined text-gray-400 text-[16px] ml-0.5">chevron_right</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STOP 3: Riverside (Upcoming) -->
+          <div data-status="upcoming" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
+              <h3 class="font-bold text-black text-[15px]">3. Riverside</h3>
+              <span class="bg-white text-gray-800 border border-gray-400 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Upcoming</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-0.5 text-xs">
+              <div class="flex items-center space-x-3">
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Arrival (ETA)</span>
+                  <span class="font-bold text-black text-xs">07:35 AM</span>
+                </div>
+                <span class="text-gray-200 font-light">|</span>
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Departure</span>
+                  <span class="font-bold text-black text-xs">07:37 AM</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-black inline-block"></span>
+                <span class="font-bold text-black text-xs">On Time</span>
+                <span class="material-symbols-outlined text-gray-400 text-[16px] ml-0.5">chevron_right</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STOP 4: Central Mall (Missed) -->
+          <div data-status="missed" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
+              <h3 class="font-bold text-black text-[15px]">4. Central Mall</h3>
+              <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Missed</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-0.5 text-xs">
+              <div class="flex items-center space-x-3">
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Arrival</span>
+                  <span class="font-bold text-gray-400 text-xs">--:--</span>
+                </div>
+                <span class="text-gray-200 font-light">|</span>
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Departure</span>
+                  <span class="font-bold text-gray-400 text-xs">--:--</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span>
+                <span class="font-bold text-red-600 text-xs">Delay (+15m)</span>
+                <span class="material-symbols-outlined text-gray-400 text-[16px] ml-0.5">chevron_right</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STOP 5: University Gate (Unwanted) -->
+          <div data-status="unwanted" class="route-stop-card bg-white border border-gray-200/80 rounded-2xl p-3.5 shadow-xs space-y-2 cursor-pointer hover:border-gray-300 transition" onclick="navigateTo('vehicle-detail-screen')">
+            <div class="flex items-center justify-between pb-1.5 border-b border-gray-100">
+              <h3 class="font-bold text-black text-[15px]">5. University Gate</h3>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">Unwanted</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-0.5 text-xs">
+              <div class="flex items-center space-x-3">
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Arrival</span>
+                  <span class="font-bold text-gray-400 text-xs">--:--</span>
+                </div>
+                <span class="text-gray-200 font-light">|</span>
+                <div>
+                  <span class="text-gray-400 text-[10px] block uppercase font-medium">Departure</span>
+                  <span class="font-bold text-gray-400 text-xs">--:--</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-gray-400 inline-block"></span>
+                <span class="font-bold text-gray-500 text-xs">Skipping</span>
+                <span class="material-symbols-outlined text-gray-400 text-[16px] ml-0.5">chevron_right</span>
               </div>
             </div>
           </div>

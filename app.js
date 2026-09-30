@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateBottomNavState(screenId) {
     let activeTarget = screenId;
-    if (screenId === 'schedule-detail-screen') {
+    if (screenId === 'schedule-detail-screen' || screenId === 'route-detail-screen') {
       activeTarget = 'status-screen';
     }
     const navItems = document.querySelectorAll('.js-bottom-nav a');
@@ -1315,6 +1315,26 @@ document.addEventListener('DOMContentLoaded', () => {
       btnEl.className = 'status-chip active-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-black text-white border border-black transition whitespace-nowrap';
     }
     const cards = document.querySelectorAll('#schedule-detail-screen .schedule-detail-card');
+    cards.forEach(card => {
+      const cardStatus = card.getAttribute('data-status');
+      if (filter === 'all' || cardStatus === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  };
+
+  // ROUTE DETAIL (STOPS LIST) INTERACTIVE LOGIC
+  window.filterRouteStops = function(filter, btnEl) {
+    const chips = document.querySelectorAll('#route-detail-screen .status-chip');
+    chips.forEach(c => {
+      c.className = 'status-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-medium bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 transition whitespace-nowrap';
+    });
+    if (btnEl) {
+      btnEl.className = 'status-chip active-chip shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-black text-white border border-black transition whitespace-nowrap';
+    }
+    const cards = document.querySelectorAll('#route-detail-screen .route-stop-card');
     cards.forEach(card => {
       const cardStatus = card.getAttribute('data-status');
       if (filter === 'all' || cardStatus === filter) {
